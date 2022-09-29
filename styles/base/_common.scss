@@ -1,15 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@use './variable';
+@use '../mixins/position';
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
 
 // font
 body,
 button,
 input,
 textarea {
-  font-family: "Roboto", sans-serif;
-  font-size: $FS-005;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: $FS-14;
   font-weight: $FW-001;
-  color: $BLACK-001;
+  color: $TXT-001;
   line-height: 1.5;
+  box-sizing: border-box;
   font-feature-settings: 'tnum';
 }
 

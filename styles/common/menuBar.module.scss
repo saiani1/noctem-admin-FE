@@ -1,0 +1,46 @@
+@use'../base/variable';
+
+.menu-bar {
+	background-color: variable.$BG-001;
+	padding: 24px;
+	text-align: center;
+	height: 100vw;
+
+	div {
+		.menu-list {
+			list-style: none;
+			li{
+				padding: 16px;
+			}
+		}
+	}
+
+	.order-list {
+		.order-request-title {
+			display: flex;
+			justify-content: space-between;
+			padding: 16px 0;
+			align-items: center;
+
+			:nth-child(2){
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: variable.$POINT;
+				width: 40px;
+				height: 40px;
+				border-radius: 50px;
+				color: variable.$TXT-005;
+			}
+		}
+
+		.order-request-list {
+			li{
+				display: flex;
+				justify-content: space-between;
+				color: variable.$TXT-003;
+			}
+		}
+	}
+
+}

@@ -1,46 +1,52 @@
 // 폰트 사이즈
-$FS-001: 20px; // h3
-$FS-002: 18px; // ranking
-$FS-003: 16px; // ranking price
-$FS-004: 15px; // new service
-$FS-005: 14px; // body
-$FS-006: 13px; // ranking info
-$FS-007: 12px; // items
-$FS-008: 11px; // footer
-$FS-009: 10px; // footer
+$FS-20: 20px;
+$FS-18: 18px;
+$FS-16: 16px;
+$FS-15: 15px;
+$FS-14: 14px;
+$FS-13: 13px;
+$FS-12: 12px;
+$FS-11: 11px;
+$FS-10: 10px;
 
 // 폰트 두께
-$FW-001: 400; // body
-$FW-002: 500; // ranking price
-$FW-003: 600; // slider title
+$FW-001: 400;
+$FW-002: 500;
+$FW-003: 600;
 
-// 폰트/배경 색상
-$WHITE-001: #FFF;
-$WHITE-ALPA-001: rgba(255, 255, 255, 0.6); // card
+// 폰트 색상
+$TXT-001: #222;
+$TXT-002: #626262;
+$TXT-003: #909090;
+$TXT-004: #DADADA;
+$TXT-005: #FFF;
+$TXT-006: #444;
 
-$BLACK-001: #222; // body
-$BLACK-002: #444; // hot brand title
-$BLACK-003: #414141; // footer
-$BLACK-004: #565656; // footer
-$BLACK-005: #717178; // footer
-$BLACK-006: #777; // body
-$BLACK-007: #888888; // footer
-$BLACK-008: #dbdbe0; // footer
-$BLACK-009: #eee; // border
-$BLACK-010: #f5f5f5; // input
-$BLACK-ALPA-001: rgba(0, 0, 0, 0.65); // nav
+// 배경 색상
+$BG-001: #FFF;
+$BG-002: #F9F9F9;
+$BG-003: #F1F1F1;
+$BG-004: #8D8D8D;
+$BG-005: #4D4D4D;
+$BG-006: #222222;
+$BG-007: #DADADA;
+$BG-008: #F5F5F5;
 
-$RED-001: #f12e24;
-$RED-002: #ff3e3e;
-$RED-003: #ff5b59;
+$BG-ALPA-001: rgba(246, 246, 246, 0.12);
+$BG-ALPA-002: rgba(0, 0, 0, 0.6);
 
-// 크기
-$H-NAV: 50px;
-$H-NAV-SD: 60px;
+// 선 색상
+$LINE-001: #FFF;
+$LINE-002: #EEE;
+$LINE-003: #7A7A7A;
+$LINE-003: #DADADA;
+
+// 포인트 색상
+$POINT: #806C59;
+
+// 그림자
+$BOX-SHADOW-ITEM: 0px 2px 4px rgba(98, 98, 98, 0.25);
+$BOX-SHADOW-TOOLBAR: 0px 0px 4px rgba(0, 0, 0, 0.2);
 
 // 레벨
-$GNB: 1000;
-$DROPDOWN: 1001;
-
-$CHECK-ICON: 11;
-$CHECK-BOX: 10;
+$TOOLBAR: 1000;
