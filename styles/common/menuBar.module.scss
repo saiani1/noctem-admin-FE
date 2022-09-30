@@ -5,13 +5,18 @@
 	padding: 24px;
 	text-align: center;
 	height: 100vw;
-
-	div {
-		.menu-list {
-			list-style: none;
-			li{
-				padding: 16px;
-			}
+	.select-pointer{
+		z-index: 0;
+		position: absolute;
+		padding: 20px 50px;
+		border-radius: 10px;
+		background-color: variable.$BG-003;
+	}
+	.menu-list {
+		list-style: none;
+		z-index: 1;
+		li{
+			padding: 16px;
 		}
 	}
 
