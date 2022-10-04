@@ -1,0 +1,6 @@
+@use'../base/variable';
+
+.manage-page{
+    background-color: variable.$BG-003;
+    display: flex;
+}
