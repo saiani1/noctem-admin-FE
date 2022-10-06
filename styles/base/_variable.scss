@@ -18,31 +18,34 @@ $FW-003: 600;
 $TXT-001: #222;
 $TXT-002: #626262;
 $TXT-003: #909090;
-$TXT-004: #DADADA;
-$TXT-005: #FFF;
+$TXT-004: #dadada;
+$TXT-005: #fff;
 $TXT-006: #444;
 
 // 배경 색상
-$BG-001: #FFF;
-$BG-002: #F9F9F9;
-$BG-003: #F1F1F1;
-$BG-004: #8D8D8D;
-$BG-005: #4D4D4D;
+$BG-001: #fff;
+$BG-002: #f9f9f9;
+$BG-003: #f1f1f1;
+$BG-004: #8d8d8d;
+$BG-005: #4d4d4d;
 $BG-006: #222222;
-$BG-007: #DADADA;
-$BG-008: #F5F5F5;
+$BG-007: #dadada;
+$BG-008: #f5f5f5;
 
 $BG-ALPA-001: rgba(246, 246, 246, 0.12);
 $BG-ALPA-002: rgba(0, 0, 0, 0.6);
 
 // 선 색상
-$LINE-001: #FFF;
-$LINE-002: #EEE;
-$LINE-003: #7A7A7A;
-$LINE-003: #DADADA;
+$LINE-001: #fff;
+$LINE-002: #eee;
+$LINE-003: #7a7a7a;
+$LINE-003: #dadada;
 
 // 포인트 색상
-$POINT: #806C59;
+$POINT: #806c59;
+
+// alert 색상
+$ALERT: #ea3a4b;
 
 // 그림자
 $BOX-SHADOW-ITEM: 0px 2px 4px rgba(98, 98, 98, 0.25);

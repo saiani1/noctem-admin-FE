@@ -1,0 +1,95 @@
+@use '/styles/base/variable';
+@use '/styles/mixins/position';
+
+.wrap {
+  height: 85vh;
+  background-color: variable.$BG-003;
+  padding: 20px 56px 56px;
+
+  h1 {
+    margin-bottom: 13px;
+    font-size: 22px;
+    font-weight: bold;
+    color: variable.$TXT-002;
+  }
+
+  .store-info-wrap {
+    display: flex;
+    column-gap: 30px;
+    padding: 25px;
+    background-color: variable.$BG-001;
+    border-radius: 20px;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      row-gap: 20px;
+
+      .img-wrap {
+        width: 180px;
+        height: 180px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .img-change-wrap {
+        width: 180px;
+        padding: 3px 0;
+        font-size: 12px;
+        color: variable.$TXT-001;
+        border-radius: 3px;
+        background-color: variable.$BG-003;
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+
+      .store-name {
+        margin: -4px 0 15px 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: variable.$TXT-001;
+
+        span {
+          font-size: 16px;
+          font-weight: 400;
+        }
+      }
+
+      dl {
+        display: flex;
+        column-gap: 20px;
+        font-size: 14px;
+
+        & ~ dl {
+          margin-top: 4px;
+        }
+
+        dt {
+          text-align: justify;
+          width: 55px;
+          color: variable.$TXT-003;
+        }
+        dd {
+          color: variable.$TXT-002;
+        }
+      }
+    }
+    .setting-btn {
+      span {
+      }
+    }
+  }
+  .sub-menu-wrap {
+    li {
+      button {
+        .img-wrap {
+        }
+        .tit {
+        }
+      }
+    }
+  }
+}

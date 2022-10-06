@@ -1,51 +1,109 @@
-@use'../base/variable';
+@use '/styles/base/variable';
+@use '/styles/mixins/position';
 
 .menu-bar {
-	background-color: variable.$BG-001;
-	padding: 24px;
-	text-align: center;
-	height: 100vw;
-	.select-pointer{
-		z-index: 0;
-		position: absolute;
-		padding: 20px 50px;
-		border-radius: 10px;
-		background-color: variable.$BG-003;
-	}
-	.menu-list {
-		list-style: none;
-		z-index: 1;
-		li{
-			padding: 16px;
-		}
-	}
+  display: flex;
+  flex-shrink: 0;
+  padding: 70px 24px;
+  width: 20vw;
+  height: 100vh;
+  text-align: center;
 
-	.order-list {
-		.order-request-title {
-			display: flex;
-			justify-content: space-between;
-			padding: 16px 0;
-			align-items: center;
+  .menu-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    width: 100%;
 
-			:nth-child(2){
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				background-color: variable.$POINT;
-				width: 40px;
-				height: 40px;
-				border-radius: 50px;
-				color: variable.$TXT-005;
-			}
-		}
+    .menu {
+      &.slider {
+        @include position.absolute(0 0 auto auto);
+        display: block;
+        content: ' ';
+        width: 100%;
+        height: 45px;
+        background-color: variable.$BG-008;
+        border-radius: 9px;
+        z-index: -1;
+        transition: all 0.2s ease-in-out;
+      }
+      &.active {
+        button {
+          font-weight: bold;
+        }
+        &.menus ~ .slider {
+          margin-top: 58px;
+        }
+        &.stock ~ .slider {
+          margin-top: 114px;
+        }
+        &.crew ~ .slider {
+          margin-top: 171px;
+        }
+        &.data ~ .slider {
+          margin-top: 228px;
+        }
+      }
+      button {
+        display: inline-block;
+        width: 100%;
+        padding: 12px 0;
+        border-radius: 9px;
+      }
+    }
+    .order-list {
+      margin-top: 100px;
+      &.active {
+        .order-request-title {
+          font-weight: bold;
+        }
+        & ~ .slider {
+          margin-top: 383px;
+          height: 182px;
+        }
+      }
+      button {
+        padding: 19px;
+        border-radius: 9px;
+        width: 100%;
 
-		.order-request-list {
-			li{
-				display: flex;
-				justify-content: space-between;
-				color: variable.$TXT-003;
-			}
-		}
-	}
+        .order-request-title {
+          pointer-events: none;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
 
+          :nth-child(2) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: variable.$POINT;
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            color: variable.$TXT-005;
+          }
+        }
+
+        .order-request-list {
+          pointer-events: none;
+          display: flex;
+          flex-direction: column;
+          row-gap: 10px;
+          margin-top: 20px;
+
+          li {
+            display: flex;
+            justify-content: space-between;
+            color: variable.$TXT-003;
+
+            span {
+              padding-right: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -2,18 +2,17 @@
 import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Main from './main';
 
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Nectem Order</title>
-        <meta name='description' content='Nectom Order' />
+        <title>Noctem Order</title>
+        <meta name='description' content='Noctom Order' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div>
-        <h1>Hello Noctem!</h1>
-      </div>
+      <Main />
     </>
   );
 };
