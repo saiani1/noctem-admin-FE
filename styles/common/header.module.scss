@@ -5,30 +5,36 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 56px;
   flex: 0 0 100%;
   width: 80vw;
   height: 10vh;
   background-color: variable.$BG-003;
+
   ul {
     display: flex;
     align-items: center;
     column-gap: 30px;
+
     li {
       font-size: variable.$FS-14;
       font-weight: bold;
       color: variable.$TXT-001;
     }
+
     .profile-wrap {
       button {
         display: flex;
         align-items: center;
         column-gap: 10px;
+
         .img {
           width: 30px;
           height: 30px;
           border-radius: 50%;
           background-color: variable.$BG-007;
         }
+
         span {
           font-size: variable.$FS-14;
           font-weight: bold;
@@ -36,8 +42,8 @@
         }
       }
     }
+
     .alert-wrap {
-      margin-right: 20px;
 
       button {
         position: relative;
@@ -46,7 +52,8 @@
         align-items: flex-end;
         width: 30px;
         height: 30px;
-        margin: 4px 0 0 -15px;
+        margin: 4px 0 0 -18px;
+
         &.active::after {
           @include position.absolute(0 0 auto auto);
           display: inline-block;
