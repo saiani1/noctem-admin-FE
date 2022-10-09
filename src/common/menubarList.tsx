@@ -1,16 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import classNames from 'classnames/bind';
 
 import styles from '../../styles/common/menuBar.module.scss';
 
-const cx = classNames.bind(styles);
-
 function menubarList() {
+  const cx = classNames.bind(styles);
+  const router = useRouter();
+
   const [clickMenu, setClickMenu] = useState('main');
 
   const handleClickMenu = (e: React.MouseEvent<HTMLElement>) => {
-    setClickMenu((e.target as HTMLInputElement).name);
+    const { name } = e.target as HTMLInputElement;
+    setClickMenu(name);
+    router.push(`/${name}`);
   };
 
   return (
@@ -26,7 +30,7 @@ function menubarList() {
         <li
           className={cx('menu', 'menus', clickMenu === 'menu' ? 'active' : '')}
         >
-          <button type='button' name='menu' onClick={handleClickMenu}>
+          <button type='button' name='menuManagement' onClick={handleClickMenu}>
             메뉴 관리
           </button>
         </li>

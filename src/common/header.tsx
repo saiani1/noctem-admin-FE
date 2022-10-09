@@ -9,8 +9,8 @@ import styles from '../../styles/common/header.module.scss';
 function header() {
   const cx = classNames.bind(styles);
   dayjs.locale('ko');
-  const date = dayjs(new Date()).format('YYYY년 MM월 DD일');
-  const time = dayjs(new Date()).format('A HH시 mm분');
+  const date = dayjs(new Date()).format('YYYY년 M월 D일');
+  const time = dayjs(new Date()).format('A H시 m분');
 
   return (
     <header className={cx('wrap')}>

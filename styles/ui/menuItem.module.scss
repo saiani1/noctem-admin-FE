@@ -1,0 +1,47 @@
+@use '/styles/base/variable';
+@use '/styles/mixins/position';
+
+.menu-item-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 13%;
+  margin: 30px 10px 0;
+
+  .dummy-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: #aaa;
+  }
+
+  .menu-name {
+    margin: 15px 0;
+    font-size: 17px;
+    text-align: center;
+    color: variable.$TXT-002;
+  }
+
+  .btn-wrap {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+
+    button {
+      padding: 5px 15px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 5px;
+      background-color: variable.$BG-005;
+      color: variable.$TXT-005;
+
+      &.stop {
+        background-color: variable.$ALERT;
+      }
+
+      &.restart {
+        background-color: variable.$BG-007;
+      }
+    }
+  }
+}
