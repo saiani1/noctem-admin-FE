@@ -28,7 +28,11 @@ function menubarList() {
           </button>
         </li>
         <li
-          className={cx('menu', 'menus', clickMenu === 'menu' ? 'active' : '')}
+          className={cx(
+            'menu',
+            'menus',
+            clickMenu === 'menuManagement' ? 'active' : '',
+          )}
         >
           <button type='button' name='menuManagement' onClick={handleClickMenu}>
             메뉴 관리
