@@ -14,9 +14,6 @@ function menuItem() {
         <button type='button' className={cx('soldout')}>
           품절처리
         </button>
-        <button type='button' className={cx('stop')}>
-          판매중단
-        </button>
         <button type='button' className={cx('restart')}>
           판매재개
         </button>

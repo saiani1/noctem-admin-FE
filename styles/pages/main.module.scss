@@ -2,7 +2,6 @@
 @use '/styles/mixins/position';
 
 .wrap {
-  height: 85vh;
   background-color: variable.$BG-003;
   padding: 20px 56px 56px;
 
@@ -66,7 +65,7 @@
         column-gap: 20px;
         font-size: 14px;
 
-        &~dl {
+        & ~ dl {
           margin-top: 5px;
         }
 
@@ -85,7 +84,8 @@
     .setting-btn {
       @include position.absolute(25px 25px auto auto);
 
-      span {}
+      span {
+      }
     }
   }
 

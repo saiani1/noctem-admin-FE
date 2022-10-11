@@ -35,10 +35,6 @@
       background-color: variable.$BG-005;
       color: variable.$TXT-005;
 
-      &.stop {
-        background-color: variable.$ALERT;
-      }
-
       &.restart {
         background-color: variable.$BG-007;
       }
