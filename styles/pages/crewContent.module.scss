@@ -1,0 +1,92 @@
+@use '/styles/base/variable';
+@use '/styles/mixins/position';
+
+.wrap {
+  height: 100%;
+  background-color: variable.$BG-003;
+  padding: 20px 56px 56px;
+
+  h1 {
+    margin-bottom: 13px;
+    font-size: 22px;
+    font-weight: bold;
+    color: variable.$TXT-002;
+  }
+  .content-wrap {
+    position: relative;
+    padding: 30px 50px 60px;
+    background-color: variable.$BG-001;
+    border-radius: 20px;
+
+    table {
+      width: 100%;
+      border-bottom: 3px solid variable.$LINE-003;
+      thead {
+        border-bottom: 3px solid variable.$LINE-003;
+        th {
+          padding-bottom: 10px;
+          font-size: 15px;
+          font-weight: 600;
+          color: variable.$TXT-002;
+
+          &:nth-child(2) {
+            padding-left: 50px;
+          }
+        }
+      }
+      tbody {
+        tr {
+          position: relative;
+          input[type='checkbox'] {
+            @include position.absolute(19px auto auto 20px);
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border: 1px solid variable.$LINE-004;
+            border-radius: 2px;
+
+            &:checked {
+              background-color: variable.$LINE-004;
+            }
+          }
+          height: 50px;
+          border-bottom: 1px solid variable.$LINE-003;
+        }
+        td {
+          padding: 15px 5px;
+          font-size: 15px;
+          text-align: center;
+          color: variable.$TXT-002;
+
+          &.input-wrap {
+            position: relative;
+            img {
+              @include position.absolute(21px auto auto 22px);
+              width: 10px;
+              height: 10px;
+              pointer-events: none;
+            }
+          }
+
+          &:nth-child(2) {
+            padding-left: 50px;
+          }
+        }
+      }
+    }
+    .btn-wrap {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      column-gap: 5px;
+
+      button {
+        padding: 8px 15px;
+        color: variable.$TXT-005;
+        font-weight: 500;
+        border-radius: 5px;
+        background-color: variable.$BG-004;
+      }
+    }
+  }
+}
