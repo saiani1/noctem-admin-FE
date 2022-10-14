@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import styles from '../../../styles/pages/crewContent.module.scss';
+import styles from '../../../styles/content/crewContent.module.scss';
 
 function crewContent() {
   const cx = classNames.bind(styles);

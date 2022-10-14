@@ -10,7 +10,7 @@ function header() {
   const cx = classNames.bind(styles);
   dayjs.locale('ko');
   const date = dayjs(new Date()).format('YYYY년 M월 D일');
-  const time = dayjs(new Date()).format('A H시 m분');
+  const time = dayjs(new Date()).format('A h시 m분');
 
   return (
     <header className={cx('wrap')}>

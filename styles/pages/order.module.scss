@@ -1,19 +1,19 @@
 @use '/styles/base/variable';
 
-.back-ground{
+.back-ground {
   position: fixed;
   background-color: variable.$BG-003;
   height: 100vh;
   width: 100vw;
   z-index: -1;
 }
-.gray{
-  color:variable.$TXT-003;
+.gray {
+  color: variable.$TXT-003;
 }
 .order-management {
-  padding: 24px;
+  padding: 20px 56px;
   background-color: variable.$BG-003;
-  .data-none{
+  .data-none {
     width: 100%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
@@ -23,9 +23,11 @@
     padding: 50px;
     background-color: variable.$BG-001;
   }
-  .category-title{
-    font-size: variable.$FS-26;
-    font-weight: variable.$FW-003;
+  .category-title {
+    margin-bottom: 13px;
+    font-size: 22px;
+    font-weight: bold;
+    color: variable.$TXT-002;
   }
   .order-detail {
     background-color: variable.$BG-001;
@@ -34,14 +36,13 @@
     display: flex;
     justify-content: space-between;
     height: 150px;
-    
-    .drink-info{
-      & > .drink-detail-box{
+
+    .drink-info {
+      & > .drink-detail-box {
         margin: 24px;
-        div{
+        div {
           display: flex;
         }
-
       }
       display: flex;
       justify-content: center;
@@ -50,7 +51,7 @@
       .drink-title {
         font-weight: variable.$FW-003;
       }
-      .drink-detail{
+      .drink-detail {
         color: variable.$TXT-003;
         font-size: variable.$FS-14;
       }
@@ -60,37 +61,37 @@
         justify-content: space-between;
         font-size: variable.$FS-14;
       }
-      .drink-img{
+      .drink-img {
         border-radius: 50px;
         width: 100px;
 
-        img{
+        img {
           border-radius: 50px;
           width: 100%;
         }
       }
     }
-    .button-space{
+    .button-space {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 24px;
-      div{
-        div{
+      div {
+        div {
           color: variable.$TXT-005;
           width: 200px;
           height: 40px;
-          border-radius:5px;
+          border-radius: 5px;
           display: flex;
           justify-content: center;
           align-items: center;
           margin: 12px;
         }
-        .accept{
-          background-color: #8B62FF;
+        .accept {
+          background-color: #8b62ff;
         }
-        .refusal{
-          background-color: #FF5F5F;
+        .refusal {
+          background-color: #ff5f5f;
         }
       }
     }
@@ -100,44 +101,42 @@
 .order-state {
   background-color: variable.$BG-003;
   display: flex;
-  padding: 24px;
+  column-gap: 48px;
+  padding: 20px 56px;
   width: 100%;
 
-  .data-none{
+  .data-none {
     display: flex;
     color: variable.$TXT-003;
     justify-content: center;
     align-items: center;
   }
-  .title{
+  .title {
     padding: 24px 16px;
     font-size: variable.$FS-15;
   }
-  .order-request{
+  .order-request {
     min-height: 400px;
   }
-  .order-confirm{
+  .order-confirm {
     min-height: 400px;
 
-    .complete-card{
-
-      .confirm-button{
-        background-color: #8B62FF;
+    .complete-card {
+      .confirm-button {
+        background-color: #8b62ff;
         color: variable.$TXT-005;
         padding: 10px 30px;
         border-radius: 10px;
-
       }
     }
   }
-  &>div {
+  & > div {
     background-color: variable.$BG-001;
-    margin: 24px;
     width: 33%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
 
-    .title{
+    .title {
       font-weight: variable.$FW-003;
     }
     .complete-card {
@@ -145,7 +144,7 @@
       .drink-title {
         font-weight: variable.$FW-003;
       }
-      .drink-detail{
+      .drink-detail {
         color: variable.$TXT-003;
         font-size: variable.$FS-14;
       }
@@ -155,13 +154,11 @@
         justify-content: space-between;
         font-size: variable.$FS-14;
       }
-      .order-confirm-button-box{
+      .order-confirm-button-box {
         display: flex;
         justify-content: space-between;
         color: variable.$TXT-003;
-
       }
     }
-
   }
 }

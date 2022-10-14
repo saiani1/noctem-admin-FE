@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import classNames from 'classnames/bind';
 
-import styles from '../../../styles/pages/storeContent.module.scss';
+import styles from '../../../styles/content/storeContent.module.scss';
 
 function storeContent() {
   const cx = classNames.bind(styles);
