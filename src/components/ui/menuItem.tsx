@@ -2,14 +2,22 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from '../../../styles/ui/menuItem.module.scss';
+import { IMenuList } from '../../types/menu.d';
 
-function menuItem() {
+interface IProps {
+  menu: IMenuList;
+}
+
+function menuItem({ menu }: IProps) {
+  const { menuName, imgUrl } = menu;
   const cx = classNames.bind(styles);
 
   return (
     <li className={cx('menu-item-wrap')}>
-      <div className={cx('dummy-img')} />
-      <span className={cx('menu-name')}>블론드 바닐라 더블샷 마키아토</span>
+      <span className={cx('img-wrap')}>
+        <img src={imgUrl} alt={menuName} />
+      </span>
+      <span className={cx('menu-name')}>{menuName}</span>
       <div className={cx('btn-wrap')}>
         <button type='button' className={cx('soldout')}>
           품절처리

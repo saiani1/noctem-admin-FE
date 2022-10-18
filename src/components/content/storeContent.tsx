@@ -53,7 +53,7 @@ function storeContent() {
           </dl>
           <dl>
             <dt>책임자</dt>
-            <dd>박수아</dd>
+            <dd>양진기</dd>
           </dl>
           <dl>
             <dt>번호</dt>

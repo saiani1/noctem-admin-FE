@@ -8,11 +8,16 @@
   width: 13%;
   margin: 30px 10px 0;
 
-  .dummy-img {
+  .img-wrap {
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    background-color: #aaa;
+    overflow: hidden;
+
+    img {
+      width: 110px;
+      height: 110px;
+    }
   }
 
   .menu-name {
