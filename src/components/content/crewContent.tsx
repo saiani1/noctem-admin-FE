@@ -1,16 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from '../../../styles/content/crewContent.module.scss';
+import { getCrewList } from '../../../pages/api/crew';
+import { ICrew } from '../../types/crew.d';
 
 function crewContent() {
+  const [crewInfo, setCrewInfo] = useState<ICrew[]>([]);
   const cx = classNames.bind(styles);
+
+  useEffect(() => {
+    getCrewList().then(res => {
+      setCrewInfo(res.data.data);
+    });
+  }, []);
 
   return (
     <div className={cx('wrap')}>
       <h1>직원관리</h1>
       <div className={cx('content-wrap')}>
         <table>
+          <colgroup>
+            <col width='1%' />
+            <col width='5%' />
+            <col width='5%' />
+            <col width='5%' />
+            <col width='5%' />
+            <col width='5%' />
+            <col width='8%' />
+            <col width='8%' />
+            <col width='5%' />
+          </colgroup>
           <thead>
             <tr>
               <th> </th>
@@ -25,63 +45,27 @@ function crewContent() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className={cx('input-wrap')}>
-                <input type='checkbox' />
-                <img src='/assets/svg/icon-check.svg' alt='check' />
-              </td>
-              <td>S-001</td>
-              <td>센텀드림월드</td>
-              <td>점장</td>
-              <td>김점장</td>
-              <td>여</td>
-              <td>2010.02.05</td>
-              <td> </td>
-              <td>08:00~15:00</td>
-            </tr>
-            <tr>
-              <td className={cx('input-wrap')}>
-                <input type='checkbox' />
-                <img src='/assets/svg/icon-check.svg' alt='check' />
-              </td>
-              <td>S-002</td>
-              <td>센텀드림월드</td>
-              <td>매니저</td>
-              <td>이매니저</td>
-              <td>남</td>
-              <td>2020.02.05</td>
-              <td> </td>
-              <td>15:00~23:00</td>
-            </tr>
-            <tr>
-              <td className={cx('input-wrap')}>
-                <input type='checkbox' />
-                <img src='/assets/svg/icon-check.svg' alt='check' />
-              </td>
-              <td>S-003</td>
-              <td>센텀드림월드</td>
-              <td>직원</td>
-              <td>박직원</td>
-              <td>여</td>
-              <td>2022.02.05</td>
-              <td>2022.09.15</td>
-              <td>08:00~13:00</td>
-            </tr>
-            <tr>
-              <td />
-            </tr>
-            <tr>
-              <td />
-            </tr>
-            <tr>
-              <td />
-            </tr>
-            <tr>
-              <td />
-            </tr>
-            <tr>
-              <td />
-            </tr>
+            {crewInfo &&
+              crewInfo.map((crew: ICrew) => (
+                <tr key={crew.index}>
+                  <td className={cx('input-wrap')}>
+                    <input type='checkbox' />
+                    <img src='/assets/svg/icon-check.svg' alt='check' />
+                  </td>
+                  <td>{crew.id}</td>
+                  <td>{crew.placeOfWork}</td>
+                  <td>
+                    {crew.role === 'ROLE_STAFF' && '정직원'}
+                    {crew.role === 'ROLE_ADMIN' && '관리자'}
+                    {crew.role === 'ROLE_MANAGER' && '책임자'}
+                  </td>
+                  <td>{crew.name}</td>
+                  <td>{crew.sex === 'FEMALE' ? '여' : '남'}</td>
+                  <td>{crew.startDate}</td>
+                  <td> </td>
+                  <td>{crew.workingHours}시간</td>
+                </tr>
+              ))}
           </tbody>
         </table>
         <div className={cx('btn-wrap')}>

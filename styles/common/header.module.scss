@@ -28,11 +28,16 @@
         align-items: center;
         column-gap: 10px;
 
-        .img {
+        .img-wrap {
+          display: block;
           width: 30px;
           height: 30px;
           border-radius: 50%;
-          background-color: variable.$BG-007;
+          overflow: hidden;
+          img {
+            height: 30px;
+            background-color: variable.$BG-007;
+          }
         }
 
         span {
@@ -44,7 +49,6 @@
     }
 
     .alert-wrap {
-
       button {
         position: relative;
         display: flex;

@@ -4,7 +4,7 @@
 .wrap {
   background-color: variable.$BG-003;
   padding: 20px 56px 56px;
-  height: 100vh;
+  height: 90vh;
 
   h1 {
     margin-bottom: 13px;
@@ -32,6 +32,10 @@
         height: 180px;
         border-radius: 10px;
         overflow: hidden;
+
+        img {
+          height: 180px;
+        }
       }
 
       .img-change-wrap {
@@ -81,13 +85,6 @@
         }
       }
     }
-
-    .setting-btn {
-      @include position.absolute(25px 25px auto auto);
-
-      span {
-      }
-    }
   }
 
   .sub-menu-wrap {
@@ -99,7 +96,7 @@
       width: 25%;
       height: 220px;
 
-      button {
+      a {
         display: flex;
         flex-direction: column;
         justify-content: center;

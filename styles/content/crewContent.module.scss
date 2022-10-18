@@ -2,9 +2,10 @@
 @use '/styles/mixins/position';
 
 .wrap {
-  height: 100%;
-  background-color: variable.$BG-003;
   padding: 20px 56px 56px;
+  height: 90vh;
+  background-color: variable.$BG-003;
+  overflow: scroll;
 
   h1 {
     margin-bottom: 13px;

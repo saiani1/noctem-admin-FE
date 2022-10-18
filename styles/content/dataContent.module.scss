@@ -3,8 +3,10 @@
 
 .wrap {
   background-color: variable.$BG-003;
-  padding: 20px 56px 56px;
-  height: 100vh;
+  padding: 20px 56px 20px 56px;
+  // padding: 20px 56px 56px;
+  height: 90vh;
+  overflow: scroll;
 
   h1 {
     margin-bottom: 25px;
@@ -166,9 +168,9 @@
           align-items: center;
           width: 33%;
           &.bar {
-            @include position.absolute(20px auto auto 23px);
+            @include position.absolute(0 auto 0 23px);
             width: 30%;
-            height: 80%;
+            margin: 20px 0;
             background-color: variable.$BG-003;
             border-radius: 10px;
             z-index: -1;

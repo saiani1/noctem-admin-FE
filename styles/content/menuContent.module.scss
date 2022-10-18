@@ -2,8 +2,10 @@
 @use '/styles/mixins/position';
 
 .wrap {
-  background-color: variable.$BG-003;
   padding: 20px 56px 56px;
+  height: 90vh;
+  background-color: variable.$BG-003;
+  overflow: scroll;
 
   h1 {
     margin-bottom: 13px;
@@ -26,7 +28,7 @@
       background-color: variable.$BG-003;
 
       li {
-        ~li::before {
+        ~ li::before {
           display: inline-block;
           margin-right: 10px;
           content: ' ';
