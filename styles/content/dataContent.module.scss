@@ -1,0 +1,265 @@
+@use '/styles/base/variable';
+@use '/styles/mixins/position';
+
+.wrap {
+  background-color: variable.$BG-003;
+  padding: 20px 56px 56px;
+  height: 100vh;
+
+  h1 {
+    margin-bottom: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    color: variable.$TXT-002;
+  }
+
+  h2 {
+    font-size: variable.$FS-16;
+    font-weight: bold;
+    color: variable.$TXT-002;
+  }
+
+  .sales-status-wrap {
+    .tit-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+
+      .tab-wrap {
+        position: relative;
+        display: flex;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #fff;
+        z-index: 1;
+
+        li {
+          button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 20px;
+            font-size: 9px;
+            color: variable.$TXT-003;
+          }
+          &.active {
+            button {
+              font-weight: bold;
+              color: variable.$TXT-002;
+            }
+            &.day ~ .bar {
+              margin-left: 55px;
+            }
+            &.week ~ .bar {
+              margin-left: 110px;
+            }
+            &.month ~ .bar {
+              margin-left: 165px;
+            }
+          }
+          &.bar {
+            @include position.absolute(5px auto auto 5px);
+            width: 55px;
+            height: 20px;
+            background-color: variable.$BG-003;
+            border-radius: 2px;
+            z-index: -1;
+            transition: all 0.2s ease-in-out;
+          }
+        }
+      }
+    }
+    .sales-chart-wrap {
+      padding: 25px;
+      background-color: variable.$BG-001;
+      border-radius: 20px;
+
+      .card-wrap {
+        display: flex;
+        justify-content: space-between;
+        li {
+          width: 48.5%;
+          padding: 13px 35px;
+          border: 1px solid variable.$LINE-002;
+          border-radius: 8px;
+          h3 {
+            margin-bottom: 5px;
+            font-size: variable.$FS-11;
+            color: variable.$TXT-003;
+          }
+          .cnt {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            strong {
+              font-weight: bold;
+              color: variable.$TXT-001;
+            }
+            .change {
+              font-size: variable.$FS-10;
+              color: variable.$TXT-003;
+              .arrow {
+                color: greenyellow;
+                &.up {
+                  color: red;
+                }
+              }
+            }
+          }
+        }
+      }
+      .chart-wrap {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        .index {
+          display: flex;
+          column-gap: 20px;
+          padding: 3px 15px;
+          border: 1px solid variable.$LINE-002;
+          border-radius: 5px;
+          li {
+            display: flex;
+            align-items: center;
+            &::before {
+              margin-right: 5px;
+              display: block;
+              content: ' ';
+              width: 7px;
+              height: 7px;
+              border-radius: 50%;
+              background-color: skyblue;
+            }
+            &.now::before {
+              background-color: greenyellow;
+            }
+            font-size: variable.$FS-10;
+          }
+        }
+      }
+    }
+  }
+  .bottom-status-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+
+    h2 {
+      margin-bottom: 15px;
+    }
+    .popular-menu-wrap {
+      width: 63%;
+      height: 260px;
+      .menu-wrap {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        padding: 35px 25px;
+        background-color: variable.$BG-001;
+        border-radius: 20px;
+        z-index: 1;
+        li {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 33%;
+          &.bar {
+            @include position.absolute(20px auto auto 23px);
+            width: 30%;
+            height: 80%;
+            background-color: variable.$BG-003;
+            border-radius: 10px;
+            z-index: -1;
+          }
+          .tit-wrap {
+            display: flex;
+            align-items: center;
+            width: 70%;
+            .menu-name {
+              margin-left: 5px;
+              font-size: variable.$FS-12;
+              color: variable.$TXT-003;
+              word-break: keep-all;
+              line-height: 1.2;
+            }
+          }
+
+          &.active {
+            .menu-name {
+              font-weight: bold;
+              color: variable.$TXT-002;
+            }
+            &.second ~ .bar {
+              margin-left: 30%;
+            }
+            &.third ~ .bar {
+              margin-left: 60%;
+            }
+          }
+          .img-wrap {
+            display: block;
+            width: 150px;
+            height: 150px;
+            margin-top: 10px;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+              width: 150px;
+              height: 150px;
+            }
+          }
+        }
+      }
+    }
+    .customer-status-wrap {
+      width: 30%;
+
+      .rank-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        padding: 25px;
+        height: 260px;
+        background-color: variable.$BG-001;
+        border-radius: 20px;
+        z-index: 1;
+        li {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+          padding: 5px 10px;
+          span {
+            margin: -2px 0 0 10px;
+            font-size: variable.$FS-13;
+            font-weight: 300;
+            color: variable.$TXT-002;
+          }
+          &.bar {
+            @include position.absolute(51px 0 auto 0);
+            margin: 0 20px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: variable.$BG-003;
+            z-index: -1;
+          }
+          &.active {
+            span {
+              font-weight: bold;
+              color: variable.$TXT-002;
+            }
+            &.second ~ .bar {
+              margin-top: 16%;
+            }
+            &.third ~ .bar {
+              margin-top: 31.5%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
