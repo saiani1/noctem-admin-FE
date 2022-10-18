@@ -46,7 +46,7 @@ export const requestList: Array<IList> = [
       {
         index: 1,
         sizeId: 2,
-        menuName: '딸기 아사이 레모네이드 녹템 리프레셔',
+        menuName: '할로윈 초코 헤이즐넛 프라푸치노',
         qty: 2,
         optionList: [
           {
@@ -72,7 +72,7 @@ export const requestList: Array<IList> = [
       {
         index: 0,
         sizeId: 1,
-        menuName: '딸기 아사이 레모네이드 녹템 리프레셔',
+        menuName: '아이스 카페 아메리카노',
         qty: 1,
         optionList: [
           {
@@ -102,7 +102,7 @@ export const requestList: Array<IList> = [
         ],
       },
     ],
-    userNickname: '차누링',
+    userNickname: '수아수아',
     orderNumber: 24,
     orderRequestTime: '13:52:54',
   },

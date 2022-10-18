@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../../../styles/pages/order.module.scss';
 import OrderNotConfirm from '../order/orderNotConfirm';
 import { requestList } from '../../../public/assets/datas/requestList';
+import { getRequest } from '../../../pages/api/order';
 
 const cx = classNames.bind(styles);
 
@@ -11,9 +12,15 @@ function orderContent() {
   // const request = 1;
   const [openOrderList, setOpenOrderList] = useState(false);
   const [request, setRequest] = useState([]);
+  const [menuList, setMenuList] = useState();
   const confirm = 1;
   const complete = 1;
-
+  useEffect(() => {
+    getRequest().then(res => {
+      console.log('주문 요청', res.data);
+      setRequest(res.data.data);
+    });
+  }, []);
   return (
     <>
       <div className={cx('back-ground')} />
@@ -68,6 +75,7 @@ function orderContent() {
                 key={item.index}
                 setOpenOrderList={setOpenOrderList}
                 openOrderList={openOrderList}
+                setMenuList={setMenuList}
               />
             ))
           ) : (
@@ -132,14 +140,14 @@ function orderContent() {
       </div>
       {openOrderList && (
         <div className={cx('open-order-list')}>
-          <div className={cx('black-back-ground')} />
+          <div className={cx('black-background')} />
           <div className={cx('order-list-content')}>
             <div>
               <h2>주문 상세 정보</h2>
               <p>총 2잔</p>
             </div>
             <div>
-              <div>아이스 블렉 그렐이즈드 라떼</div>
+              <div>아이스 아메리카노</div>
               <div>
                 ICED | Tall | 매장컵 | 에스프레소 샷 1 | 물 많이 | 얼음 적게 |
                 일반휘핑 많이 | 초콜릿 드리즐

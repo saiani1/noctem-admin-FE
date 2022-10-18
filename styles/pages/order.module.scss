@@ -163,8 +163,25 @@
   }
 }
 .open-order-list{
+  z-index: 100;
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .black-background{
+    background-color: black;
+    opacity: 0.3;
+    width: 100vw;
+    height: 100vh;
+  }
+  .order-list-content{
+    padding: 10px;
     position: absolute;
-    background-color: variable.$TXT-001;
+    background-color: variable.$BG-001;
+    padding: 24px;
+    border-radius: 10px;
+    z-index: 150;
   }
 }
