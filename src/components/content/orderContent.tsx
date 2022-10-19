@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../../../styles/pages/order.module.scss';
 import OrderNotConfirm from '../order/orderNotConfirm';
-import { requestList } from '../../../public/assets/datas/requestList';
+import { IList, requestList } from '../../../public/assets/datas/requestList';
 import { getRequest } from '../../../pages/api/order';
 import OrderListContent from '../order/orderListContent';
 
@@ -12,16 +12,16 @@ function orderContent() {
   // request = 0 : 없음 request = 1 : 있음
   // const request = 1;
   const [openOrderList, setOpenOrderList] = useState(false);
-  const [request, setRequest] = useState([]);
+  const [request, setRequest] = useState<IList[]>([]);
   const [menuList, setMenuList] = useState();
   const [orderPurchaseId, setOrderPurchaseId] = useState(0);
-  console.log(menuList);
   const confirm = 1;
   const complete = 1;
   useEffect(() => {
     getRequest().then(res => {
-      console.log('주문 요청', res.data);
+      console.log('주문 요청', res.data.data);
       setRequest(res.data.data);
+      console.log('menuList', request);
     });
   }, []);
   const handleOpenOrderList = () => {
@@ -75,8 +75,8 @@ function orderContent() {
         <div className={cx('order-request')}>
           <div className={cx('title')}>주문 요청</div>
           <hr />
-          {requestList.length >= 1 ? (
-            requestList.map(item => (
+          {request.length >= 1 ? (
+            request.map(item => (
               <OrderNotConfirm
                 item={item}
                 key={item.index}
@@ -159,21 +159,21 @@ function orderContent() {
             <div className={cx('title-content')}>
               <div className={cx('title')}>
                 <h2>주문 상세 정보</h2>
-                <p>총 {requestList[orderPurchaseId].orderTotalQty}잔</p>
+                <p>총 {request[orderPurchaseId].orderTotalQty}잔</p>
               </div>
               <div className={cx('order-info')}>
                 <div>
                   <div>주문 고객 닉네임</div>
-                  <p>{requestList[orderPurchaseId].userNickname}</p>
+                  <p>{request[orderPurchaseId].userNickname}</p>
                 </div>
                 <div>
                   <div>주문 시각</div>
-                  <p>{requestList[orderPurchaseId].orderRequestTime}</p>
+                  <p>{request[orderPurchaseId].orderRequestTime}</p>
                 </div>
               </div>
             </div>
             <div className={cx('item-list')}>
-              {requestList[orderPurchaseId].menuList.map(product => (
+              {request[orderPurchaseId].menuList.map(product => (
                 <OrderListContent product={product} key={product.index} />
               ))}
             </div>

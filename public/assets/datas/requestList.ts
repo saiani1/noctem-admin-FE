@@ -16,7 +16,7 @@ export interface IMenuList {
   optionList: IOptionList[];
 }
 
-interface IOptionList {
+export interface IOptionList {
   index: number;
   personalOptionNameAndAmount: string;
 }

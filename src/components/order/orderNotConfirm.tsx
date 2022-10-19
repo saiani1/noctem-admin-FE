@@ -20,16 +20,14 @@ function orderNotConfirm({
   setOrderPurchaseId: React.Dispatch<React.SetStateAction<number>>;
   orderPurchaseId: number;
 }) {
-  // const [orderPurchaseId, setOrderPurchaseId] = useState(0);
   const handleOpenOrderList = (purchaseId: number) => {
     setOpenOrderList(!openOrderList);
     setOrderPurchaseId(purchaseId);
-    // console.log('asdfasdfasdf', purchaseId);
   };
   useEffect(() => {
     setMenuList(item.menuList);
   }, []);
-  // console.log('item', item);
+  console.log('item', item);
   return (
     <>
       <div
