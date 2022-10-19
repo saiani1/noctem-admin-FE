@@ -6,7 +6,12 @@ export interface ICategoryS {
 }
 
 export interface IMenuList {
-  menuId: number;
+  menuId: string;
   menuName: string;
   imgUrl: string;
+}
+
+export interface ISoldOutList {
+  index: number;
+  soldOutMenuId: string;
 }

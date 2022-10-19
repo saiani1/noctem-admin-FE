@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from '../../../styles/ui/menuItem.module.scss';
-import { IMenuList } from '../../types/menu.d';
+import { addSoldOutMenu } from '../../../pages/api/menu';
+import { IMenuList, ISoldOutList } from '../../types/menu.d';
 
 interface IProps {
   menu: IMenuList;
+  soldOutList: ISoldOutList[];
 }
 
-function menuItem({ menu }: IProps) {
-  const { menuName, imgUrl } = menu;
+function menuItem({ menu, soldOutList }: IProps) {
+  const { menuName, imgUrl, menuId } = menu;
+  const [isSoldOut, setIsSoldOut] = useState(false);
   const cx = classNames.bind(styles);
+
+  useEffect(() => {
+    if (soldOutList.find((item: ISoldOutList) => item.soldOutMenuId === menuId))
+      setIsSoldOut(true);
+    else setIsSoldOut(false);
+  }, []);
+
+  const handleClickSoldOutBtn = (e: React.MouseEvent<HTMLElement>) => {
+    const { name } = e.target as HTMLInputElement;
+    addSoldOutMenu(name).then(res => {
+      if (res.data.data === true)
+        setIsSoldOut(prev => {
+          return !prev;
+        });
+    });
+  };
 
   return (
     <li className={cx('menu-item-wrap')}>
@@ -19,11 +38,13 @@ function menuItem({ menu }: IProps) {
       </span>
       <span className={cx('menu-name')}>{menuName}</span>
       <div className={cx('btn-wrap')}>
-        <button type='button' className={cx('soldout')}>
-          품절처리
-        </button>
-        <button type='button' className={cx('restart')}>
-          판매재개
+        <button
+          type='button'
+          name={menuId}
+          onClick={handleClickSoldOutBtn}
+          className={cx(isSoldOut ? 'restart' : 'soldout')}
+        >
+          {isSoldOut ? '판매재개' : '품절처리'}
         </button>
       </div>
     </li>

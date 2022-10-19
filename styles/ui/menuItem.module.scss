@@ -21,28 +21,28 @@
   }
 
   .menu-name {
+    display: in;
+    width: 100%;
     margin: 15px 0;
     font-size: 15px;
     text-align: center;
     color: variable.$TXT-002;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: keep-all;
   }
 
-  .btn-wrap {
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
+  button {
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+    background-color: variable.$BG-005;
+    color: variable.$TXT-005;
 
-    button {
-      padding: 5px 15px;
-      font-size: 14px;
-      font-weight: 500;
-      border-radius: 5px;
-      background-color: variable.$BG-005;
-      color: variable.$TXT-005;
-
-      &.restart {
-        background-color: variable.$BG-007;
-      }
+    &.restart {
+      background-color: variable.$BG-007;
     }
   }
 }

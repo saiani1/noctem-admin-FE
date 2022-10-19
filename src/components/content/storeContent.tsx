@@ -11,13 +11,19 @@ import { IStore } from '../../types/store.d';
 
 function storeContent() {
   const [storeInfo, setStoreInfo] = useState<IStore>();
+  const [isFetching, setIsFetching] = useState(false);
   const cx = classNames.bind(styles);
 
   useEffect(() => {
+    console.log(typeof getToken());
     if (getToken() !== null && getToken() !== '{}') {
-      getStoreInfo().then(res => {
-        setStoreInfo(res.data.data);
-      });
+      getStoreInfo()
+        .then(res => {
+          console.log(res);
+          // setStoreInfo(res.data.data);
+          // setIsFetching(true);
+        })
+        .catch(err => console.log(err));
     } else {
       alert('로그인이 필요한 서비스입니다.');
     }
@@ -26,41 +32,43 @@ function storeContent() {
   return (
     <div className={cx('wrap')}>
       <h1>매장 관리</h1>
-      <div className={cx('store-info-wrap')}>
-        <div className={cx('left')}>
-          <span className={cx('img-wrap')}>
-            <img src={storeInfo?.mainImg} alt={storeInfo?.name} />
-          </span>
-          <button type='button' className={cx('img-change-wrap')}>
-            매장 이미지 수정 요청
-          </button>
+      {/* {isFetching && (
+        <div className={cx('store-info-wrap')}>
+          <div className={cx('left')}>
+            <span className={cx('img-wrap')}>
+              <img src={storeInfo?.mainImg} alt={storeInfo?.name} />
+            </span>
+            <button type='button' className={cx('img-change-wrap')}>
+              매장 이미지 수정 요청
+            </button>
+          </div>
+          <div className={cx('right')}>
+            <strong className={cx('store-name')}>{storeInfo?.name}</strong>
+            <dl>
+              <dt>주소</dt>
+              <dd>{storeInfo?.address}</dd>
+            </dl>
+            <dl>
+              <dt>영업시간</dt>
+              <dd>
+                {storeInfo?.businessOpenHours} ~ {storeInfo?.businessCloseHours}
+              </dd>
+            </dl>
+            <dl>
+              <dt>관리자</dt>
+              <dd>박찬우</dd>
+            </dl>
+            <dl>
+              <dt>책임자</dt>
+              <dd>양진기</dd>
+            </dl>
+            <dl>
+              <dt>번호</dt>
+              <dd>{storeInfo?.contactNumber}</dd>
+            </dl>
+          </div>
         </div>
-        <div className={cx('right')}>
-          <strong className={cx('store-name')}>{storeInfo?.name}</strong>
-          <dl>
-            <dt>주소</dt>
-            <dd>{storeInfo?.address}</dd>
-          </dl>
-          <dl>
-            <dt>영업시간</dt>
-            <dd>
-              {storeInfo?.businessOpenHours} ~ {storeInfo?.businessCloseHours}
-            </dd>
-          </dl>
-          <dl>
-            <dt>관리자</dt>
-            <dd>박찬우</dd>
-          </dl>
-          <dl>
-            <dt>책임자</dt>
-            <dd>양진기</dd>
-          </dl>
-          <dl>
-            <dt>번호</dt>
-            <dd>{storeInfo?.contactNumber}</dd>
-          </dl>
-        </div>
-      </div>
+      )} */}
 
       <ul className={cx('sub-menu-wrap')}>
         <li>

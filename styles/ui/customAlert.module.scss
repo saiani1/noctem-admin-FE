@@ -1,0 +1,53 @@
+@use '/styles/base/variable';
+
+.react-confirm-alert-overlay {
+  background: variable.$BG-ALPA-002;
+  // background-color: variable.$BG-ALPA-002;
+  z-index: 9999;
+}
+
+.popup-overlay {
+  margin: 0 30px;
+  padding: 20px 20px;
+  background: variable.$BG-001;
+  color: variable.$TXT-001;
+  border-radius: 10px;
+
+  h1 {
+    margin-bottom: 14px;
+    font-size: variable.$FS-18;
+    font-weight: bold;
+  }
+
+  p {
+    margin-bottom: 14px;
+  }
+
+  .btn-group {
+    text-align: right;
+
+    button {
+      padding: 3px 14px 0 14px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 24px;
+      border: 1px solid variable.$POINT;
+      color: variable.$POINT;
+      border-radius: 20px;
+
+      &:first-child {
+        margin-right: 10px;
+      }
+
+      &.btn-confirm {
+        background-color: variable.$POINT;
+        color: variable.$TXT-005;
+      }
+
+      .txt-wrap {
+        display: inline-block;
+        padding-bottom: 4px;
+      }
+    }
+  }
+}
