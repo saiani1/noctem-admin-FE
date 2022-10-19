@@ -6,7 +6,7 @@ import classNames from 'classnames/bind';
 
 import styles from '../../../styles/content/storeContent.module.scss';
 import { getStoreInfo } from '../../../pages/api/store';
-import { getToken } from '../../store/utils/token';
+import { isExistToken } from '../../store/utils/token';
 import { IStore } from '../../types/store.d';
 
 function storeContent() {
@@ -15,13 +15,11 @@ function storeContent() {
   const cx = classNames.bind(styles);
 
   useEffect(() => {
-    console.log(typeof getToken());
-    if (getToken() !== null && getToken() !== '{}') {
+    if (isExistToken()) {
       getStoreInfo()
         .then(res => {
-          console.log(res);
-          // setStoreInfo(res.data.data);
-          // setIsFetching(true);
+          setStoreInfo(res.data.data);
+          setIsFetching(true);
         })
         .catch(err => console.log(err));
     } else {
@@ -32,7 +30,7 @@ function storeContent() {
   return (
     <div className={cx('wrap')}>
       <h1>매장 관리</h1>
-      {/* {isFetching && (
+      {isFetching && (
         <div className={cx('store-info-wrap')}>
           <div className={cx('left')}>
             <span className={cx('img-wrap')}>
@@ -68,7 +66,7 @@ function storeContent() {
             </dl>
           </div>
         </div>
-      )} */}
+      )}
 
       <ul className={cx('sub-menu-wrap')}>
         <li>

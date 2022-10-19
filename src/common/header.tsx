@@ -18,8 +18,6 @@ function header() {
   const time = dayjs(new Date()).format('A h시 m분');
 
   useEffect(() => {
-    console.log(getToken());
-
     if (getToken() !== null && getToken() !== '{}') {
       getStoreInfo()
         .then(res => {
@@ -37,7 +35,7 @@ function header() {
       <ul>
         <li>{date}</li>
         <li>{time}</li>
-        {/* {isFetching && (
+        {isFetching && (
           <li className={cx('profile-wrap')}>
             <button type='button'>
               <span className={cx('img-wrap')}>
@@ -46,7 +44,7 @@ function header() {
               <span>{storeInfo?.name}</span>
             </button>
           </li>
-        )} */}
+        )}
         <li className={cx('alert-wrap')}>
           <button type='button' className={cx('active')} aria-label='alery'>
             <span>
