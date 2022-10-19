@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames/bind';
 
 import styles from '../../../styles/content/dataContent.module.scss';
+import { IMenuList, IMenuInfo, ICustomerInfo } from '../../types/data.d';
+import {
+  getPopularMenuList,
+  getMenuInfo,
+  getCustomerRank,
+} from '../../../pages/api/data';
 
 function dataContent() {
   const [chartTab, setChartTab] = useState('time');
+  const [isFetching, setIsFetching] = useState(false);
+  const [menuList, setMenuList] = useState<IMenuList[]>([]);
+  const [menuInfo, setMenuInfo] = useState<IMenuInfo[]>([]);
+  const [customerInfo, setCustomerInfo] = useState<ICustomerInfo[]>([]);
   const cx = classNames.bind(styles);
+
+  useEffect(() => {
+    Promise.all([getPopularMenuList(), getCustomerRank()]).then(res => {
+      console.log(res);
+      // setMenuList(res[0].data.data);
+      setCustomerInfo(res[1].data.data);
+    });
+  }, []);
 
   const handleClickChartTab = (e: React.MouseEvent<HTMLElement>) => {
     const { name } = e.target as HTMLInputElement;
@@ -88,7 +106,7 @@ function dataContent() {
         <div className={cx('popular-menu-wrap')}>
           <h2>인기메뉴 순위</h2>
           <ul className={cx('menu-wrap')}>
-            <li className={cx('first', 'active')}>
+            <li className={cx('first')}>
               <div className={cx('tit-wrap')}>
                 <Image src='/assets/svg/icon-1st.svg' width={21} height={28} />
                 <span className={cx('menu-name')}>민트초코 프라푸치노</span>
@@ -97,43 +115,19 @@ function dataContent() {
                 <img src='/assets/images/jpg/menu.jpg' alt='민트초코' />
               </span>
             </li>
-            <li className={cx('second')}>
-              <div className={cx('tit-wrap')}>
-                <Image src='/assets/svg/icon-2nd.svg' width={21} height={28} />
-                <span className={cx('menu-name')}>민트초코 프라푸치노</span>
-              </div>
-              <span className={cx('img-wrap')}>
-                <img src='/assets/images/jpg/menu.jpg' alt='민트초코' />
-              </span>
-            </li>
-            <li className={cx('third')}>
-              <div className={cx('tit-wrap')}>
-                <Image src='/assets/svg/icon-3rd.svg' width={21} height={28} />
-                <span className={cx('menu-name')}>민트초코 프라푸치노</span>
-              </div>
-              <span className={cx('img-wrap')}>
-                <img src='/assets/images/jpg/menu.jpg' alt='민트초코' />
-              </span>
-            </li>
-            <li className={cx('bar')} />
           </ul>
         </div>
         <div className={cx('customer-status-wrap')}>
           <h2>성별, 연령별 방문자 현황</h2>
           <ul className={cx('rank-wrap')}>
-            <li className={cx('first', 'active')}>
-              <Image src='/assets/svg/icon-1st.svg' width={21} height={28} />
-              <span>20대 여성</span>
-            </li>
-            <li className={cx('second')}>
-              <Image src='/assets/svg/icon-2nd.svg' width={21} height={28} />
-              <span>40대 여성</span>
-            </li>
-            <li className={cx('third')}>
-              <Image src='/assets/svg/icon-3rd.svg' width={21} height={28} />
-              <span>60대 여성</span>
-            </li>
-            <li className={cx('bar')} />
+            {customerInfo.map((rank: ICustomerInfo) => (
+              <li key={rank.index}>
+                <Image src='/assets/svg/icon-1st.svg' width={21} height={28} />
+                <span>
+                  {rank.age} {rank.sex}
+                </span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

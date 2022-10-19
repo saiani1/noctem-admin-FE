@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     setIsLogin(isExistToken);
-  }, []);
+  }, [isLogin]);
 
   return (
     <div style={{ display: 'flex' }}>
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <>
           <MenubarList />
           <div>
-            <Header />
+            <Header setIsLogin={setIsLogin} />
             <Component {...pageProps} />
             <Toaster
               containerStyle={{

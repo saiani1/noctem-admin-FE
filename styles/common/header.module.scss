@@ -2,6 +2,7 @@
 @use '/styles/mixins/position';
 
 .wrap {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -69,5 +70,15 @@
         }
       }
     }
+  }
+
+  .logout-btn {
+    margin-left: -20px;
+    padding: 3px 8px;
+    border: 2px solid variable.$LINE-004;
+    border-radius: 5px;
+    font-size: variable.$FS-12;
+    font-weight: bold;
+    color: variable.$TXT-003;
   }
 }

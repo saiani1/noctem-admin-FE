@@ -7,6 +7,7 @@ const HEADERS = {
     Authorization: JSON.parse(getToken()),
   },
 };
+
 export const getStoreInfo = async () => {
   const res = await basicRequest.get(`${SERVICE}/store/my`, HEADERS);
   return res;
