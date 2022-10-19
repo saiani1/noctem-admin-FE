@@ -136,6 +136,11 @@
       }
     }
   }
+  .order-conplete{
+    min-height: 400px;
+    max-height: 400px;
+    overflow: auto;
+  }
   & > div {
     background-color: variable.$BG-001;
     width: 33%;
@@ -153,6 +158,9 @@
       .drink-detail {
         color: variable.$TXT-003;
         font-size: variable.$FS-14;
+        .option-list{
+          display: flex;
+        }
       }
       .nick-name-place {
         color: variable.$TXT-003;
