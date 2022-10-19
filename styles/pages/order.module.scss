@@ -117,9 +117,15 @@
   }
   .order-request {
     min-height: 400px;
+    max-height: 400px;
+    overflow: auto;
+  }
+  ::-webkit-scrollbar{
+    display: none;
   }
   .order-confirm {
     min-height: 400px;
+    max-height: 400px;
 
     .complete-card {
       .confirm-button {
@@ -183,5 +189,54 @@
     padding: 24px;
     border-radius: 10px;
     z-index: 150;
+
+
+    .title-content{
+      display: flex;
+      justify-content: space-between;
+      .title{
+        display: flex;
+        align-items: flex-end;
+        h2{
+          font-size: variable.$FS-24;
+          font-weight: variable.$FW-003;
+        }
+        p{
+          margin-left: 12px;
+        }
+      }
+      .order-info{
+        display: flex;
+        div{
+          text-align: center;
+          padding-left: 10px;
+          :nth-child(1){
+            font-size:variable.$FS-14;
+          }
+          :nth-child(2){
+            font-size:variable.$FS-14;
+            color:variable.$TXT-003;
+          }
+        }
+      }
+    }
+    .item-list{
+      
+      .item{
+        padding: 12px;
+      }
+    }
+    .button-box{
+      width: 100%;
+      text-align: center;
+      button{
+        background-color: variable.$RANK-003;
+        width: 60%;
+        height: 35px;
+        color: variable.$TXT-005;
+        border-radius: 10px;
+        margin: 16px;
+      }
+    }
   }
 }

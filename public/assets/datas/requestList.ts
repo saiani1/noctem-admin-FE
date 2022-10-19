@@ -1,4 +1,4 @@
-interface IList {
+export interface IList {
   index: number;
   purchaseId: number;
   orderTotalQty: number;
@@ -8,7 +8,7 @@ interface IList {
   orderRequestTime: string;
 }
 
-interface IMenuList {
+export interface IMenuList {
   index: number;
   sizeId: number;
   menuName: string;
@@ -30,7 +30,7 @@ export const requestList: Array<IList> = [
       {
         index: 0,
         sizeId: 1,
-        menuName: '딸기 아사이 레모네이드 녹템 리프레셔',
+        menuName: '첫번째 주문 딸기 아사이 레모네이드 녹템 리프레셔',
         qty: 1,
         optionList: [
           {
@@ -46,7 +46,7 @@ export const requestList: Array<IList> = [
       {
         index: 1,
         sizeId: 2,
-        menuName: '할로윈 초코 헤이즐넛 프라푸치노',
+        menuName: '첫번째 주문 할로윈 초코 헤이즐넛 프라푸치노',
         qty: 2,
         optionList: [
           {
@@ -67,12 +67,12 @@ export const requestList: Array<IList> = [
   {
     index: 1,
     purchaseId: 32,
-    orderTotalQty: 2,
+    orderTotalQty: 3,
     menuList: [
       {
         index: 0,
         sizeId: 1,
-        menuName: '아이스 카페 아메리카노',
+        menuName: '두번째 주문 아이스 카페 아메리카노',
         qty: 1,
         optionList: [
           {
@@ -88,7 +88,23 @@ export const requestList: Array<IList> = [
       {
         index: 1,
         sizeId: 2,
-        menuName: '딸기 아사이 레모네이드 녹템 리프레셔',
+        menuName: '두번째 주문 딸기 아사이 레모네이드 녹템 리프레셔',
+        qty: 2,
+        optionList: [
+          {
+            index: 0,
+            personalOptionNameAndAmount: 'ICED',
+          },
+          {
+            index: 1,
+            personalOptionNameAndAmount: 'Grande',
+          },
+        ],
+      },
+      {
+        index: 2,
+        sizeId: 3,
+        menuName: '두번재 주문 딸기 아사이 레모네이드 녹템 리프레셔',
         qty: 2,
         optionList: [
           {
@@ -105,5 +121,31 @@ export const requestList: Array<IList> = [
     userNickname: '수아수아',
     orderNumber: 24,
     orderRequestTime: '13:52:54',
+  },
+  {
+    index: 2,
+    purchaseId: 33,
+    orderTotalQty: 1,
+    menuList: [
+      {
+        index: 0,
+        sizeId: 1,
+        menuName: '첫번째 주문 딸기 아사이 레모네이드 녹템 리프레셔',
+        qty: 1,
+        optionList: [
+          {
+            index: 0,
+            personalOptionNameAndAmount: 'ICED',
+          },
+          {
+            index: 1,
+            personalOptionNameAndAmount: 'Tall',
+          },
+        ],
+      },
+    ],
+    userNickname: '수아다',
+    orderNumber: 23,
+    orderRequestTime: '13:52:39',
   },
 ];

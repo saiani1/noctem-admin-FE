@@ -4,6 +4,7 @@ import styles from '../../../styles/pages/order.module.scss';
 import OrderNotConfirm from '../order/orderNotConfirm';
 import { requestList } from '../../../public/assets/datas/requestList';
 import { getRequest } from '../../../pages/api/order';
+import OrderListContent from '../order/orderListContent';
 
 const cx = classNames.bind(styles);
 
@@ -13,6 +14,8 @@ function orderContent() {
   const [openOrderList, setOpenOrderList] = useState(false);
   const [request, setRequest] = useState([]);
   const [menuList, setMenuList] = useState();
+  const [orderPurchaseId, setOrderPurchaseId] = useState(0);
+  console.log(menuList);
   const confirm = 1;
   const complete = 1;
   useEffect(() => {
@@ -21,6 +24,10 @@ function orderContent() {
       setRequest(res.data.data);
     });
   }, []);
+  const handleOpenOrderList = () => {
+    setOpenOrderList(!openOrderList);
+    console.log(orderPurchaseId);
+  };
   return (
     <>
       <div className={cx('back-ground')} />
@@ -76,6 +83,8 @@ function orderContent() {
                 setOpenOrderList={setOpenOrderList}
                 openOrderList={openOrderList}
                 setMenuList={setMenuList}
+                orderPurchaseId={orderPurchaseId}
+                setOrderPurchaseId={setOrderPurchaseId}
               />
             ))
           ) : (
@@ -140,21 +149,39 @@ function orderContent() {
       </div>
       {openOrderList && (
         <div className={cx('open-order-list')}>
-          <div className={cx('black-background')} />
+          <div
+            role='presentation'
+            className={cx('black-background')}
+            onClick={handleOpenOrderList}
+            onKeyDown={handleOpenOrderList}
+          />
           <div className={cx('order-list-content')}>
-            <div>
-              <h2>주문 상세 정보</h2>
-              <p>총 2잔</p>
-            </div>
-            <div>
-              <div>아이스 아메리카노</div>
-              <div>
-                ICED | Tall | 매장컵 | 에스프레소 샷 1 | 물 많이 | 얼음 적게 |
-                일반휘핑 많이 | 초콜릿 드리즐
+            <div className={cx('title-content')}>
+              <div className={cx('title')}>
+                <h2>주문 상세 정보</h2>
+                <p>총 {requestList[orderPurchaseId].orderTotalQty}잔</p>
+              </div>
+              <div className={cx('order-info')}>
+                <div>
+                  <div>주문 고객 닉네임</div>
+                  <p>{requestList[orderPurchaseId].userNickname}</p>
+                </div>
+                <div>
+                  <div>주문 시각</div>
+                  <p>{requestList[orderPurchaseId].orderRequestTime}</p>
+                </div>
               </div>
             </div>
-            <div>
-              <button type='button'>닫기</button>
+            <div className={cx('item-list')}>
+              {requestList[orderPurchaseId].menuList.map(product => (
+                <OrderListContent product={product} key={product.index} />
+              ))}
+            </div>
+
+            <div className={cx('button-box')}>
+              <button type='button' onClick={handleOpenOrderList}>
+                닫기
+              </button>
             </div>
           </div>
         </div>
