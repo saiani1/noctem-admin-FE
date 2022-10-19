@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from '../../styles/ui/customAlert.module.scss';
+import styles from '../../../styles/ui/customAlert.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -8,8 +8,8 @@ interface IProps {
   title: string;
   desc: string;
   btnTitle: string;
-  id?: number;
-  onAction: (id?: number) => void;
+  id: string;
+  onAction: (id: string) => void;
   onClose: () => void;
 }
 

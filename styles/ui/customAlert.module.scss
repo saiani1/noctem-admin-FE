@@ -31,8 +31,8 @@
       text-align: center;
       font-size: 14px;
       line-height: 24px;
-      border: 1px solid variable.$POINT;
-      color: variable.$POINT;
+      border: 1px solid variable.$RANK-003;
+      color: variable.$RANK-003;
       border-radius: 20px;
 
       &:first-child {
@@ -40,7 +40,7 @@
       }
 
       &.btn-confirm {
-        background-color: variable.$POINT;
+        background-color: variable.$RANK-003;
         color: variable.$TXT-005;
       }
 

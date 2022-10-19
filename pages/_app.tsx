@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import type { AppProps } from 'next/app';
 import React, { useEffect, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import '../styles/index.scss';
 import { isExistToken } from '../src/store/utils/token';
@@ -25,6 +26,14 @@ function MyApp({ Component, pageProps }: AppProps) {
           <div>
             <Header />
             <Component {...pageProps} />
+            <Toaster
+              containerStyle={{
+                top: 30,
+              }}
+              toastOptions={{
+                duration: 2000,
+              }}
+            />
           </div>
         </>
       )}
