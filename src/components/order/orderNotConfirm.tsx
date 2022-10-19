@@ -10,14 +10,14 @@ function orderNotConfirm({
   openOrderList,
   setMenuList,
   setOrderPurchaseId,
-  orderPurchaseId,
+  setModalState,
 }: {
   item: any;
   setOpenOrderList: React.Dispatch<React.SetStateAction<boolean>>;
   openOrderList: boolean;
   setMenuList: React.Dispatch<React.SetStateAction<undefined>>;
   setOrderPurchaseId: React.Dispatch<React.SetStateAction<number>>;
-  orderPurchaseId: number;
+  setModalState: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const handleOpenOrderList = (purchaseId: number) => {
     setOpenOrderList(!openOrderList);

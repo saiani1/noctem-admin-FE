@@ -13,8 +13,6 @@ import OrderListContent from '../order/orderListContent';
 const cx = classNames.bind(styles);
 
 function orderContent() {
-  // request = 0 : 없음 request = 1 : 있음
-  // const request = 1;
   const [openOrderList, setOpenOrderList] = useState(false);
   // 주문 요청
   const [request, setRequest] = useState<IList[]>([]);
@@ -24,8 +22,7 @@ function orderContent() {
   // 제조 완료
   const [completion, setCompletion] = useState<IList[]>([]);
   const [orderPurchaseId, setOrderPurchaseId] = useState(0);
-  const confirm = 1;
-  const complete = 1;
+  const [modalState, setModalState] = useState('주문 요청');
   useEffect(() => {
     getRequest().then(res => {
       console.log('주문 요청', res.data.data);
@@ -100,8 +97,8 @@ function orderContent() {
                 setOpenOrderList={setOpenOrderList}
                 openOrderList={openOrderList}
                 setMenuList={setMenuList}
-                orderPurchaseId={orderPurchaseId}
                 setOrderPurchaseId={setOrderPurchaseId}
+                setModalState={setModalState}
               />
             ))
           ) : (
@@ -120,8 +117,8 @@ function orderContent() {
                 setOpenOrderList={setOpenOrderList}
                 openOrderList={openOrderList}
                 setMenuList={setMenuList}
-                orderPurchaseId={orderPurchaseId}
                 setOrderPurchaseId={setOrderPurchaseId}
+                setModalState={setModalState}
               />
             ))
           ) : (
@@ -140,8 +137,8 @@ function orderContent() {
                 setOpenOrderList={setOpenOrderList}
                 openOrderList={openOrderList}
                 setMenuList={setMenuList}
-                orderPurchaseId={orderPurchaseId}
                 setOrderPurchaseId={setOrderPurchaseId}
+                setModalState={setModalState}
               />
             ))
           ) : (
