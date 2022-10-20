@@ -7,13 +7,16 @@ import {
   getRequest,
   getConfirm,
   getCompletion,
+  patchOrderAccept,
 } from '../../../pages/api/order';
 import OrderListContent from '../order/orderListContent';
 
 const cx = classNames.bind(styles);
 
 function orderContent() {
-  const [openOrderList, setOpenOrderList] = useState(false);
+  const [openRequestOrderList, setRequestOpenOrderList] = useState(false);
+  const [openConfirmOpenOrderList, setConfirmOpenOrderList] = useState(false);
+  const [openCompletionOrderList, setopenCompletionOrderList] = useState(false);
   // 주문 요청
   const [request, setRequest] = useState<IList[]>([]);
   const [menuList, setMenuList] = useState();
@@ -38,9 +41,27 @@ function orderContent() {
       setCompletion(res.data.data);
     });
   }, []);
-  const handleOpenOrderList = () => {
-    setOpenOrderList(!openOrderList);
+  const handleRequestOpenOrderList = () => {
+    setRequestOpenOrderList(!openRequestOrderList);
     console.log(orderPurchaseId);
+  };
+  const handleConfirmOpenOrderList = () => {
+    setConfirmOpenOrderList(!openConfirmOpenOrderList);
+    console.log(orderPurchaseId);
+  };
+  const handleCompletionOpenOrderList = () => {
+    setopenCompletionOrderList(!openCompletionOrderList);
+    console.log(orderPurchaseId);
+  };
+  const handleGoConfirm = () => {
+    console.log('purchaseId', request[0].purchaseId);
+    patchOrderAccept(request[0].purchaseId).then(res => {
+      console.log(res.data);
+    });
+    console.log('주문 확인으로');
+  };
+  const handleOrderCancel = () => {
+    console.log('주문 반려');
   };
   return (
     <>
@@ -55,7 +76,7 @@ function orderContent() {
               </div>
               <div className={cx('drink-detail-box')}>
                 <div className={cx('drink-title')}>
-                  아이스 블랙 그레이즈드 라데ICE
+                  {request[0].menuList[0].menuName}
                 </div>
                 <div className={cx('drink-detail')}>
                   ICED|Tall|매장컵|에스프레소 샷1|물 많이|얼음 적게|일반휘핑
@@ -63,12 +84,15 @@ function orderContent() {
                 </div>
                 <div className={cx('gray')}>
                   <div>고객명</div>
-                  <div>닉네임</div>
+                  &nbsp;
+                  <div>{request[0].userNickname}</div>
                 </div>
                 <div className={cx('gray')}>
                   <div>주문시간</div>
+                  &nbsp;
                   <div>
-                    <div>15:14:30</div>
+                    <div>{request[0].orderRequestTime}</div>
+                    &nbsp;
                     <div>5분전</div>
                   </div>
                 </div>
@@ -76,8 +100,20 @@ function orderContent() {
             </div>
             <div className={cx('button-space')}>
               <div>
-                <div className={cx('accept')}>주문 수락</div>
-                <div className={cx('refusal')}>주문 반려(재고 부족)</div>
+                <button
+                  type='button'
+                  className={cx('accept')}
+                  onClick={handleGoConfirm}
+                >
+                  주문 수락
+                </button>
+                <button
+                  type='button'
+                  className={cx('refusal')}
+                  onClick={handleOrderCancel}
+                >
+                  주문 반려(재고 부족)
+                </button>
               </div>
             </div>
           </div>
@@ -94,11 +130,18 @@ function orderContent() {
               <OrderNotConfirm
                 item={item}
                 key={item.index}
-                setOpenOrderList={setOpenOrderList}
-                openOrderList={openOrderList}
+                setRequestOpenOrderList={setRequestOpenOrderList}
+                setConfirmOpenOrderList={setConfirmOpenOrderList}
+                setopenCompletionOrderList={setopenCompletionOrderList}
+                openRequestOrderList={openRequestOrderList}
+                openConfirmOpenOrderList={openConfirmOpenOrderList}
+                openCompletionOrderList={openCompletionOrderList}
                 setMenuList={setMenuList}
                 setOrderPurchaseId={setOrderPurchaseId}
                 setModalState={setModalState}
+                isRequest
+                isConfirm={false}
+                isCompletion={false}
               />
             ))
           ) : (
@@ -114,11 +157,18 @@ function orderContent() {
               <OrderNotConfirm
                 item={item}
                 key={item.index}
-                setOpenOrderList={setOpenOrderList}
-                openOrderList={openOrderList}
+                setRequestOpenOrderList={setRequestOpenOrderList}
+                setConfirmOpenOrderList={setConfirmOpenOrderList}
+                setopenCompletionOrderList={setopenCompletionOrderList}
+                openRequestOrderList={openRequestOrderList}
+                openConfirmOpenOrderList={openConfirmOpenOrderList}
+                openCompletionOrderList={openCompletionOrderList}
                 setMenuList={setMenuList}
                 setOrderPurchaseId={setOrderPurchaseId}
                 setModalState={setModalState}
+                isRequest={false}
+                isConfirm
+                isCompletion={false}
               />
             ))
           ) : (
@@ -134,11 +184,18 @@ function orderContent() {
               <OrderNotConfirm
                 item={item}
                 key={item.index}
-                setOpenOrderList={setOpenOrderList}
-                openOrderList={openOrderList}
+                setRequestOpenOrderList={setRequestOpenOrderList}
+                setConfirmOpenOrderList={setConfirmOpenOrderList}
+                setopenCompletionOrderList={setopenCompletionOrderList}
+                openRequestOrderList={openRequestOrderList}
+                openConfirmOpenOrderList={openConfirmOpenOrderList}
+                openCompletionOrderList={openCompletionOrderList}
                 setMenuList={setMenuList}
                 setOrderPurchaseId={setOrderPurchaseId}
                 setModalState={setModalState}
+                isRequest={false}
+                isConfirm={false}
+                isCompletion
               />
             ))
           ) : (
@@ -146,13 +203,13 @@ function orderContent() {
           )}
         </div>
       </div>
-      {openOrderList && (
+      {openRequestOrderList && (
         <div className={cx('open-order-list')}>
           <div
             role='presentation'
             className={cx('black-background')}
-            onClick={handleOpenOrderList}
-            onKeyDown={handleOpenOrderList}
+            onClick={handleRequestOpenOrderList}
+            onKeyDown={handleRequestOpenOrderList}
           />
           <div className={cx('order-list-content')}>
             <div className={cx('title-content')}>
@@ -178,7 +235,85 @@ function orderContent() {
             </div>
 
             <div className={cx('button-box')}>
-              <button type='button' onClick={handleOpenOrderList}>
+              <button type='button' onClick={handleRequestOpenOrderList}>
+                닫기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {openConfirmOpenOrderList && (
+        <div className={cx('open-order-list')}>
+          <div
+            role='presentation'
+            className={cx('black-background')}
+            onClick={handleConfirmOpenOrderList}
+            onKeyDown={handleConfirmOpenOrderList}
+          />
+          <div className={cx('order-list-content')}>
+            <div className={cx('title-content')}>
+              <div className={cx('title')}>
+                <h2>주문 상세 정보</h2>
+                <p>총 {orderConfirm[orderPurchaseId].orderTotalQty}잔</p>
+              </div>
+              <div className={cx('order-info')}>
+                <div>
+                  <div>주문 고객 닉네임</div>
+                  <p>{orderConfirm[orderPurchaseId].userNickname}</p>
+                </div>
+                <div>
+                  <div>주문 시각</div>
+                  <p>{orderConfirm[orderPurchaseId].orderRequestTime}</p>
+                </div>
+              </div>
+            </div>
+            <div className={cx('item-list')}>
+              {orderConfirm[orderPurchaseId].menuList.map(product => (
+                <OrderListContent product={product} key={product.index} />
+              ))}
+            </div>
+
+            <div className={cx('button-box')}>
+              <button type='button' onClick={handleConfirmOpenOrderList}>
+                닫기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {openCompletionOrderList && (
+        <div className={cx('open-order-list')}>
+          <div
+            role='presentation'
+            className={cx('black-background')}
+            onClick={handleConfirmOpenOrderList}
+            onKeyDown={handleConfirmOpenOrderList}
+          />
+          <div className={cx('order-list-content')}>
+            <div className={cx('title-content')}>
+              <div className={cx('title')}>
+                <h2>주문 상세 정보</h2>
+                <p>총 {completion[orderPurchaseId].orderTotalQty}잔</p>
+              </div>
+              <div className={cx('order-info')}>
+                <div>
+                  <div>주문 고객 닉네임</div>
+                  <p>{completion[orderPurchaseId].userNickname}</p>
+                </div>
+                <div>
+                  <div>주문 시각</div>
+                  <p>{completion[orderPurchaseId].orderRequestTime}</p>
+                </div>
+              </div>
+            </div>
+            <div className={cx('item-list')}>
+              {completion[orderPurchaseId].menuList.map(product => (
+                <OrderListContent product={product} key={product.index} />
+              ))}
+            </div>
+
+            <div className={cx('button-box')}>
+              <button type='button' onClick={handleCompletionOpenOrderList}>
                 닫기
               </button>
             </div>

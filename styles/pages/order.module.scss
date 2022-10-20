@@ -77,7 +77,7 @@
       align-items: center;
       padding: 24px;
       div {
-        div {
+        button {
           color: variable.$TXT-005;
           width: 200px;
           height: 40px;
@@ -126,6 +126,7 @@
   .order-confirm {
     min-height: 400px;
     max-height: 400px;
+    overflow: auto;
 
     .complete-card {
       .confirm-button {
@@ -160,6 +161,19 @@
         font-size: variable.$FS-14;
         .option-list{
           display: flex;
+        }
+
+      }
+      .etc{
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        button{
+          background-color: variable.$RANK-003;
+          color: variable.$TXT-005;
+          padding: 8px 24px;
+          border-radius: 10px;
+          font-weight: variable.$FW-003;
         }
       }
       .nick-name-place {

@@ -1,27 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../../../styles/pages/order.module.scss';
+import { patchOrderCompleted } from '../../../pages/api/order';
 
 const cx = classNames.bind(styles);
 
 function orderNotConfirm({
   item,
-  setOpenOrderList,
-  openOrderList,
+  setRequestOpenOrderList,
+  setConfirmOpenOrderList,
+  setopenCompletionOrderList,
+  openRequestOrderList,
+  openConfirmOpenOrderList,
+  openCompletionOrderList,
   setMenuList,
   setOrderPurchaseId,
   setModalState,
+  isRequest,
+  isConfirm,
+  isCompletion,
 }: {
   item: any;
-  setOpenOrderList: React.Dispatch<React.SetStateAction<boolean>>;
-  openOrderList: boolean;
+  setRequestOpenOrderList: React.Dispatch<React.SetStateAction<boolean>>;
+  setConfirmOpenOrderList: React.Dispatch<React.SetStateAction<boolean>>;
+  setopenCompletionOrderList: React.Dispatch<React.SetStateAction<boolean>>;
+  openRequestOrderList: boolean;
+  openConfirmOpenOrderList: boolean;
+  openCompletionOrderList: boolean;
   setMenuList: React.Dispatch<React.SetStateAction<undefined>>;
   setOrderPurchaseId: React.Dispatch<React.SetStateAction<number>>;
   setModalState: React.Dispatch<React.SetStateAction<string>>;
+  isRequest: boolean;
+  isConfirm: boolean;
+  isCompletion: boolean;
 }) {
   const handleOpenOrderList = (purchaseId: number) => {
-    setOpenOrderList(!openOrderList);
-    setOrderPurchaseId(purchaseId);
+    if (isRequest === true) {
+      setRequestOpenOrderList(!openRequestOrderList);
+      setOrderPurchaseId(purchaseId);
+    }
+    if (isConfirm === true) {
+      setConfirmOpenOrderList(!openConfirmOpenOrderList);
+      setOrderPurchaseId(purchaseId);
+    }
+    if (isCompletion === true) {
+      setopenCompletionOrderList(!openCompletionOrderList);
+      setOrderPurchaseId(purchaseId);
+    }
+  };
+  const handleAccept = (e: any) => {
+    e.stopPropagation();
+    patchOrderCompleted(item.purchaseId).then(res => {
+      console.log(res.data);
+    });
+    alert(`${item.purchaseId} 완료`);
   };
   useEffect(() => {
     setMenuList(item.menuList);
@@ -53,9 +85,21 @@ function orderNotConfirm({
             ))}
           </ul>
         </div>
-
-        <div className={(cx('nickname'), cx('gray'))}>{item.userNickname}</div>
-        <div className={(cx('order-time'), cx('gray'))}>15:14:30</div>
+        <div className={cx('etc')}>
+          <div>
+            <div className={(cx('nickname'), cx('gray'))}>
+              {item.userNickname}
+            </div>
+            <div className={(cx('order-time'), cx('gray'))}>
+              {item.orderRequestTime}
+            </div>
+          </div>
+          {isConfirm === true ? (
+            <button type='button' onClick={handleAccept}>
+              완료
+            </button>
+          ) : undefined}
+        </div>
       </div>
       <hr />
     </div>

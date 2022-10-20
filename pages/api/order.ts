@@ -22,3 +22,25 @@ export const getCompletion = async () => {
   const res = await basicRequest.get(`${SERVICE}/order/completed`, HEADERS);
   return res;
 };
+
+// 주문 수락
+export const patchOrderAccept = async (purchaseId: number) => {
+  const res = await basicRequest.patch(
+    `${SERVICE}/order/${purchaseId}/making`,
+    {},
+    HEADERS,
+  );
+  return res;
+};
+
+// 주문 반려
+
+// 제조 완료
+export const patchOrderCompleted = async (purchaseId: number) => {
+  const res = await basicRequest.patch(
+    `${SERVICE}/order/${purchaseId}/completed`,
+    {},
+    HEADERS,
+  );
+  return res;
+};
