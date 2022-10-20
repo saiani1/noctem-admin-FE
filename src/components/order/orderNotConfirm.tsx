@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../../../styles/pages/order.module.scss';
-import { patchOrderCompleted } from '../../../pages/api/order';
+import {
+  patchOrderCompleted,
+  getConfirm,
+  getCompletion,
+} from '../../../pages/api/order';
+import { IList } from '../../../public/assets/datas/requestList';
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +19,8 @@ function orderNotConfirm({
   openConfirmOpenOrderList,
   openCompletionOrderList,
   setMenuList,
+  setOrderConfirm,
+  setCompletion,
   setOrderPurchaseId,
   setModalState,
   isRequest,
@@ -28,6 +35,8 @@ function orderNotConfirm({
   openConfirmOpenOrderList: boolean;
   openCompletionOrderList: boolean;
   setMenuList: React.Dispatch<React.SetStateAction<undefined>>;
+  setOrderConfirm: React.Dispatch<React.SetStateAction<IList[]>>;
+  setCompletion: React.Dispatch<React.SetStateAction<IList[]>>;
   setOrderPurchaseId: React.Dispatch<React.SetStateAction<number>>;
   setModalState: React.Dispatch<React.SetStateAction<string>>;
   isRequest: boolean;
@@ -53,7 +62,12 @@ function orderNotConfirm({
     patchOrderCompleted(item.purchaseId).then(res => {
       console.log(res.data);
     });
-    alert(`${item.purchaseId} 완료`);
+    getConfirm().then(res => {
+      setOrderConfirm(res.data.data);
+    });
+    getCompletion().then(res => {
+      setCompletion(res.data.data);
+    });
   };
   useEffect(() => {
     setMenuList(item.menuList);

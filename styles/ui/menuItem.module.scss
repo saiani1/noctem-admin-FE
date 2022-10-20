@@ -5,12 +5,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 13%;
-  margin: 30px 10px 0;
+  width: 20%;
+  padding: 15px 20px;
+
 
   .dummy-img {
-    width: 110px;
-    height: 110px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     background-color: #aaa;
   }

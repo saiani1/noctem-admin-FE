@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from '../../../styles/pages/order.module.scss';
 import OrderNotConfirm from '../order/orderNotConfirm';
-import { IList, requestList } from '../../../public/assets/datas/requestList';
+import { IList } from '../../../public/assets/datas/requestList';
 import {
   getRequest,
   getConfirm,
@@ -28,37 +28,35 @@ function orderContent() {
   const [modalState, setModalState] = useState('주문 요청');
   useEffect(() => {
     getRequest().then(res => {
-      console.log('주문 요청', res.data.data);
       setRequest(res.data.data);
-      console.log('menuList', request);
     });
     getConfirm().then(res => {
-      console.log('주문 확인', res.data.data);
       setOrderConfirm(res.data.data);
     });
     getCompletion().then(res => {
-      console.log('제조 완료', res.data.data);
       setCompletion(res.data.data);
     });
   }, []);
   const handleRequestOpenOrderList = () => {
     setRequestOpenOrderList(!openRequestOrderList);
-    console.log(orderPurchaseId);
   };
   const handleConfirmOpenOrderList = () => {
     setConfirmOpenOrderList(!openConfirmOpenOrderList);
-    console.log(orderPurchaseId);
   };
   const handleCompletionOpenOrderList = () => {
     setopenCompletionOrderList(!openCompletionOrderList);
-    console.log(orderPurchaseId);
   };
   const handleGoConfirm = () => {
-    console.log('purchaseId', request[0].purchaseId);
     patchOrderAccept(request[0].purchaseId).then(res => {
       console.log(res.data);
     });
-    console.log('주문 확인으로');
+
+    getRequest().then(res => {
+      setRequest(res.data.data);
+    });
+    getConfirm().then(res => {
+      setOrderConfirm(res.data.data);
+    });
   };
   const handleOrderCancel = () => {
     console.log('주문 반려');
@@ -137,6 +135,8 @@ function orderContent() {
                 openConfirmOpenOrderList={openConfirmOpenOrderList}
                 openCompletionOrderList={openCompletionOrderList}
                 setMenuList={setMenuList}
+                setOrderConfirm={setOrderConfirm}
+                setCompletion={setCompletion}
                 setOrderPurchaseId={setOrderPurchaseId}
                 setModalState={setModalState}
                 isRequest
@@ -164,6 +164,8 @@ function orderContent() {
                 openConfirmOpenOrderList={openConfirmOpenOrderList}
                 openCompletionOrderList={openCompletionOrderList}
                 setMenuList={setMenuList}
+                setOrderConfirm={setOrderConfirm}
+                setCompletion={setCompletion}
                 setOrderPurchaseId={setOrderPurchaseId}
                 setModalState={setModalState}
                 isRequest={false}
@@ -191,6 +193,8 @@ function orderContent() {
                 openConfirmOpenOrderList={openConfirmOpenOrderList}
                 openCompletionOrderList={openCompletionOrderList}
                 setMenuList={setMenuList}
+                setOrderConfirm={setOrderConfirm}
+                setCompletion={setCompletion}
                 setOrderPurchaseId={setOrderPurchaseId}
                 setModalState={setModalState}
                 isRequest={false}
