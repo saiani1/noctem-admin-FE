@@ -9,7 +9,7 @@ function menubarList() {
   const cx = classNames.bind(styles);
   const router = useRouter();
 
-  const [clickMenu, setClickMenu] = useState('main');
+  const [clickMenu, setClickMenu] = useState('store');
 
   const handleClickMenu = (e: React.MouseEvent<HTMLElement>) => {
     const { name } = e.target as HTMLInputElement;
@@ -21,20 +21,16 @@ function menubarList() {
     <div className={cx('menu-bar')}>
       <ul className={cx('menu-list')}>
         <li
-          className={cx('menu', 'main', clickMenu === 'main' ? 'active' : '')}
+          className={cx('menu', 'main', clickMenu === 'store' ? 'active' : '')}
         >
-          <button type='button' name='main' onClick={handleClickMenu}>
+          <button type='button' name='store' onClick={handleClickMenu}>
             매장 관리
           </button>
         </li>
         <li
-          className={cx(
-            'menu',
-            'menus',
-            clickMenu === 'menuManagement' ? 'active' : '',
-          )}
+          className={cx('menu', 'menus', clickMenu === 'menu' ? 'active' : '')}
         >
-          <button type='button' name='menuManagement' onClick={handleClickMenu}>
+          <button type='button' name='menu' onClick={handleClickMenu}>
             메뉴 관리
           </button>
         </li>

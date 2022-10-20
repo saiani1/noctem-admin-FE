@@ -1,0 +1,68 @@
+@use '/styles/base/variable';
+@use '/styles/mixins/position';
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: variable.$BG-003;
+
+  .tit-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+
+    h1 {
+      margin: 10px 0 3px;
+      font-size: 27px;
+      line-height: 27px;
+      color: variable.$TXT-002;
+      strong {
+        font-weight: 600;
+      }
+    }
+    .sub-tit {
+      font-size: variable.$FS-12;
+      color: variable.$TXT-003;
+    }
+  }
+  .input-wrap {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+
+    input {
+      width: 304px;
+      height: 40px;
+      padding: 5px 15px;
+      border: none;
+      &::placeholder {
+        font-size: 13px;
+        color: variable.$TXT-004;
+      }
+    }
+    input[type='text'] {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    input[type='password'] {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+  .submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 304px;
+    height: 35px;
+    color: variable.$TXT-005;
+    border-radius: 8px;
+    background-color: variable.$RANK-003;
+  }
+}

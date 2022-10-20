@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 
-import styles from '../styles/pages/menuManagement.module.scss';
-import MenuItem from '../src/components/ui/menuItem';
+import styles from '../../../styles/content/menuContent.module.scss';
+import MenuItem from '../ui/menuItem';
 
-function menuManagement() {
+function menuContent() {
   const cx = classNames.bind(styles);
   const [clickTab, setClickTab] = useState('에스프레소');
 
@@ -104,4 +104,4 @@ function menuManagement() {
   );
 }
 
-export default menuManagement;
+export default menuContent;
