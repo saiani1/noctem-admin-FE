@@ -290,8 +290,8 @@ function orderContent() {
           <div
             role='presentation'
             className={cx('black-background')}
-            onClick={handleConfirmOpenOrderList}
-            onKeyDown={handleConfirmOpenOrderList}
+            onClick={handleCompletionOpenOrderList}
+            onKeyDown={handleCompletionOpenOrderList}
           />
           <div className={cx('order-list-content')}>
             <div className={cx('title-content')}>
