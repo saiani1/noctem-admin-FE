@@ -54,6 +54,16 @@
       .drink-detail {
         color: variable.$TXT-003;
         font-size: variable.$FS-14;
+        display: flex;
+        li::after{
+          content:'|';
+          height: 10px;
+          width: 10px;
+          padding: 10px;
+        }
+        li:last-child::after{
+          content: '';
+        }
       }
       .nick-name-place {
         color: variable.$TXT-003;
@@ -161,8 +171,16 @@
         font-size: variable.$FS-14;
         .option-list{
           display: flex;
+          li::after{
+            content:'|';
+            height:10px;
+            width: 10px;
+            padding: 10px;
+          }
+          li:last-child::after{
+            content:'';
+          }
         }
-
       }
       .etc{
         display: flex;
@@ -246,6 +264,18 @@
       
       .item{
         padding: 12px;
+        ul{
+          display: flex;
+        }
+        li::after{
+          content: '|';
+          width: 10px;
+          height: 10px;
+          padding: 10px;
+        }
+        li:last-child::after{
+          content:''
+        }
       }
     }
     .button-box{

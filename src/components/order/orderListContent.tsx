@@ -10,10 +10,11 @@ function orderListContent({ product }: { product: IMenuList }) {
   return (
     <div className={cx('item')}>
       <div>{product.menuName}</div>
-      <div>
-        ICED | Tall | 매장컵 | 에스프레소 샷 1 | 물 많이 | 얼음 적게 | 일반휘핑
-        많이 | 초콜릿 드리즐
-      </div>
+      <ul>
+        {product.optionList.map(item => (
+          <li key={item.index}>{item.personalOptionNameAndAmount}</li>
+        ))}
+      </ul>
     </div>
   );
 }
