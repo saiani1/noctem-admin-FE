@@ -76,10 +76,11 @@ function orderContent() {
                 <div className={cx('drink-title')}>
                   {request[0].menuList[0].menuName}
                 </div>
-                <div className={cx('drink-detail')}>
-                  ICED|Tall|매장컵|에스프레소 샷1|물 많이|얼음 적게|일반휘핑
-                  많이|초콜릿 드리즐
-                </div>
+                <ul className={cx('drink-detail')}>
+                  {request[0].menuList[0].optionList.map(item => (
+                    <li key={item.index}>{item.personalOptionNameAndAmount}</li>
+                  ))}
+                </ul>
                 <div className={cx('gray')}>
                   <div>고객명</div>
                   &nbsp;
