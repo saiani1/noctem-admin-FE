@@ -26,7 +26,6 @@ function menuContent() {
       setSoldOutList(res[1].data.data);
     });
   };
-  console.log(menuList);
 
   useEffect(() => {
     getSmallCategory().then(res => setCategory(res.data.data));

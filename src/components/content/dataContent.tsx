@@ -3,25 +3,21 @@ import Image from 'next/image';
 import classNames from 'classnames/bind';
 
 import styles from '../../../styles/content/dataContent.module.scss';
-import { IMenuList, IMenuInfo, ICustomerInfo } from '../../types/data.d';
-import {
-  getPopularMenuList,
-  getMenuInfo,
-  getCustomerRank,
-} from '../../../pages/api/data';
+import { IMenuList, ICustomerInfo } from '../../types/data.d';
+import { getPopularMenuList, getCustomerRank } from '../../../pages/api/data';
+import DrinkRankItem from '../ui/drinkRankItem';
 
 function dataContent() {
   const [chartTab, setChartTab] = useState('time');
   const [isFetching, setIsFetching] = useState(false);
   const [menuList, setMenuList] = useState<IMenuList[]>([]);
-  const [menuInfo, setMenuInfo] = useState<IMenuInfo[]>([]);
   const [customerInfo, setCustomerInfo] = useState<ICustomerInfo[]>([]);
   const cx = classNames.bind(styles);
 
   useEffect(() => {
     Promise.all([getPopularMenuList(), getCustomerRank()]).then(res => {
-      console.log(res);
-      // setMenuList(res[0].data.data);
+      console.log('음료랭킹, 고객랭킹:', res);
+      setMenuList(res[0].data.data);
       setCustomerInfo(res[1].data.data);
     });
   }, []);
@@ -106,15 +102,10 @@ function dataContent() {
         <div className={cx('popular-menu-wrap')}>
           <h2>인기메뉴 순위</h2>
           <ul className={cx('menu-wrap')}>
-            <li className={cx('first')}>
-              <div className={cx('tit-wrap')}>
-                <Image src='/assets/svg/icon-1st.svg' width={21} height={28} />
-                <span className={cx('menu-name')}>민트초코 프라푸치노</span>
-              </div>
-              <span className={cx('img-wrap')}>
-                <img src='/assets/images/jpg/menu.jpg' alt='민트초코' />
-              </span>
-            </li>
+            {menuList &&
+              menuList.map((menu: IMenuList) => (
+                <DrinkRankItem key={menu.index} menu={menu} />
+              ))}
           </ul>
         </div>
         <div className={cx('customer-status-wrap')}>
@@ -122,7 +113,11 @@ function dataContent() {
           <ul className={cx('rank-wrap')}>
             {customerInfo.map((rank: ICustomerInfo) => (
               <li key={rank.index}>
-                <Image src='/assets/svg/icon-1st.svg' width={21} height={28} />
+                <Image
+                  src={`/assets/svg/icon-${rank.rank}.svg`}
+                  width={21}
+                  height={28}
+                />
                 <span>
                   {rank.age} {rank.sex}
                 </span>

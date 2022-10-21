@@ -40,13 +40,11 @@ function menuItem({ menu, soldOutList }: IProps) {
   const handleClickSoldOutBtn = (e: React.MouseEvent<HTMLElement>) => {
     const { name } = e.target as HTMLInputElement;
     const { value } = e.target as HTMLInputElement;
-    const comment = `${value}를 ${
-      isSoldOut ? '판매재개' : '품절처리'
-    } 하시겠습니까?`;
+    const comment = `${isSoldOut ? '판매재개' : '품절처리'} 하시겠습니까?`;
     confirmAlert({
       customUI: ({ onClose }) => (
         <CustomAlert
-          title={isSoldOut ? '판매재개' : '품절처리'}
+          title={value}
           desc={comment}
           btnTitle={isSoldOut ? '판매재개' : '품절처리'}
           id={name}

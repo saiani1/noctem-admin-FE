@@ -6,10 +6,11 @@ export interface IMenuList {
 }
 
 export interface IMenuInfo {
-  cartId: string;
+  cartId: number;
   menuFullName: string;
   menuShortName: string;
   menuTotalPrice: number;
+  imgUrl: string;
 }
 
 export interface ICustomerInfo {
