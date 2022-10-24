@@ -10,6 +10,7 @@ import {
   getConfirm,
   getCompletion,
   patchOrderAccept,
+  patchOrderCancel,
 } from '../../store/api/order';
 import OrderListContent from '../order/orderListContent';
 
@@ -62,7 +63,11 @@ function orderContent() {
     });
   };
   const handleOrderCancel = () => {
-    console.log('주문 반려');
+    patchOrderCancel(request[0].purchaseId).then(res => {
+      getRequest().then(resRequest => {
+        setRequest(resRequest.data.data);
+      });
+    });
   };
   return (
     <>
