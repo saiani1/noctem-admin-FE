@@ -1,6 +1,14 @@
 @use '/styles/base/variable';
 @use '/styles/mixins/position';
 
+.chart-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+  height: 400px;
+}
+
 .wrap {
   background-color: variable.$BG-003;
   padding: 20px 56px 20px 56px;
@@ -54,11 +62,8 @@
             &.day ~ .bar {
               margin-left: 55px;
             }
-            &.week ~ .bar {
-              margin-left: 110px;
-            }
             &.month ~ .bar {
-              margin-left: 165px;
+              margin-left: 110px;
             }
           }
           &.bar {
@@ -118,30 +123,8 @@
         display: flex;
         justify-content: center;
         margin-top: 20px;
-        .index {
-          display: flex;
-          column-gap: 20px;
-          padding: 3px 15px;
-          border: 1px solid variable.$LINE-002;
-          border-radius: 5px;
-          li {
-            display: flex;
-            align-items: center;
-            &::before {
-              margin-right: 5px;
-              display: block;
-              content: ' ';
-              width: 8px;
-              height: 8px;
-              border-radius: 50%;
-              background-color: skyblue;
-            }
-            &.now::before {
-              background-color: greenyellow;
-            }
-            font-size: variable.$FS-12;
-          }
-        }
+        width: 100%;
+        height: 400px;
       }
     }
   }

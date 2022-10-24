@@ -1,3 +1,20 @@
+export interface ISalesData {
+  totalSales: number;
+  totalCount: number;
+  performanceSales: number;
+  performanceCount: number;
+  beforeStatistics: IDetailSalesData[];
+  recentStatistics: IDetailSalesData[];
+}
+
+export interface IDetailSalesData {
+  index: number;
+  stringHour: string;
+  stringDay: string;
+  stringMonth: string;
+  sales: number;
+}
+
 export interface IMenuList {
   index: string;
   rank: number;

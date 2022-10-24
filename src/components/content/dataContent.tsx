@@ -1,24 +1,44 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames/bind';
 
 import styles from '../../../styles/content/dataContent.module.scss';
-import { IMenuList, ICustomerInfo } from '../../types/data.d';
-import { getPopularMenuList, getCustomerRank } from '../../../pages/api/data';
+import {
+  ISalesData,
+  IDetailSalesData,
+  IMenuList,
+  ICustomerInfo,
+} from '../../types/data.d';
+import {
+  getPopularMenuList,
+  getCustomerRank,
+  getHourSalesData,
+} from '../../../pages/api/data';
 import DrinkRankItem from '../ui/drinkRankItem';
+import DataChart from '../ui/dataChart';
 
 function dataContent() {
   const [chartTab, setChartTab] = useState('time');
-  const [isFetching, setIsFetching] = useState(false);
   const [menuList, setMenuList] = useState<IMenuList[]>([]);
   const [customerInfo, setCustomerInfo] = useState<ICustomerInfo[]>([]);
+  const [salesData, setSalesData] = useState<ISalesData>();
+  const [beforeSalesData, setBeforeSalesData] = useState<IDetailSalesData[]>();
+  const [recentSalesData, setRecentSalesData] = useState<IDetailSalesData[]>();
   const cx = classNames.bind(styles);
 
   useEffect(() => {
-    Promise.all([getPopularMenuList(), getCustomerRank()]).then(res => {
-      console.log('음료랭킹, 고객랭킹:', res);
+    Promise.all([
+      getPopularMenuList(),
+      getCustomerRank(),
+      getHourSalesData(),
+    ]).then(res => {
+      console.log('음료랭킹, 고객랭킹, 세일즈데이터:', res);
       setMenuList(res[0].data.data);
       setCustomerInfo(res[1].data.data);
+      setSalesData(res[2].data.data);
+      setBeforeSalesData(res[2].data.data.beforeStatistics);
+      setRecentSalesData(res[2].data.data.recentStatistics);
     });
   }, []);
 
@@ -49,13 +69,6 @@ function dataContent() {
               </button>
             </li>
             <li
-              className={cx('tab', 'week', chartTab === 'week' ? 'active' : '')}
-            >
-              <button type='button' name='week' onClick={handleClickChartTab}>
-                주별
-              </button>
-            </li>
-            <li
               className={cx(
                 'tab',
                 'month',
@@ -74,27 +87,49 @@ function dataContent() {
             <li>
               <h3>매출</h3>
               <div className={cx('cnt')}>
-                <strong>10,000,000원</strong>
+                <strong>{salesData?.totalSales.toLocaleString()}원</strong>
                 <span className={cx('change')}>
-                  <span className={cx('arrow')}>▼ </span>10,000원
+                  <span
+                    className={cx(
+                      'arrow',
+                      salesData && salesData?.performanceSales < 0 ? 'up' : '',
+                    )}
+                  >
+                    {salesData && salesData?.performanceSales < 0 ? '▼ ' : '▲ '}
+                  </span>
+                  {salesData && salesData?.performanceSales < 0
+                    ? (salesData?.performanceSales * -1).toLocaleString()
+                    : salesData?.performanceSales.toLocaleString()}
+                  원
                 </span>
               </div>
             </li>
             <li>
               <h3>주문수</h3>
               <div className={cx('cnt')}>
-                <strong>104건</strong>
+                <strong>{salesData?.totalCount}건</strong>
                 <span className={cx('change')}>
-                  <span className={cx('arrow', 'up')}>▲ </span>3건
+                  <span
+                    className={cx(
+                      'arrow',
+                      salesData && salesData?.performanceCount < 0 ? 'up' : '',
+                    )}
+                  >
+                    {salesData && salesData?.performanceCount < 0 ? '▼ ' : '▲ '}
+                  </span>
+                  {salesData && salesData?.performanceCount < 0
+                    ? (salesData?.performanceCount * -1).toLocaleString()
+                    : salesData?.performanceCount.toLocaleString()}
+                  건
                 </span>
               </div>
             </li>
           </ul>
           <div className={cx('chart-wrap')}>
-            <ul className={cx('index')}>
-              <li className={cx('before')}>전일</li>
-              <li className={cx('now')}>금일</li>
-            </ul>
+            <DataChart
+              beforeSalesData={beforeSalesData}
+              recentSalesData={recentSalesData}
+            />
           </div>
         </div>
       </div>

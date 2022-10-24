@@ -9,6 +9,30 @@ const HEADERS = {
   },
 };
 
+export const getHourSalesData = async () => {
+  const res = await basicRequest.get(
+    `${P_SERVICE}/statistics/sales/hour`,
+    HEADERS,
+  );
+  return res;
+};
+
+export const getDaySalesData = async () => {
+  const res = await basicRequest.get(
+    `${P_SERVICE}/statistics/sales/day`,
+    HEADERS,
+  );
+  return res;
+};
+
+export const getMonthSalesData = async () => {
+  const res = await basicRequest.get(
+    `${P_SERVICE}/statistics/sales/month`,
+    HEADERS,
+  );
+  return res;
+};
+
 export const getPopularMenuList = async () => {
   const res = await basicRequest.get(`${P_SERVICE}/statistics/1/popularMenu`);
   return res;

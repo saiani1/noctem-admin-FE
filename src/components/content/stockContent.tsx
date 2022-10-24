@@ -40,7 +40,7 @@ function stockContent() {
               <td>2022.08.07</td>
               <td>10통</td>
               <td className={cx('order-wrap')}>
-                <input type='number' />
+                <input type='number' min='1' />
                 <button type='button' className={cx('order-btn')}>
                   발주
                 </button>
@@ -56,7 +56,7 @@ function stockContent() {
               <td>2022.09.07</td>
               <td>2개</td>
               <td className={cx('order-wrap')}>
-                <input type='number' />
+                <input type='number' min='1' />
                 <button type='button' className={cx('order-btn')}>
                   발주
                 </button>
@@ -72,7 +72,7 @@ function stockContent() {
               <td>2022.08.01</td>
               <td>1봉지</td>
               <td className={cx('order-wrap')}>
-                <input type='number' />
+                <input type='number' min='1' />
                 <button type='button' className={cx('order-btn')}>
                   발주
                 </button>
@@ -88,7 +88,7 @@ function stockContent() {
               <td>2022.07.17</td>
               <td>4통</td>
               <td className={cx('order-wrap')}>
-                <input type='number' />
+                <input type='number' min='1' />
                 <button type='button' className={cx('order-btn')}>
                   발주
                 </button>
