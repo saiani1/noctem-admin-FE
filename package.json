@@ -15,18 +15,23 @@
     ]
   },
   "dependencies": {
+    "@stomp/stompjs": "^6.1.2",
     "axios": "^1.0.0",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.5",
     "next": "12.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "recoil": "^0.7.5"
+    "react-stomp": "^5.1.0",
+    "recoil": "^0.7.5",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3"
   },
   "devDependencies": {
     "@types/node": "18.7.18",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
+    "@types/sockjs-client": "^1.5.1",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
     "eslint": "^8.23.1",
