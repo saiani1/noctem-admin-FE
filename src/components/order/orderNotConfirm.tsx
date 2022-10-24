@@ -5,7 +5,7 @@ import {
   patchOrderCompleted,
   getConfirm,
   getCompletion,
-} from '../../../pages/api/order';
+} from '../../store/api/order';
 import { IList } from '../../../public/assets/datas/requestList';
 
 const cx = classNames.bind(styles);
@@ -18,7 +18,6 @@ function orderNotConfirm({
   openRequestOrderList,
   openConfirmOpenOrderList,
   openCompletionOrderList,
-  setMenuList,
   setOrderConfirm,
   setCompletion,
   setOrderPurchaseId,
@@ -34,7 +33,6 @@ function orderNotConfirm({
   openRequestOrderList: boolean;
   openConfirmOpenOrderList: boolean;
   openCompletionOrderList: boolean;
-  setMenuList: React.Dispatch<React.SetStateAction<undefined>>;
   setOrderConfirm: React.Dispatch<React.SetStateAction<IList[]>>;
   setCompletion: React.Dispatch<React.SetStateAction<IList[]>>;
   setOrderPurchaseId: React.Dispatch<React.SetStateAction<number>>;
@@ -60,18 +58,14 @@ function orderNotConfirm({
   const handleAccept = (e: any) => {
     e.stopPropagation();
     patchOrderCompleted(item.purchaseId).then(res => {
-      console.log(res.data);
-    });
-    getConfirm().then(res => {
-      setOrderConfirm(res.data.data);
-    });
-    getCompletion().then(res => {
-      setCompletion(res.data.data);
+      getConfirm().then(resConfirm => {
+        setOrderConfirm(resConfirm.data.data);
+      });
+      getCompletion().then(resCompletion => {
+        setCompletion(resCompletion.data.data);
+      });
     });
   };
-  useEffect(() => {
-    setMenuList(item.menuList);
-  }, []);
   return (
     <div
       role='presentation'
@@ -90,8 +84,6 @@ function orderNotConfirm({
           )}
         </div>
         <div className={cx('drink-detail')}>
-          {/* ICED|Tall|매장컵|에스프레소 샷1|물 많이|얼음 적게|일반휘핑
-            많이|초콜릿 드리즐 */}
           <ul className={cx('option-list')}>
             {item.menuList[0].optionList.map((option: any) => (
               <li key={option.index}>{option.personalOptionNameAndAmount}</li>

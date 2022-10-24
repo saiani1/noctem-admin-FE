@@ -1,8 +1,8 @@
-import { getToken } from '../../src/store/utils/token';
+import { getToken } from '../utils/token';
 import { basicRequest } from './base';
 
 const SERVICE = '/store-service';
-const HEADERS = {
+export const HEADERS = {
   headers: {
     Authorization: JSON.parse(getToken()),
   },
