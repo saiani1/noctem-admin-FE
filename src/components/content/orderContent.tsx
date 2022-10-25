@@ -220,8 +220,8 @@ function orderContent() {
           <div
             role='presentation'
             className={cx('black-background')}
-            // onClick={handleRequestOpenOrderList}
-            // onKeyDown={handleRequestOpenOrderList}
+            onClick={handleRequestOpenOrderList}
+            onKeyDown={handleRequestOpenOrderList}
           />
           <div className={cx('order-list-content')}>
             <div className={cx('title-content')}>
@@ -259,8 +259,8 @@ function orderContent() {
           <div
             role='presentation'
             className={cx('black-background')}
-            // onClick={handleConfirmOpenOrderList}
-            // onKeyDown={handleConfirmOpenOrderList}
+            onClick={handleConfirmOpenOrderList}
+            onKeyDown={handleConfirmOpenOrderList}
           />
           <div className={cx('order-list-content')}>
             <div className={cx('title-content')}>
@@ -298,8 +298,8 @@ function orderContent() {
           <div
             role='presentation'
             className={cx('black-background')}
-            // onClick={handleCompletionOpenOrderList}
-            // onKeyDown={handleCompletionOpenOrderList}
+            onClick={handleCompletionOpenOrderList}
+            onKeyDown={handleCompletionOpenOrderList}
           />
           <div className={cx('order-list-content')}>
             <div className={cx('title-content')}>

@@ -1,11 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import classNames from 'classnames/bind';
+import { getRequest, getConfirm, getCompletion } from '../store/api/order';
+import { IList } from '../../public/assets/datas/requestList';
 
 import styles from '../../styles/common/menuBar.module.scss';
 
 function menubarList() {
+  const [request, setRequest] = useState<IList[]>([]);
+  const [confirm, setConfirm] = useState<IList[]>([]);
+  const [completion, setCompletion] = useState<IList[]>([]);
   const cx = classNames.bind(styles);
   const router = useRouter();
 
@@ -16,6 +21,17 @@ function menubarList() {
     setClickMenu(name);
     router.push(`/${name}`);
   };
+  useEffect(() => {
+    getRequest().then(res => {
+      setRequest(res.data.data);
+    });
+    getConfirm().then(res => {
+      setConfirm(res.data.data);
+    });
+    getCompletion().then(res => {
+      setCompletion(res.data.data);
+    });
+  }, []);
 
   return (
     <div className={cx('menu-bar')}>
@@ -59,20 +75,20 @@ function menubarList() {
           <button type='button' name='order' onClick={handleClickMenu}>
             <div className={cx('order-request-title')}>
               <div>주문요청</div>
-              <span>2</span>
+              <span>{request.length}</span>
             </div>
             <ul className={cx('order-request-list')}>
               <li>
                 <div>주문요청</div>
-                <span>2</span>
+                <span>{request.length}</span>
               </li>
               <li>
                 <div>주문확인</div>
-                <span>2</span>
+                <span>{confirm.length}</span>
               </li>
               <li>
                 <div>제조완료</div>
-                <span>3</span>
+                <span>{completion.length}</span>
               </li>
             </ul>
           </button>
