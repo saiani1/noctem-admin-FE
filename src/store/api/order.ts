@@ -34,6 +34,14 @@ export const patchOrderAccept = async (purchaseId: number) => {
 };
 
 // 주문 반려
+export const patchOrderCancel = async (purchaseId: number) => {
+  const res = await basicRequest.patch(
+    `${SERVICE}/order/store/${purchaseId}/cancel`,
+    {},
+    HEADERS,
+  );
+  return res;
+};
 
 // 제조 완료
 export const patchOrderCompleted = async (purchaseId: number) => {
