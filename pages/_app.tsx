@@ -37,6 +37,14 @@ function MyApp({ Component, pageProps }: AppProps) {
           </div>
         </>
       )}
+      <Toaster
+        containerStyle={{
+          top: 30,
+        }}
+        toastOptions={{
+          duration: 2000,
+        }}
+      />
     </div>
   );
 }

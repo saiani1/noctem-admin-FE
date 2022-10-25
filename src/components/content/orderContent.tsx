@@ -2,7 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames/bind';
 import StompJs from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
+import { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import styles from '../../../styles/pages/order.module.scss';
+
 import OrderNotConfirm from '../order/orderNotConfirm';
 import { IList } from '../../../public/assets/datas/requestList';
 import {
@@ -31,15 +34,12 @@ function orderContent() {
   useEffect(() => {
     getRequest().then(res => {
       setRequest(res.data.data);
-      console.log('클라이언트 주문 요청', res.data.data);
     });
     getConfirm().then(res => {
       setOrderConfirm(res.data.data);
-      console.log('클라이언트 주문 확인', res.data.data);
     });
     getCompletion().then(res => {
       setCompletion(res.data.data);
-      console.log('클라이언트 주문 완료', res.data.data);
     });
   }, []);
 
@@ -53,6 +53,7 @@ function orderContent() {
     setopenCompletionOrderList(!openCompletionOrderList);
   };
   const handleGoConfirm = () => {
+    toast.success('주문을 수락했습니다.');
     patchOrderAccept(request[0].purchaseId).then(res => {
       getRequest().then(resRequest => {
         setRequest(resRequest.data.data);
@@ -63,6 +64,7 @@ function orderContent() {
     });
   };
   const handleOrderCancel = () => {
+    toast.success('주문을 반려했습니다.');
     patchOrderCancel(request[0].purchaseId).then(res => {
       getRequest().then(resRequest => {
         setRequest(resRequest.data.data);

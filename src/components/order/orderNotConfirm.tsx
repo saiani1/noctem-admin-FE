@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import toast from 'react-hot-toast';
 import styles from '../../../styles/pages/order.module.scss';
 import {
   patchOrderCompleted,
@@ -56,6 +57,7 @@ function orderNotConfirm({
     }
   };
   const handleAccept = (e: any) => {
+    toast.success('주문을 완료했습니다.');
     e.stopPropagation();
     patchOrderCompleted(item.purchaseId).then(res => {
       getConfirm().then(resConfirm => {
