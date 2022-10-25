@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames/bind';
+import StompJs from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
 import styles from '../../../styles/pages/order.module.scss';
 import OrderNotConfirm from '../order/orderNotConfirm';
 import { IList } from '../../../public/assets/datas/requestList';
@@ -8,7 +10,8 @@ import {
   getConfirm,
   getCompletion,
   patchOrderAccept,
-} from '../../../pages/api/order';
+  patchOrderCancel,
+} from '../../store/api/order';
 import OrderListContent from '../order/orderListContent';
 
 const cx = classNames.bind(styles);
@@ -19,7 +22,6 @@ function orderContent() {
   const [openCompletionOrderList, setopenCompletionOrderList] = useState(false);
   // 주문 요청
   const [request, setRequest] = useState<IList[]>([]);
-  const [menuList, setMenuList] = useState();
   // 주문 확인
   const [orderConfirm, setOrderConfirm] = useState<IList[]>([]);
   // 제조 완료
@@ -29,14 +31,18 @@ function orderContent() {
   useEffect(() => {
     getRequest().then(res => {
       setRequest(res.data.data);
+      console.log('클라이언트 주문 요청', res.data.data);
     });
     getConfirm().then(res => {
       setOrderConfirm(res.data.data);
+      console.log('클라이언트 주문 확인', res.data.data);
     });
     getCompletion().then(res => {
       setCompletion(res.data.data);
+      console.log('클라이언트 주문 완료', res.data.data);
     });
   }, []);
+
   const handleRequestOpenOrderList = () => {
     setRequestOpenOrderList(!openRequestOrderList);
   };
@@ -48,18 +54,20 @@ function orderContent() {
   };
   const handleGoConfirm = () => {
     patchOrderAccept(request[0].purchaseId).then(res => {
-      console.log(res.data);
-    });
-
-    getRequest().then(res => {
-      setRequest(res.data.data);
-    });
-    getConfirm().then(res => {
-      setOrderConfirm(res.data.data);
+      getRequest().then(resRequest => {
+        setRequest(resRequest.data.data);
+      });
+      getConfirm().then(resConfirm => {
+        setOrderConfirm(resConfirm.data.data);
+      });
     });
   };
   const handleOrderCancel = () => {
-    console.log('주문 반려');
+    patchOrderCancel(request[0].purchaseId).then(res => {
+      getRequest().then(resRequest => {
+        setRequest(resRequest.data.data);
+      });
+    });
   };
   return (
     <>
@@ -70,7 +78,7 @@ function orderContent() {
           <div className={cx('order-detail')}>
             <div className={cx('drink-info')}>
               <div className={cx('drink-img')}>
-                <img src='assets/images/jpg/store.jpg' alt='' />
+                <img src='assets/images/jpg/store.jpg' alt='상품 이미지' />
               </div>
               <div className={cx('drink-detail-box')}>
                 <div className={cx('drink-title')}>
@@ -134,7 +142,6 @@ function orderContent() {
                 openRequestOrderList={openRequestOrderList}
                 openConfirmOpenOrderList={openConfirmOpenOrderList}
                 openCompletionOrderList={openCompletionOrderList}
-                setMenuList={setMenuList}
                 setOrderConfirm={setOrderConfirm}
                 setCompletion={setCompletion}
                 setOrderPurchaseId={setOrderPurchaseId}
@@ -163,7 +170,6 @@ function orderContent() {
                 openRequestOrderList={openRequestOrderList}
                 openConfirmOpenOrderList={openConfirmOpenOrderList}
                 openCompletionOrderList={openCompletionOrderList}
-                setMenuList={setMenuList}
                 setOrderConfirm={setOrderConfirm}
                 setCompletion={setCompletion}
                 setOrderPurchaseId={setOrderPurchaseId}
@@ -192,7 +198,6 @@ function orderContent() {
                 openRequestOrderList={openRequestOrderList}
                 openConfirmOpenOrderList={openConfirmOpenOrderList}
                 openCompletionOrderList={openCompletionOrderList}
-                setMenuList={setMenuList}
                 setOrderConfirm={setOrderConfirm}
                 setCompletion={setCompletion}
                 setOrderPurchaseId={setOrderPurchaseId}
@@ -212,8 +217,8 @@ function orderContent() {
           <div
             role='presentation'
             className={cx('black-background')}
-            onClick={handleRequestOpenOrderList}
-            onKeyDown={handleRequestOpenOrderList}
+            // onClick={handleRequestOpenOrderList}
+            // onKeyDown={handleRequestOpenOrderList}
           />
           <div className={cx('order-list-content')}>
             <div className={cx('title-content')}>
@@ -251,8 +256,8 @@ function orderContent() {
           <div
             role='presentation'
             className={cx('black-background')}
-            onClick={handleConfirmOpenOrderList}
-            onKeyDown={handleConfirmOpenOrderList}
+            // onClick={handleConfirmOpenOrderList}
+            // onKeyDown={handleConfirmOpenOrderList}
           />
           <div className={cx('order-list-content')}>
             <div className={cx('title-content')}>
@@ -290,8 +295,8 @@ function orderContent() {
           <div
             role='presentation'
             className={cx('black-background')}
-            onClick={handleCompletionOpenOrderList}
-            onKeyDown={handleCompletionOpenOrderList}
+            // onClick={handleCompletionOpenOrderList}
+            // onKeyDown={handleCompletionOpenOrderList}
           />
           <div className={cx('order-list-content')}>
             <div className={cx('title-content')}>

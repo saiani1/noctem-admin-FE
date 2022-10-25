@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from '../../../styles/content/crewContent.module.scss';
-import { getCrewList } from '../../../pages/api/crew';
+import { getCrewList } from '../../store/api/crew';
 import { ICrew } from '../../types/crew.d';
 
 function crewContent() {

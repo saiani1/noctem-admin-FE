@@ -1,14 +1,6 @@
 @use '/styles/base/variable';
 @use '/styles/mixins/position';
 
-.chart-wrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  width: 100%;
-  height: 400px;
-}
-
 .wrap {
   background-color: variable.$BG-003;
   padding: 20px 56px 20px 56px;
@@ -85,6 +77,7 @@
 
       .card-wrap {
         display: flex;
+        padding: 0 45px;
         justify-content: space-between;
         li {
           width: 48.5%;
@@ -119,12 +112,50 @@
           }
         }
       }
+
       .chart-wrap {
+        position: relative;
         display: flex;
-        justify-content: center;
-        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+        margin-top: -10px;
         width: 100%;
         height: 400px;
+
+        .unit {
+          @include position.absolute(37px 50px auto auto);
+          font-size: 10px;
+          color: variable.$TXT-003;
+          strong {
+            font-weight: bold;
+          }
+        }
+
+        .index {
+          display: flex;
+          column-gap: 20px;
+          padding: 3px 15px;
+          border: 1px solid variable.$LINE-002;
+          border-radius: 5px;
+
+          li {
+            display: flex;
+            align-items: center;
+            &::before {
+              margin-right: 5px;
+              display: block;
+              content: ' ';
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              background-color: greenyellow;
+            }
+            &.now::before {
+              background-color: skyblue;
+            }
+            font-size: variable.$FS-12;
+          }
+        }
       }
     }
   }

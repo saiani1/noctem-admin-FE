@@ -1,15 +1,15 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect, useState } from 'react';
-import classNames from 'classnames/bind';
 import {
   VictoryTheme,
   VictoryChart,
   VictoryLine,
   VictoryAxis,
   VictoryLabel,
+  VictoryVoronoiContainer,
+  VictoryTooltip,
 } from 'victory';
 
-import styles from '../../../styles/ui/dataChart.module.scss';
 import { IDetailSalesData } from '../../types/data.d';
 
 interface IProps {
@@ -17,72 +17,87 @@ interface IProps {
   recentSalesData: IDetailSalesData[] | undefined;
 }
 
-interface IData {
-  x: string;
-  y: number;
-}
-
-function defaultAddrSort(a: any, b: any) {
-  if (a.index > b.index) {
-    return -1;
-  }
-  return 0;
-}
-
 function dataChart({ beforeSalesData, recentSalesData }: IProps) {
-  const [status, setStatus] = useState('hour');
-  const [sortingBeforeData, setSortingBeforeData] = useState<
-    IData[] | undefined
-  >([]);
-  const [sortingRecentData, setSortingRecentData] = useState<
-    IData[] | undefined
-  >([]);
-  const cx = classNames.bind(styles);
-
+  const [isFetching, setIsFetching] = useState(false);
   useEffect(() => {
+    setIsFetching(false);
     if (beforeSalesData && recentSalesData) {
-      const sortLists1 = beforeSalesData.sort(defaultAddrSort);
-      const sortLists2 = recentSalesData.sort(defaultAddrSort);
-      const result1: IData[] = [];
-      sortLists1.forEach(data => {
-        result1.push({ x: data.stringHour, y: data.sales });
-      });
-      const result2: IData[] = [];
-      sortLists2.forEach(data => {
-        result2.push({ x: data.stringHour, y: data.sales });
-      });
-      setSortingBeforeData(result1);
-      setSortingRecentData(result2);
+      setIsFetching(true);
     }
-  }, [recentSalesData]);
+  }, [beforeSalesData, recentSalesData]);
 
   return (
-    <VictoryChart
-      theme={VictoryTheme.material}
-      width={1000}
-      height={400}
-      domainPadding={20}
-    >
-      <VictoryLabel x={890} y={20} text='단위: 천원' />
-      <VictoryAxis tickValues={[0, 0.25, 0.5, 0.75, 1]} />
-      <VictoryAxis dependentAxis tickFormat={x => `${x / 1000},`} />
-      <VictoryLine
-        data={sortingBeforeData}
-        x='x'
-        y='y'
-        style={{
-          data: { stroke: 'yellowGreen' },
-        }}
-      />
-      <VictoryLine
-        data={sortingRecentData}
-        x='x'
-        y='y'
-        style={{
-          data: { stroke: 'skyblue' },
-        }}
-      />
-    </VictoryChart>
+    <>
+      {isFetching && (
+        <VictoryChart
+          theme={VictoryTheme.material}
+          width={1050}
+          height={350}
+          domainPadding={20}
+          containerComponent={
+            <VictoryVoronoiContainer
+              voronoiDimension='x'
+              labels={({ datum }) => `${datum.y.toLocaleString()}원`}
+              labelComponent={
+                <VictoryTooltip
+                  cornerRadius={3}
+                  flyoutWidth={120}
+                  flyoutHeight={40}
+                  flyoutStyle={{ fill: '#aaa', stroke: 'none' }}
+                  labelComponent={<VictoryLabel lineHeight={1.4} />}
+                />
+              }
+            />
+          }
+        >
+          <VictoryAxis
+            tickValues={[0, 0.25, 0.5, 0.75, 1]}
+            style={{
+              tickLabels: {
+                fontSize: '12px',
+                fill: '#aaa',
+                fontWeight: 'bold',
+              },
+              axis: { stroke: '#eee', strokeWidth: '1' },
+              grid: { stroke: 'none' },
+              ticks: { stroke: 'none' },
+            }}
+          />
+          <VictoryAxis
+            dependentAxis
+            tickLabelComponent={
+              <VictoryLabel textAnchor='start' dx={15} dy={10} />
+            }
+            tickFormat={x => `${(x / 1000).toLocaleString()},`}
+            offsetY={50}
+            style={{
+              tickLabels: {
+                fontSize: '12px',
+                fill: '#aaa',
+                fontWeight: 'bold',
+              },
+              axis: { stroke: 'none' },
+              grid: { stroke: '#eee', strokeDasharray: 'none' },
+              ticks: { stroke: 'none' },
+            }}
+          />
+          <VictoryLine
+            data={beforeSalesData}
+            style={{
+              labels: { fill: '#ddd' },
+              data: { stroke: 'greenYellow' },
+            }}
+          />
+          <VictoryLine
+            data={recentSalesData}
+            style={{
+              labels: { fill: '#fff' },
+              data: { stroke: 'skyblue' },
+            }}
+          />
+        </VictoryChart>
+      )}
+    </>
   );
 }
 

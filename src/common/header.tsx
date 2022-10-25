@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 
 import styles from '../../styles/common/header.module.scss';
-import { getStoreInfo } from '../../pages/api/store';
+import { getStoreInfo } from '../store/api/store';
 import { getToken, isExistToken, removeToken } from '../store/utils/token';
 import { IStore } from '../types/store.d';
 

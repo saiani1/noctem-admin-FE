@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from '../../../styles/ui/drinkRankItem.module.scss';
 import { IMenuList, IMenuInfo } from '../../types/data.d';
-import { getMenuInfo } from '../../../pages/api/data';
+import { getMenuInfo } from '../../store/api/data';
 
 interface IProps {
   menu: IMenuList;

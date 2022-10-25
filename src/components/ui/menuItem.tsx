@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 import styles from '../../../styles/ui/menuItem.module.scss';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { addSoldOutMenu } from '../../../pages/api/menu';
+import { addSoldOutMenu } from '../../store/api/menu';
 import { IMenuList, ISoldOutList } from '../../types/menu.d';
 import CustomAlert from './customAlert';
 

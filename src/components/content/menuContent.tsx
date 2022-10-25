@@ -7,7 +7,7 @@ import {
   getSmallCategory,
   getMenuList,
   getSoldOutMenuList,
-} from '../../../pages/api/menu';
+} from '../../store/api/menu';
 import { ICategoryS, IMenuList, ISoldOutList } from '../../types/menu.d';
 
 function menuContent() {

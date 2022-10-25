@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import classNames from 'classnames/bind';
 
 import styles from '../../../styles/content/storeContent.module.scss';
-import { getStoreInfo } from '../../../pages/api/store';
+import { getStoreInfo } from '../../store/api/store';
 import { isExistToken } from '../../store/utils/token';
 import { IStore } from '../../types/store.d';
 

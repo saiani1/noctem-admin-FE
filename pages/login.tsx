@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import classNames from 'classnames/bind';
 
 import styles from '../styles/pages/login.module.scss';
-import { storeLogin } from './api/login';
+import { storeLogin } from '../src/store/api/login';
 import { setToken } from '../src/store/utils/token';
 
 interface IProps {

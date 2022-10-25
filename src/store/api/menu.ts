@@ -1,4 +1,4 @@
-import { getToken } from '../../src/store/utils/token';
+import { getToken } from '../utils/token';
 import { basicRequest } from './base';
 
 const M_SERVICE = '/menu-service';

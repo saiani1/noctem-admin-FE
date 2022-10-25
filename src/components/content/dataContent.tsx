@@ -14,12 +14,14 @@ import {
   getPopularMenuList,
   getCustomerRank,
   getHourSalesData,
-} from '../../../pages/api/data';
+  getDaySalesData,
+  getMonthSalesData,
+} from '../../store/api/data';
 import DrinkRankItem from '../ui/drinkRankItem';
 import DataChart from '../ui/dataChart';
 
 function dataContent() {
-  const [chartTab, setChartTab] = useState('time');
+  const [chartTab, setChartTab] = useState('hour');
   const [menuList, setMenuList] = useState<IMenuList[]>([]);
   const [customerInfo, setCustomerInfo] = useState<ICustomerInfo[]>([]);
   const [salesData, setSalesData] = useState<ISalesData>();
@@ -45,6 +47,25 @@ function dataContent() {
   const handleClickChartTab = (e: React.MouseEvent<HTMLElement>) => {
     const { name } = e.target as HTMLInputElement;
     setChartTab(name);
+    if (name === 'hour') {
+      getHourSalesData().then(res => {
+        setSalesData(res.data.data);
+        setBeforeSalesData(res.data.data.beforeStatistics);
+        setRecentSalesData(res.data.data.recentStatistics);
+      });
+    } else if (name === 'day') {
+      getDaySalesData().then(res => {
+        setSalesData(res.data.data);
+        setBeforeSalesData(res.data.data.beforeStatistics);
+        setRecentSalesData(res.data.data.recentStatistics);
+      });
+    } else if (name === 'month') {
+      getMonthSalesData().then(res => {
+        setSalesData(res.data.data);
+        setBeforeSalesData(res.data.data.beforeStatistics);
+        setRecentSalesData(res.data.data.recentStatistics);
+      });
+    }
   };
 
   return (
@@ -55,9 +76,9 @@ function dataContent() {
           <h2>매출현황</h2>
           <ul className={cx('tab-wrap')}>
             <li
-              className={cx('tab', 'time', chartTab === 'time' ? 'active' : '')}
+              className={cx('tab', 'hour', chartTab === 'hour' ? 'active' : '')}
             >
-              <button type='button' name='time' onClick={handleClickChartTab}>
+              <button type='button' name='hour' onClick={handleClickChartTab}>
                 시간별
               </button>
             </li>
@@ -65,7 +86,7 @@ function dataContent() {
               className={cx('tab', 'day', chartTab === 'day' ? 'active' : '')}
             >
               <button type='button' name='day' onClick={handleClickChartTab}>
-                일별
+                요일별
               </button>
             </li>
             <li
@@ -107,7 +128,7 @@ function dataContent() {
             <li>
               <h3>주문수</h3>
               <div className={cx('cnt')}>
-                <strong>{salesData?.totalCount}건</strong>
+                <strong>{salesData?.totalCount.toLocaleString()}건</strong>
                 <span className={cx('change')}>
                   <span
                     className={cx(
@@ -126,10 +147,25 @@ function dataContent() {
             </li>
           </ul>
           <div className={cx('chart-wrap')}>
+            <span className={cx('unit')}>
+              단위: <strong>천 원</strong>
+            </span>
             <DataChart
               beforeSalesData={beforeSalesData}
               recentSalesData={recentSalesData}
             />
+            <ul className={cx('index')}>
+              <li className={cx('before')}>
+                {chartTab === 'hour' && '전일'}
+                {chartTab === 'day' && '전주'}
+                {chartTab === 'month' && '전월'}
+              </li>
+              <li className={cx('now')}>
+                {chartTab === 'hour' && '금일'}
+                {chartTab === 'day' && '금주'}
+                {chartTab === 'month' && '금월'}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
