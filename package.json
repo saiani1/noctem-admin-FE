@@ -22,6 +22,7 @@
     "next": "12.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.0",
     "react-stomp": "^5.1.0",
     "recoil": "^0.7.5",
     "sockjs-client": "^1.6.1",
