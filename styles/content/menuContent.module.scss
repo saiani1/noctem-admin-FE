@@ -2,8 +2,10 @@
 @use '/styles/mixins/position';
 
 .wrap {
+  padding: 20px 56px;
+  height: 90vh;
   background-color: variable.$BG-003;
-  padding: 20px 56px 56px;
+  overflow: scroll;
 
   h1 {
     margin-bottom: 13px;
@@ -26,23 +28,12 @@
       flex-wrap: wrap;
       column-gap: 10px;
       padding: 0 20px;
+      width: 165px;
+      text-align: center;
       border-radius: 7px;
       background-color: variable.$BG-003;
 
       li {
-        width: 100px;
-        text-align: center;
-        margin-bottom: 10px;
-        
-        // ~li::before {
-        //   display: inline-block;
-        //   margin-right: 10px;
-        //   content: ' ';
-        //   width: 1.5px;
-        //   height: 10px;
-        //   background-color: variable.$LINE-003;
-        // }
-
         button {
           padding: 12px;
           color: variable.$TXT-002;
@@ -57,7 +48,7 @@
 
     .menu-li-wrap {
       display: flex;
-      // justify-content: space-between;
+      column-gap: 2.1%;
       flex-wrap: wrap;
       width: 100%;
     }

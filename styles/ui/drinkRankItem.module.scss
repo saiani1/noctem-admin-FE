@@ -1,0 +1,62 @@
+@use '/styles/base/variable';
+@use '/styles/mixins/position';
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex;
+  justify-content: space-between;
+  width: 33%;
+  &.bar {
+    @include position.absolute(0 auto 0 23px);
+    width: 30%;
+    margin: 20px 0;
+    background-color: variable.$BG-003;
+    border-radius: 10px;
+    z-index: -1;
+  }
+  .tit-wrap {
+    display: flex;
+    align-items: center;
+    width: 70%;
+
+    .menu-name {
+      margin-left: 9px;
+      font-size: variable.$FS-14;
+      color: variable.$TXT-003;
+      word-break: keep-all;
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  // &.active {
+  //   .menu-name {
+  //     font-weight: bold;
+  //     color: variable.$TXT-002;
+  //   }
+  //   &.second ~ .bar {
+  //     margin-left: 30%;
+  //   }
+  //   &.third ~ .bar {
+  //     margin-left: 60%;
+  //   }
+  // }
+  .img-wrap {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin-top: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+}

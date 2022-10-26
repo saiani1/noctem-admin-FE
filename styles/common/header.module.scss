@@ -2,6 +2,7 @@
 @use '/styles/mixins/position';
 
 .wrap {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -28,11 +29,16 @@
         align-items: center;
         column-gap: 10px;
 
-        .img {
+        .img-wrap {
+          display: block;
           width: 30px;
           height: 30px;
           border-radius: 50%;
-          background-color: variable.$BG-007;
+          overflow: hidden;
+          img {
+            height: 30px;
+            background-color: variable.$BG-007;
+          }
         }
 
         span {
@@ -44,7 +50,6 @@
     }
 
     .alert-wrap {
-
       button {
         position: relative;
         display: flex;
@@ -65,5 +70,15 @@
         }
       }
     }
+  }
+
+  .logout-btn {
+    margin-left: -20px;
+    padding: 3px 8px;
+    border: 2px solid variable.$LINE-004;
+    border-radius: 5px;
+    font-size: variable.$FS-12;
+    font-weight: bold;
+    color: variable.$TXT-003;
   }
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 
+import StockContent from '../src/components/content/stockContent';
+
 function stock() {
-  return <div>stock page</div>;
+  return <StockContent />;
 }
 
 export default stock;

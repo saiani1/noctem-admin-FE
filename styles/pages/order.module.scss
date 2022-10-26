@@ -15,12 +15,11 @@
   background-color: variable.$BG-003;
   .data-none {
     width: 100%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 55px;
     background-color: variable.$BG-001;
   }
   .category-title {
@@ -31,7 +30,6 @@
   }
   .order-detail {
     background-color: variable.$BG-001;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
     display: flex;
     justify-content: space-between;
@@ -55,13 +53,13 @@
         color: variable.$TXT-003;
         font-size: variable.$FS-14;
         display: flex;
-        li::after{
-          content:'|';
+        li::after {
+          content: '|';
           height: 10px;
           width: 10px;
           padding: 10px;
         }
-        li:last-child::after{
+        li:last-child::after {
           content: '';
         }
       }
@@ -89,12 +87,9 @@
       div {
         button {
           color: variable.$TXT-005;
-          width: 200px;
-          height: 40px;
+          width: 150px;
+          height: 100px;
           border-radius: 5px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
           margin: 12px;
         }
         .accept {
@@ -120,6 +115,7 @@
     color: variable.$TXT-003;
     justify-content: center;
     align-items: center;
+    background-color: variable.$BG-001 !important;
   }
   .title {
     padding: 24px 16px;
@@ -130,7 +126,10 @@
     max-height: 400px;
     overflow: auto;
   }
-  ::-webkit-scrollbar{
+  .order-request > :nth-child(3){
+    background-color: #53617350
+  }
+  ::-webkit-scrollbar {
     display: none;
   }
   .order-confirm {
@@ -147,7 +146,7 @@
       }
     }
   }
-  .order-conplete{
+  .order-conplete {
     min-height: 400px;
     max-height: 400px;
     overflow: auto;
@@ -155,7 +154,6 @@
   & > div {
     background-color: variable.$BG-001;
     width: 33%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
 
     .title {
@@ -169,24 +167,24 @@
       .drink-detail {
         color: variable.$TXT-003;
         font-size: variable.$FS-14;
-        .option-list{
+        .option-list {
           display: flex;
-          li::after{
-            content:'|';
-            height:10px;
+          li::after {
+            content: '|';
+            height: 10px;
             width: 10px;
             padding: 10px;
           }
-          li:last-child::after{
-            content:'';
+          li:last-child::after {
+            content: '';
           }
         }
       }
-      .etc{
+      .etc {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
-        button{
+        button {
           background-color: variable.$RANK-003;
           color: variable.$TXT-005;
           padding: 8px 24px;
@@ -208,7 +206,7 @@
     }
   }
 }
-.open-order-list{
+.open-order-list {
   z-index: 100;
   top: 0;
   left: 0;
@@ -216,13 +214,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  .black-background{
+  .black-background {
     background-color: black;
     opacity: 0.3;
     width: 100vw;
     height: 100vh;
   }
-  .order-list-content{
+  .order-list-content {
     padding: 10px;
     position: absolute;
     background-color: variable.$BG-001;
@@ -230,58 +228,56 @@
     border-radius: 10px;
     z-index: 150;
 
-
-    .title-content{
+    .title-content {
       display: flex;
       justify-content: space-between;
-      .title{
+      .title {
         display: flex;
         align-items: flex-end;
-        h2{
+        h2 {
           font-size: variable.$FS-24;
           font-weight: variable.$FW-003;
         }
-        p{
+        p {
           margin-left: 12px;
         }
       }
-      .order-info{
+      .order-info {
         display: flex;
-        div{
+        div {
           text-align: center;
           padding-left: 10px;
-          :nth-child(1){
-            font-size:variable.$FS-14;
+          :nth-child(1) {
+            font-size: variable.$FS-14;
           }
-          :nth-child(2){
-            font-size:variable.$FS-14;
-            color:variable.$TXT-003;
+          :nth-child(2) {
+            font-size: variable.$FS-14;
+            color: variable.$TXT-003;
           }
         }
       }
     }
-    .item-list{
-      
-      .item{
+    .item-list {
+      .item {
         padding: 12px;
-        ul{
+        ul {
           display: flex;
         }
-        li::after{
+        li::after {
           content: '|';
           width: 10px;
           height: 10px;
           padding: 10px;
         }
-        li:last-child::after{
-          content:''
+        li:last-child::after {
+          content: '';
         }
       }
     }
-    .button-box{
+    .button-box {
       width: 100%;
       text-align: center;
-      button{
+      button {
         background-color: variable.$RANK-003;
         width: 60%;
         height: 35px;
