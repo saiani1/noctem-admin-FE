@@ -2,6 +2,7 @@
 import type { AppProps } from 'next/app';
 import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { RecoilRoot } from 'recoil';
 
 import '../styles/index.scss';
 import { isExistToken } from '../src/store/utils/token';
@@ -17,35 +18,37 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [isLogin]);
 
   return (
-    <div style={{ display: 'flex' }}>
-      {!isLogin ? (
-        <Login setIsLogin={setIsLogin} />
-      ) : (
-        <>
-          <MenubarList />
-          <div>
-            <Header setIsLogin={setIsLogin} />
-            <Component {...pageProps} />
-            <Toaster
-              containerStyle={{
-                top: 30,
-              }}
-              toastOptions={{
-                duration: 2000,
-              }}
-            />
-          </div>
-        </>
-      )}
-      <Toaster
-        containerStyle={{
-          top: 30,
-        }}
-        toastOptions={{
-          duration: 2000,
-        }}
-      />
-    </div>
+    <RecoilRoot>
+      <div style={{ display: 'flex' }}>
+        {!isLogin ? (
+          <Login setIsLogin={setIsLogin} />
+        ) : (
+          <>
+            <MenubarList />
+            <div>
+              <Header setIsLogin={setIsLogin} />
+              <Component {...pageProps} />
+              <Toaster
+                containerStyle={{
+                  top: 30,
+                }}
+                toastOptions={{
+                  duration: 2000,
+                }}
+              />
+            </div>
+          </>
+        )}
+        <Toaster
+          containerStyle={{
+            top: 30,
+          }}
+          toastOptions={{
+            duration: 2000,
+          }}
+        />
+      </div>
+    </RecoilRoot>
   );
 }
 

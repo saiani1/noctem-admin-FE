@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import classNames from 'classnames/bind';
-import StompJs from '@stomp/stompjs';
-import SockJS from 'sockjs-client';
-import { Toaster } from 'react-hot-toast';
 import toast from 'react-hot-toast';
+import { useRecoilState } from 'recoil';
 import styles from '../../../styles/pages/order.module.scss';
 
 import OrderNotConfirm from '../order/orderNotConfirm';
-import { IList } from '../../../public/assets/datas/requestList';
 import {
   getRequest,
   getConfirm,
@@ -15,6 +12,11 @@ import {
   patchOrderAccept,
   patchOrderCancel,
 } from '../../store/api/order';
+import {
+  requestState,
+  confirmState,
+  completionState,
+} from '../../store/store/orderState';
 import OrderListContent from '../order/orderListContent';
 
 const cx = classNames.bind(styles);
@@ -24,11 +26,11 @@ function orderContent() {
   const [openConfirmOpenOrderList, setConfirmOpenOrderList] = useState(false);
   const [openCompletionOrderList, setopenCompletionOrderList] = useState(false);
   // 주문 요청
-  const [request, setRequest] = useState<IList[]>([]);
+  const [request, setRequest] = useRecoilState(requestState);
   // 주문 확인
-  const [orderConfirm, setOrderConfirm] = useState<IList[]>([]);
+  const [orderConfirm, setOrderConfirm] = useRecoilState(confirmState);
   // 제조 완료
-  const [completion, setCompletion] = useState<IList[]>([]);
+  const [completion, setCompletion] = useRecoilState(completionState);
   const [orderPurchaseId, setOrderPurchaseId] = useState(0);
   const [modalState, setModalState] = useState('주문 요청');
   useEffect(() => {
@@ -111,17 +113,17 @@ function orderContent() {
               <div>
                 <button
                   type='button'
-                  className={cx('accept')}
-                  onClick={handleGoConfirm}
-                >
-                  주문 수락
-                </button>
-                <button
-                  type='button'
                   className={cx('refusal')}
                   onClick={handleOrderCancel}
                 >
                   주문 반려(재고 부족)
+                </button>
+                <button
+                  type='button'
+                  className={cx('accept')}
+                  onClick={handleGoConfirm}
+                >
+                  주문 수락
                 </button>
               </div>
             </div>

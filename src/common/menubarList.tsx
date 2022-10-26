@@ -1,16 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
 import classNames from 'classnames/bind';
 import { getRequest, getConfirm, getCompletion } from '../store/api/order';
+import {
+  requestState,
+  confirmState,
+  completionState,
+} from '../store/store/orderState';
 import { IList } from '../../public/assets/datas/requestList';
-
 import styles from '../../styles/common/menuBar.module.scss';
 
 function menubarList() {
-  const [request, setRequest] = useState<IList[]>([]);
-  const [confirm, setConfirm] = useState<IList[]>([]);
-  const [completion, setCompletion] = useState<IList[]>([]);
+  const [request, setRequest] = useRecoilState(requestState);
+  const [confirm, setConfirm] = useRecoilState(confirmState);
+  const [completion, setCompletion] = useRecoilState(completionState);
   const cx = classNames.bind(styles);
   const router = useRouter();
 
