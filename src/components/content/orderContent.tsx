@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import toast from 'react-hot-toast';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../styles/pages/order.module.scss';
 
 import OrderNotConfirm from '../order/orderNotConfirm';
@@ -18,10 +18,12 @@ import {
   completionState,
 } from '../../store/store/orderState';
 import OrderListContent from '../order/orderListContent';
+import { tokenState } from '../../store/store/auth';
 
 const cx = classNames.bind(styles);
 
 function orderContent() {
+  const token = useRecoilValue(tokenState);
   const [openRequestOrderList, setRequestOpenOrderList] = useState(false);
   const [openConfirmOpenOrderList, setConfirmOpenOrderList] = useState(false);
   const [openCompletionOrderList, setopenCompletionOrderList] = useState(false);
@@ -34,13 +36,13 @@ function orderContent() {
   const [orderPurchaseId, setOrderPurchaseId] = useState(0);
   const [modalState, setModalState] = useState('주문 요청');
   useEffect(() => {
-    getRequest().then(res => {
+    getRequest(token).then(res => {
       setRequest(res.data.data);
     });
-    getConfirm().then(res => {
+    getConfirm(token).then(res => {
       setOrderConfirm(res.data.data);
     });
-    getCompletion().then(res => {
+    getCompletion(token).then(res => {
       setCompletion(res.data.data);
     });
   }, []);
@@ -56,19 +58,19 @@ function orderContent() {
   };
   const handleGoConfirm = () => {
     toast.success('주문을 수락했습니다.');
-    patchOrderAccept(request[0].purchaseId).then(res => {
-      getRequest().then(resRequest => {
+    patchOrderAccept(request[0].purchaseId, token).then(res => {
+      getRequest(token).then(resRequest => {
         setRequest(resRequest.data.data);
       });
-      getConfirm().then(resConfirm => {
+      getConfirm(token).then(resConfirm => {
         setOrderConfirm(resConfirm.data.data);
       });
     });
   };
   const handleOrderCancel = () => {
     toast.success('주문을 반려했습니다.');
-    patchOrderCancel(request[0].purchaseId).then(res => {
-      getRequest().then(resRequest => {
+    patchOrderCancel(request[0].purchaseId, token).then(res => {
+      getRequest(token).then(resRequest => {
         setRequest(resRequest.data.data);
       });
     });

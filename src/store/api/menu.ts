@@ -1,13 +1,7 @@
-import { getToken } from '../utils/token';
 import { basicRequest } from './base';
 
 const M_SERVICE = '/menu-service';
 const S_SERVICE = '/store-service';
-const HEADERS = {
-  headers: {
-    Authorization: JSON.parse(getToken()),
-  },
-};
 
 export const getSmallCategory = async () => {
   const res = await basicRequest.get(`${M_SERVICE}/1/categoryS`);
@@ -24,11 +18,18 @@ export const getSoldOutMenuList = async () => {
   return res;
 };
 
-export const addSoldOutMenu = async (menuId: string | undefined) => {
+export const addSoldOutMenu = async (
+  menuId: string | undefined,
+  token: string,
+) => {
   const res = await basicRequest.patch(
     `${S_SERVICE}/store/soldOut/${menuId}`,
     null,
-    HEADERS,
+    {
+      headers: {
+        Authorization: token,
+      },
+    },
   );
   return res;
 };

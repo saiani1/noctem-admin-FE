@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import classNames from 'classnames/bind';
 import swal from 'sweetalert';
+import { useRecoilValue } from 'recoil';
 import styles from '../../../styles/pages/order.module.scss';
 import {
   patchOrderCompleted,
@@ -8,6 +9,7 @@ import {
   getCompletion,
 } from '../../store/api/order';
 import { IList } from '../../../public/assets/datas/requestList';
+import { tokenState } from '../../store/store/auth';
 
 const cx = classNames.bind(styles);
 
@@ -22,7 +24,7 @@ function orderNotConfirm({
   setOrderConfirm,
   setCompletion,
   setOrderPurchaseId,
-  setModalState,
+  // setModalState,
   isRequest,
   isConfirm,
   isCompletion,
@@ -42,6 +44,8 @@ function orderNotConfirm({
   isConfirm: boolean;
   isCompletion: boolean;
 }) {
+  const token = useRecoilValue(tokenState);
+
   const handleOpenOrderList = (purchaseId: number) => {
     if (isRequest === true) {
       setRequestOpenOrderList(!openRequestOrderList);
@@ -63,11 +67,11 @@ function orderNotConfirm({
       buttons: ['no', 'yes'],
     }).then(willDelete => {
       if (willDelete) {
-        patchOrderCompleted(item.purchaseId).then(res => {
-          getConfirm().then(resConfirm => {
+        patchOrderCompleted(item.purchaseId, token).then(() => {
+          getConfirm(token).then(resConfirm => {
             setOrderConfirm(resConfirm.data.data);
           });
-          getCompletion().then(resCompletion => {
+          getCompletion(token).then(resCompletion => {
             setCompletion(resCompletion.data.data);
           });
         });

@@ -2,7 +2,7 @@
 import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import StoreManagement from './store';
+import Login from './login';
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <meta name='description' content='Noctom Order' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <StoreManagement />
+      <Login />
     </>
   );
 };
