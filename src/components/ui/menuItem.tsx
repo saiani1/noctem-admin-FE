@@ -3,11 +3,13 @@ import { confirmAlert } from 'react-confirm-alert';
 import classNames from 'classnames/bind';
 import toast from 'react-hot-toast';
 
+import { useRecoilValue } from 'recoil';
 import styles from '../../../styles/ui/menuItem.module.scss';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { addSoldOutMenu } from '../../store/api/menu';
 import { IMenuList, ISoldOutList } from '../../types/menu.d';
 import CustomAlert from './customAlert';
+import { tokenState } from '../../store/store/auth';
 
 interface IProps {
   menu: IMenuList;
@@ -16,6 +18,7 @@ interface IProps {
 
 function menuItem({ menu, soldOutList }: IProps) {
   const { menuName, imgUrl, menuId } = menu;
+  const token = useRecoilValue(tokenState);
   const [isSoldOut, setIsSoldOut] = useState(false);
   const cx = classNames.bind(styles);
 
@@ -27,7 +30,7 @@ function menuItem({ menu, soldOutList }: IProps) {
 
   const callAddSoldOutMenuAPI = (id: string) => {
     const comment = `${isSoldOut ? '판매재개' : '품절처리'}되었습니다.`;
-    addSoldOutMenu(id).then(res => {
+    addSoldOutMenu(id, token).then(res => {
       if (res.data.data === true) {
         setIsSoldOut(prev => {
           return !prev;

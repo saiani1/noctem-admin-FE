@@ -2,28 +2,25 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
 import classNames from 'classnames/bind';
 
+import { useRecoilValue } from 'recoil';
 import styles from '../../../styles/content/storeContent.module.scss';
 import { getStoreInfo } from '../../store/api/store';
-import { isExistToken } from '../../store/utils/token';
 import { IStore } from '../../types/store.d';
+import { tokenState } from '../../store/store/auth';
 
 function storeContent() {
+  const token = useRecoilValue(tokenState);
   const [storeInfo, setStoreInfo] = useState<IStore>();
   const cx = classNames.bind(styles);
 
   useEffect(() => {
-    if (isExistToken()) {
-      getStoreInfo()
-        .then(res => {
-          setStoreInfo(res.data.data);
-        })
-        .catch(err => console.log(err));
-    } else {
-      toast.error('로그인이 필요한 서비스입니다.');
-    }
+    getStoreInfo(token)
+      .then(res => {
+        setStoreInfo(res.data.data);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   return (

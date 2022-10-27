@@ -1,18 +1,19 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import classNames from 'classnames/bind';
-import { getRequest, getConfirm, getCompletion } from '../store/api/order';
+import { getRequest, getConfirm, getCompletion } from '../../store/api/order';
 import {
   requestState,
   confirmState,
   completionState,
-} from '../store/store/orderState';
-import { IList } from '../../public/assets/datas/requestList';
-import styles from '../../styles/common/menuBar.module.scss';
+} from '../../store/store/orderState';
+import styles from '../../../styles/common/menuBar.module.scss';
+import { tokenState, loginState } from '../../store/store/auth';
 
 function menubarList() {
+  const isLogin = useRecoilValue(loginState);
+  const token = useRecoilValue(tokenState);
   const [request, setRequest] = useRecoilState(requestState);
   const [confirm, setConfirm] = useRecoilState(confirmState);
   const [completion, setCompletion] = useRecoilState(completionState);
@@ -27,16 +28,21 @@ function menubarList() {
     router.push(`/${name}`);
   };
   useEffect(() => {
-    getRequest().then(res => {
+    console.log('isLogin', isLogin);
+    getRequest(token).then(res => {
       setRequest(res.data.data);
     });
-    getConfirm().then(res => {
+    getConfirm(token).then(res => {
       setConfirm(res.data.data);
     });
-    getCompletion().then(res => {
+    getCompletion(token).then(res => {
       setCompletion(res.data.data);
     });
   }, []);
+
+  if (!isLogin) {
+    return null;
+  }
 
   return (
     <div className={cx('menu-bar')}>

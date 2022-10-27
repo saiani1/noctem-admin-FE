@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames/bind';
 
+import { useRecoilValue } from 'recoil';
 import styles from '../../../styles/content/dataContent.module.scss';
 import {
   ISalesData,
@@ -19,8 +20,10 @@ import {
 } from '../../store/api/data';
 import DrinkRankItem from '../ui/drinkRankItem';
 import DataChart from '../ui/dataChart';
+import { tokenState } from '../../store/store/auth';
 
 function dataContent() {
+  const token = useRecoilValue(tokenState);
   const [chartTab, setChartTab] = useState('hour');
   const [menuList, setMenuList] = useState<IMenuList[]>([]);
   const [customerInfo, setCustomerInfo] = useState<ICustomerInfo[]>([]);
@@ -32,8 +35,8 @@ function dataContent() {
   useEffect(() => {
     Promise.all([
       getPopularMenuList(),
-      getCustomerRank(),
-      getHourSalesData(),
+      getCustomerRank(token),
+      getHourSalesData(token),
     ]).then(res => {
       console.log('음료랭킹, 고객랭킹, 세일즈데이터:', res);
       setMenuList(res[0].data.data);
@@ -48,19 +51,19 @@ function dataContent() {
     const { name } = e.target as HTMLInputElement;
     setChartTab(name);
     if (name === 'hour') {
-      getHourSalesData().then(res => {
+      getHourSalesData(token).then(res => {
         setSalesData(res.data.data);
         setBeforeSalesData(res.data.data.beforeStatistics);
         setRecentSalesData(res.data.data.recentStatistics);
       });
     } else if (name === 'day') {
-      getDaySalesData().then(res => {
+      getDaySalesData(token).then(res => {
         setSalesData(res.data.data);
         setBeforeSalesData(res.data.data.beforeStatistics);
         setRecentSalesData(res.data.data.recentStatistics);
       });
     } else if (name === 'month') {
-      getMonthSalesData().then(res => {
+      getMonthSalesData(token).then(res => {
         setSalesData(res.data.data);
         setBeforeSalesData(res.data.data.beforeStatistics);
         setRecentSalesData(res.data.data.recentStatistics);
