@@ -28,6 +28,7 @@
     "recoil": "^0.7.5",
     "sockjs-client": "^1.6.1",
     "stompjs": "^2.3.3",
+    "sweetalert": "^2.1.2",
     "victory": "^36.6.8"
   },
   "devDependencies": {

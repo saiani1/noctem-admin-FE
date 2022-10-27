@@ -15,12 +15,11 @@
   background-color: variable.$BG-003;
   .data-none {
     width: 100%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 55px;
     background-color: variable.$BG-001;
   }
   .category-title {
@@ -31,7 +30,6 @@
   }
   .order-detail {
     background-color: variable.$BG-001;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
     display: flex;
     justify-content: space-between;
@@ -89,12 +87,9 @@
       div {
         button {
           color: variable.$TXT-005;
-          width: 200px;
-          height: 40px;
+          width: 150px;
+          height: 100px;
           border-radius: 5px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
           margin: 12px;
         }
         .accept {
@@ -120,6 +115,7 @@
     color: variable.$TXT-003;
     justify-content: center;
     align-items: center;
+    background-color: variable.$BG-001 !important;
   }
   .title {
     padding: 24px 16px;
@@ -129,6 +125,9 @@
     min-height: 400px;
     max-height: 400px;
     overflow: auto;
+  }
+  .order-request > :nth-child(3){
+    background-color: #53617350
   }
   ::-webkit-scrollbar {
     display: none;
@@ -155,7 +154,6 @@
   & > div {
     background-color: variable.$BG-001;
     width: 33%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
 
     .title {
