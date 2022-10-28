@@ -125,6 +125,7 @@ function orderContent() {
                   {request[0].menuList[0].optionList.map(item => (
                     <li key={item.index}>{item.personalOptionNameAndAmount}</li>
                   ))}
+                  <li>{request[0].menuList[0].cupType}</li>
                 </ul>
                 <div className={cx('gray')}>
                   <div>고객명</div>
