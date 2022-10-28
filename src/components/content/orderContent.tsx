@@ -48,6 +48,10 @@ function orderContent() {
     };
   }, [updateTime]);
 
+  useEffect(() => {
+    getOrderData();
+  }, []);
+
   const getOrderData = () => {
     getRequest(token).then(res => {
       setRequest(res.data.data);
