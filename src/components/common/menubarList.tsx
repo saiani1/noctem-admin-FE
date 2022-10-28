@@ -10,6 +10,7 @@ import {
 } from '../../store/store/orderState';
 import styles from '../../../styles/common/menuBar.module.scss';
 import { tokenState, loginState } from '../../store/store/auth';
+import { categoryState } from '../../store/store/category';
 
 function menubarList() {
   const isLogin = useRecoilValue(loginState);
@@ -20,7 +21,7 @@ function menubarList() {
   const cx = classNames.bind(styles);
   const router = useRouter();
 
-  const [clickMenu, setClickMenu] = useState('store');
+  const [clickMenu, setClickMenu] = useRecoilState(categoryState);
 
   const handleClickMenu = (e: React.MouseEvent<HTMLElement>) => {
     const { name } = e.target as HTMLInputElement;

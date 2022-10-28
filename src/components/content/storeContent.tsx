@@ -4,15 +4,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames/bind';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../styles/content/storeContent.module.scss';
 import { getStoreInfo } from '../../store/api/store';
 import { IStore } from '../../types/store.d';
 import { tokenState } from '../../store/store/auth';
+import { categoryState } from '../../store/store/category';
 
 function storeContent() {
   const token = useRecoilValue(tokenState);
   const [storeInfo, setStoreInfo] = useState<IStore>();
+  const [clickMenu, setClickMenu] = useRecoilState(categoryState);
   const cx = classNames.bind(styles);
 
   useEffect(() => {
@@ -22,6 +24,9 @@ function storeContent() {
       })
       .catch(err => console.log(err));
   }, []);
+  const handleClickMenu = (name: string) => {
+    setClickMenu(name);
+  };
 
   return (
     <div className={cx('wrap')}>
@@ -65,7 +70,11 @@ function storeContent() {
       <ul className={cx('sub-menu-wrap')}>
         <li>
           <Link href='menu'>
-            <a>
+            <a
+              role='presentation'
+              onClick={() => handleClickMenu('menu')}
+              onKeyDown={() => handleClickMenu('menu')}
+            >
               <span className={cx('img-wrap')}>
                 <Image
                   src='/assets/svg/icon-juice.svg'
@@ -79,7 +88,11 @@ function storeContent() {
         </li>
         <li>
           <Link href='stock'>
-            <a>
+            <a
+              role='presentation'
+              onClick={() => handleClickMenu('stock')}
+              onKeyDown={() => handleClickMenu('stock')}
+            >
               <span className={cx('img-wrap')}>
                 <Image
                   src='/assets/svg/icon-stock.svg'
@@ -93,7 +106,11 @@ function storeContent() {
         </li>
         <li>
           <Link href='crew'>
-            <a>
+            <a
+              role='presentation'
+              onClick={() => handleClickMenu('crew')}
+              onKeyDown={() => handleClickMenu('crew')}
+            >
               <span className={cx('img-wrap')}>
                 <Image
                   src='/assets/svg/icon-employees.svg'
@@ -107,7 +124,11 @@ function storeContent() {
         </li>
         <li>
           <Link href='data'>
-            <a>
+            <a
+              role='presentation'
+              onClick={() => handleClickMenu('data')}
+              onKeyDown={() => handleClickMenu('data')}
+            >
               <span className={cx('img-wrap')}>
                 <Image
                   src='/assets/svg/icon-analytics.svg'
