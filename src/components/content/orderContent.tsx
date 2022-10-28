@@ -34,7 +34,6 @@ function orderContent() {
   // 제조 완료
   const [completion, setCompletion] = useRecoilState(completionState);
   const [orderPurchaseId, setOrderPurchaseId] = useState(0);
-  const [modalState, setModalState] = useState('주문 요청');
   const [updateTime, setUpdateTime] = useState(0);
 
   useEffect(() => {
@@ -92,6 +91,21 @@ function orderContent() {
       });
     });
   };
+
+  const handleOpenOrderList = (componentType: string, purchaseId: number) => {
+    if (componentType === 'request') {
+      setRequestOpenOrderList(!openRequestOrderList);
+      setOrderPurchaseId(purchaseId);
+    } else if (componentType === 'confirm') {
+      setConfirmOpenOrderList(!openConfirmOpenOrderList);
+      setOrderPurchaseId(purchaseId);
+    }
+    if (componentType === 'completion') {
+      setopenCompletionOrderList(!openCompletionOrderList);
+      setOrderPurchaseId(purchaseId);
+    }
+  };
+
   return (
     <>
       <div className={cx('back-ground')} />
@@ -158,21 +172,12 @@ function orderContent() {
           {request.length >= 1 ? (
             request.map(item => (
               <OrderNotConfirm
-                item={item}
                 key={item.index}
-                setRequestOpenOrderList={setRequestOpenOrderList}
-                setConfirmOpenOrderList={setConfirmOpenOrderList}
-                setopenCompletionOrderList={setopenCompletionOrderList}
-                openRequestOrderList={openRequestOrderList}
-                openConfirmOpenOrderList={openConfirmOpenOrderList}
-                openCompletionOrderList={openCompletionOrderList}
+                item={item}
+                handleOpenOrderList={handleOpenOrderList}
                 setOrderConfirm={setOrderConfirm}
                 setCompletion={setCompletion}
-                setOrderPurchaseId={setOrderPurchaseId}
-                setModalState={setModalState}
-                isRequest
-                isConfirm={false}
-                isCompletion={false}
+                componentType='request'
               />
             ))
           ) : (
@@ -186,21 +191,12 @@ function orderContent() {
           {orderConfirm.length >= 1 ? (
             orderConfirm.map(item => (
               <OrderNotConfirm
-                item={item}
                 key={item.index}
-                setRequestOpenOrderList={setRequestOpenOrderList}
-                setConfirmOpenOrderList={setConfirmOpenOrderList}
-                setopenCompletionOrderList={setopenCompletionOrderList}
-                openRequestOrderList={openRequestOrderList}
-                openConfirmOpenOrderList={openConfirmOpenOrderList}
-                openCompletionOrderList={openCompletionOrderList}
+                item={item}
+                handleOpenOrderList={handleOpenOrderList}
                 setOrderConfirm={setOrderConfirm}
                 setCompletion={setCompletion}
-                setOrderPurchaseId={setOrderPurchaseId}
-                setModalState={setModalState}
-                isRequest={false}
-                isConfirm
-                isCompletion={false}
+                componentType='confirm'
               />
             ))
           ) : (
@@ -214,21 +210,12 @@ function orderContent() {
           {completion.length >= 1 ? (
             completion.map(item => (
               <OrderNotConfirm
-                item={item}
                 key={item.index}
-                setRequestOpenOrderList={setRequestOpenOrderList}
-                setConfirmOpenOrderList={setConfirmOpenOrderList}
-                setopenCompletionOrderList={setopenCompletionOrderList}
-                openRequestOrderList={openRequestOrderList}
-                openConfirmOpenOrderList={openConfirmOpenOrderList}
-                openCompletionOrderList={openCompletionOrderList}
+                item={item}
+                handleOpenOrderList={handleOpenOrderList}
                 setOrderConfirm={setOrderConfirm}
                 setCompletion={setCompletion}
-                setOrderPurchaseId={setOrderPurchaseId}
-                setModalState={setModalState}
-                isRequest={false}
-                isConfirm={false}
-                isCompletion
+                componentType='completion'
               />
             ))
           ) : (
