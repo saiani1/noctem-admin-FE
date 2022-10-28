@@ -27,8 +27,12 @@ function menubarList() {
     setClickMenu(name);
     router.push(`/${name}`);
   };
+
   useEffect(() => {
-    console.log('isLogin', isLogin);
+    getOrderData();
+  }, []);
+
+  const getOrderData = () => {
     getRequest(token).then(res => {
       setRequest(res.data.data);
     });
@@ -38,7 +42,7 @@ function menubarList() {
     getCompletion(token).then(res => {
       setCompletion(res.data.data);
     });
-  }, []);
+  };
 
   if (!isLogin) {
     return null;

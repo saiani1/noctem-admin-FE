@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 
 import { useRecoilState } from 'recoil';
-import { setInterval } from 'timers';
 import styles from '../../../styles/common/header.module.scss';
 import { getStoreInfo } from '../../store/api/store';
 import { loginState, tokenState } from '../../store/store/auth';
@@ -44,7 +43,7 @@ function header() {
   useEffect(() => {
     const setTimer = setTimeout(() => {
       setDate(dayjs(new Date()).format('YYYY년 M월 D일'));
-      setTime(dayjs(new Date()).format('A h시 m분 ss초'));
+      setTime(dayjs(new Date()).format('A hh시 m분 ss초'));
       setUpdateTime(updateTime + 1);
     }, 1000);
 
@@ -60,12 +59,6 @@ function header() {
         setStoreInfo(res.data.data);
       })
       .catch(err => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    setInterval(() => {
-      setDate(dayjs(new Date()).format('YYYY년 M월 D일'));
-    }, 1000);
   }, []);
 
   const handleLogout = () => {

@@ -35,7 +35,20 @@ function orderContent() {
   const [completion, setCompletion] = useRecoilState(completionState);
   const [orderPurchaseId, setOrderPurchaseId] = useState(0);
   const [modalState, setModalState] = useState('주문 요청');
+  const [updateTime, setUpdateTime] = useState(0);
+
   useEffect(() => {
+    const setTimer = setTimeout(() => {
+      getOrderData();
+      setUpdateTime(updateTime + 1);
+    }, 3000);
+
+    return () => {
+      clearTimeout(setTimer);
+    };
+  }, [updateTime]);
+
+  const getOrderData = () => {
     getRequest(token).then(res => {
       setRequest(res.data.data);
     });
@@ -45,7 +58,7 @@ function orderContent() {
     getCompletion(token).then(res => {
       setCompletion(res.data.data);
     });
-  }, []);
+  };
 
   const handleRequestOpenOrderList = () => {
     setRequestOpenOrderList(!openRequestOrderList);
