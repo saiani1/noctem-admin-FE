@@ -27,7 +27,6 @@ function orderNotConfirm({
   componentType: string;
 }) {
   const token = useRecoilValue(tokenState);
-  console.log('item.menuList[0]?.cupType', item.menuList[0]?.cupType);
 
   const handleAcceptClick = (e: any) => {
     e.stopPropagation();
