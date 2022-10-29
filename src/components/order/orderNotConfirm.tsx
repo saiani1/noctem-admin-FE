@@ -8,63 +8,31 @@ import {
   getConfirm,
   getCompletion,
 } from '../../store/api/order';
-import { IList } from '../../../public/assets/datas/requestList';
 import { tokenState } from '../../store/store/auth';
+import { IList } from '../../types/order.d';
 
 const cx = classNames.bind(styles);
 
 function orderNotConfirm({
   item,
-  setRequestOpenOrderList,
-  setConfirmOpenOrderList,
-  setopenCompletionOrderList,
-  openRequestOrderList,
-  openConfirmOpenOrderList,
-  openCompletionOrderList,
+  handleOpenOrderList,
   setOrderConfirm,
   setCompletion,
-  setOrderPurchaseId,
-  // setModalState,
-  isRequest,
-  isConfirm,
-  isCompletion,
+  componentType,
 }: {
-  item: any;
-  setRequestOpenOrderList: React.Dispatch<React.SetStateAction<boolean>>;
-  setConfirmOpenOrderList: React.Dispatch<React.SetStateAction<boolean>>;
-  setopenCompletionOrderList: React.Dispatch<React.SetStateAction<boolean>>;
-  openRequestOrderList: boolean;
-  openConfirmOpenOrderList: boolean;
-  openCompletionOrderList: boolean;
+  item: IList;
+  handleOpenOrderList: (componentTypeArg: string, purchaseId: number) => void;
   setOrderConfirm: React.Dispatch<React.SetStateAction<IList[]>>;
   setCompletion: React.Dispatch<React.SetStateAction<IList[]>>;
-  setOrderPurchaseId: React.Dispatch<React.SetStateAction<number>>;
-  setModalState: React.Dispatch<React.SetStateAction<string>>;
-  isRequest: boolean;
-  isConfirm: boolean;
-  isCompletion: boolean;
+  componentType: string;
 }) {
   const token = useRecoilValue(tokenState);
 
-  const handleOpenOrderList = (purchaseId: number) => {
-    if (isRequest === true) {
-      setRequestOpenOrderList(!openRequestOrderList);
-      setOrderPurchaseId(purchaseId);
-    }
-    if (isConfirm === true) {
-      setConfirmOpenOrderList(!openConfirmOpenOrderList);
-      setOrderPurchaseId(purchaseId);
-    }
-    if (isCompletion === true) {
-      setopenCompletionOrderList(!openCompletionOrderList);
-      setOrderPurchaseId(purchaseId);
-    }
-  };
   const handleAcceptClick = (e: any) => {
     e.stopPropagation();
     swal({
       text: '음료 제조가 완료되었습니까?',
-      buttons: ['no', 'yes'],
+      buttons: ['취소', '완료'],
     }).then(willDelete => {
       if (willDelete) {
         patchOrderCompleted(item.purchaseId, token).then(() => {
@@ -80,6 +48,7 @@ function orderNotConfirm({
       }
     });
   };
+
   // const handleAccept = () => {
   //   patchOrderCompleted(item.purchaseId).then(res => {
   //     getConfirm().then(resConfirm => {
@@ -93,10 +62,9 @@ function orderNotConfirm({
   return (
     <div
       role='presentation'
-      onClick={() => handleOpenOrderList(item.index)}
-      onKeyDown={() => handleOpenOrderList(item.index)}
+      onClick={() => handleOpenOrderList(componentType, item.index)}
+      onKeyDown={() => handleOpenOrderList(componentType, item.index)}
     >
-      {/* {' '} */}
       <div className={cx('complete-card')}>
         <div className={cx('drink-title')}>
           {item.orderTotalQty === 1 ? (
@@ -113,6 +81,7 @@ function orderNotConfirm({
             {item.menuList[0]?.optionList.map((option: any) => (
               <li key={option.index}>{option.personalOptionNameAndAmount}</li>
             ))}
+            <li>{item.menuList[0]?.cupType}</li>
           </ul>
         </div>
         <div className={cx('etc')}>
@@ -124,11 +93,11 @@ function orderNotConfirm({
               {item.orderRequestTime}
             </div>
           </div>
-          {isConfirm === true ? (
+          {componentType === 'confirm' && (
             <button type='button' onClick={handleAcceptClick}>
               완료
             </button>
-          ) : undefined}
+          )}
         </div>
       </div>
       <hr />
