@@ -34,18 +34,6 @@ function orderContent() {
   // 제조 완료
   const [completion, setCompletion] = useRecoilState(completionState);
   const [orderPurchaseId, setOrderPurchaseId] = useState(0);
-  const [updateTime, setUpdateTime] = useState(0);
-
-  useEffect(() => {
-    const setTimer = setTimeout(() => {
-      getOrderData();
-      setUpdateTime(updateTime + 1);
-    }, 3000);
-
-    return () => {
-      clearTimeout(setTimer);
-    };
-  }, [updateTime]);
 
   useEffect(() => {
     getOrderData();
