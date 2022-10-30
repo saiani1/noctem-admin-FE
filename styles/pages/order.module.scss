@@ -7,97 +7,138 @@
   width: 100vw;
   z-index: -1;
 }
+
 .gray {
   color: variable.$TXT-003;
 }
+
 .order-management {
-  padding: 20px 56px;
+  padding: 10px 56px;
   background-color: variable.$BG-003;
+
   .data-none {
     width: 100%;
-    border-radius: 30px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 55px;
     background-color: variable.$BG-001;
+    color: variable.$TXT-003;
   }
+
   .category-title {
     margin-bottom: 13px;
-    font-size: 22px;
+    font-size: variable.$FS-22;
     font-weight: bold;
     color: variable.$TXT-002;
   }
+
   .order-detail {
+    background-color: pink;
     background-color: variable.$BG-001;
-    border-radius: 30px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     height: 150px;
 
     .drink-info {
-      & > .drink-detail-box {
+      &>.drink-detail-box {
         margin: 24px;
-        div {
-          display: flex;
-        }
       }
+
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 24px;
+
       .drink-title {
+        margin-bottom: 8px;
+        font-size: variable.$FS-16;
         font-weight: variable.$FW-003;
+
+        span {
+          font-weight: variable.$FW-001;
+          color: variable.$TXT-002;
+        }
       }
-      .drink-detail {
-        color: variable.$TXT-003;
-        font-size: variable.$FS-14;
+
+      dl {
         display: flex;
-        li::after {
-          content: '|';
-          height: 10px;
-          width: 10px;
-          padding: 10px;
+        font-size: variable.$FS-13;
+
+        &~dl {
+          margin-top: 1px;
         }
-        li:last-child::after {
-          content: '';
+
+        dt {
+          width: 60px;
+          margin-right: 5px;
+          font-weight: variable.$FW-001;
+          color: variable.$TXT-003;
+        }
+
+        dd {
+          color: variable.$TXT-002;
+
+          .drink-detail {
+            margin-left: 5px;
+            display: flex;
+
+            li~li::before {
+              content: '|';
+              height: 10px;
+              width: 10px;
+              padding: 6px;
+            }
+          }
         }
       }
+
       .nick-name-place {
         color: variable.$TXT-003;
         display: flex;
         justify-content: space-between;
         font-size: variable.$FS-14;
       }
+
       .drink-img {
-        border-radius: 50px;
+        border-radius: 5px;
         width: 100px;
+        height: 100px;
+        overflow: hidden;
 
         img {
-          border-radius: 50px;
-          width: 100%;
+          width: 100px;
         }
       }
     }
+
     .button-space {
       display: flex;
       justify-content: center;
       align-items: center;
+      column-gap: 15px;
       padding: 24px;
-      div {
-        button {
-          color: variable.$TXT-005;
-          width: 150px;
-          height: 100px;
-          border-radius: 5px;
-          margin: 12px;
+
+      button {
+        color: variable.$TXT-005;
+        width: 130px;
+        height: 100px;
+        border-radius: 5px;
+
+        strong {
+          font-weight: variable.$FW-003;
+          font-size: variable.$FS-15;
         }
-        .accept {
-          background-color: #8b62ff;
-        }
-        .refusal {
-          background-color: #ff5f5f;
-        }
+      }
+
+      .accept {
+        background-color: #8b62ff;
+      }
+
+      .refusal {
+        background-color: #ff5f5f;
       }
     }
   }
@@ -106,106 +147,12 @@
 .order-state {
   background-color: variable.$BG-003;
   display: flex;
-  column-gap: 48px;
+  justify-content: space-between;
+  column-gap: 25px;
   padding: 20px 56px;
   width: 100%;
-
-  .data-none {
-    display: flex;
-    color: variable.$TXT-003;
-    justify-content: center;
-    align-items: center;
-    background-color: variable.$BG-001 !important;
-  }
-  .title {
-    padding: 24px 16px;
-    font-size: variable.$FS-15;
-  }
-  .order-request {
-    min-height: 400px;
-    max-height: 400px;
-    overflow: auto;
-  }
-  .order-request > :nth-child(3){
-    background-color: #53617350
-  }
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  .order-confirm {
-    min-height: 400px;
-    max-height: 400px;
-    overflow: auto;
-
-    .complete-card {
-      .confirm-button {
-        background-color: #8b62ff;
-        color: variable.$TXT-005;
-        padding: 10px 30px;
-        border-radius: 10px;
-      }
-    }
-  }
-  .order-conplete {
-    min-height: 400px;
-    max-height: 400px;
-    overflow: auto;
-  }
-  & > div {
-    background-color: variable.$BG-001;
-    width: 33%;
-    border-radius: 30px;
-
-    .title {
-      font-weight: variable.$FW-003;
-    }
-    .complete-card {
-      padding: 16px;
-      .drink-title {
-        font-weight: variable.$FW-003;
-      }
-      .drink-detail {
-        color: variable.$TXT-003;
-        font-size: variable.$FS-14;
-        .option-list {
-          display: flex;
-          li::after {
-            content: '|';
-            height: 10px;
-            width: 10px;
-            padding: 10px;
-          }
-          li:last-child::after {
-            content: '';
-          }
-        }
-      }
-      .etc {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        button {
-          background-color: variable.$RANK-003;
-          color: variable.$TXT-005;
-          padding: 8px 24px;
-          border-radius: 10px;
-          font-weight: variable.$FW-003;
-        }
-      }
-      .nick-name-place {
-        color: variable.$TXT-003;
-        display: flex;
-        justify-content: space-between;
-        font-size: variable.$FS-14;
-      }
-      .order-confirm-button-box {
-        display: flex;
-        justify-content: space-between;
-        color: variable.$TXT-003;
-      }
-    }
-  }
 }
+
 .open-order-list {
   z-index: 100;
   top: 0;
@@ -214,77 +161,111 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   .black-background {
     background-color: black;
     opacity: 0.3;
     width: 100vw;
     height: 100vh;
   }
+
   .order-list-content {
-    padding: 10px;
     position: absolute;
-    background-color: variable.$BG-001;
-    padding: 24px;
+    padding: 25px 36px;
     border-radius: 10px;
+    background-color: variable.$BG-001;
     z-index: 150;
 
-    .title-content {
+    .title {
       display: flex;
-      justify-content: space-between;
-      .title {
-        display: flex;
-        align-items: flex-end;
-        h2 {
-          font-size: variable.$FS-24;
-          font-weight: variable.$FW-003;
-        }
-        p {
-          margin-left: 12px;
-        }
+      justify-content: center;
+      align-items: baseline;
+      margin-bottom: 20px;
+
+      h2 {
+        font-size: variable.$FS-20;
+        font-weight: variable.$FW-003;
+        color: variable.$TXT-001;
       }
-      .order-info {
-        display: flex;
-        div {
-          text-align: center;
-          padding-left: 10px;
-          :nth-child(1) {
-            font-size: variable.$FS-14;
-          }
-          :nth-child(2) {
-            font-size: variable.$FS-14;
-            color: variable.$TXT-003;
-          }
-        }
+
+      span {
+        display: block;
+        margin-left: 12px;
       }
     }
+
     .item-list {
       .item {
-        padding: 12px;
+        margin: 12px 0;
+
+        div {
+          font-size: variable.$FS-15;
+          color: variable.$TXT-002;
+
+          strong {
+            font-weight: bold;
+          }
+        }
+
         ul {
           display: flex;
         }
+
+        li {
+          font-size: variable.$FS-12;
+          color: variable.$TXT-003;
+        }
+
         li::after {
           content: '|';
           width: 10px;
           height: 10px;
-          padding: 10px;
+          padding: 7px;
         }
+
         li:last-child::after {
           content: '';
         }
       }
     }
-    .button-box {
-      width: 100%;
-      text-align: center;
-      button {
-        background-color: variable.$RANK-003;
-        width: 60%;
-        height: 35px;
-        color: variable.$TXT-005;
-        border-radius: 10px;
-        margin: 16px;
+
+    .order-info {
+      display: flex;
+      justify-content: center;
+      margin: 22px 0 22px;
+      padding: 3px 15px;
+      background-color: variable.$BG-003;
+      border-radius: 3px;
+      color: variable.$TXT-003;
+
+      dl {
+        display: flex;
+
+        &~dl::before {
+          content: '|';
+          padding: 0 10px;
+          color: variable.$TXT-004;
+        }
+
+        dt {
+          margin-right: 10px;
+          font-weight: 300;
+          color: variable.$TXT-003;
+        }
+
+        dd {
+          font-weight: 500;
+        }
       }
+    }
+
+
+    button {
+      width: 100%;
+      height: 35px;
+      color: variable.$TXT-005;
+      border-radius: 5px;
+      background-color: variable.$RANK-003;
     }
   }
 }

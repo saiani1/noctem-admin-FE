@@ -2,14 +2,14 @@
 @use '/styles/mixins/position';
 
 .wrap {
-  padding: 20px 56px;
+  padding: 10px 56px;
   height: 90vh;
   background-color: variable.$BG-003;
   overflow: scroll;
 
   h1 {
     margin-bottom: 13px;
-    font-size: 22px;
+    font-size: variable.$FS-22;
     font-weight: bold;
     color: variable.$TXT-002;
   }
@@ -20,7 +20,7 @@
     position: relative;
     padding: 25px;
     background-color: variable.$BG-001;
-    border-radius: 20px;
+    border-radius: 10px;
 
     .tab-wrap {
       display: flex;
@@ -30,12 +30,13 @@
       padding: 0 20px;
       width: 165px;
       text-align: center;
-      border-radius: 7px;
+      border-radius: 5px;
       background-color: variable.$BG-003;
 
       li {
         button {
           padding: 12px;
+          font-size: variable.$FS-13;
           color: variable.$TXT-002;
 
           &.active {
@@ -50,6 +51,7 @@
       display: flex;
       column-gap: 2.1%;
       flex-wrap: wrap;
+      margin-left: 20px;
       width: 100%;
     }
   }

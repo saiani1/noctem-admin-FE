@@ -54,7 +54,7 @@ function dataChart({ beforeSalesData, recentSalesData }: IProps) {
             tickValues={[0, 0.25, 0.5, 0.75, 1]}
             style={{
               tickLabels: {
-                fontSize: '12px',
+                fontSize: '13px',
                 fill: '#aaa',
                 fontWeight: 'bold',
               },
@@ -72,7 +72,7 @@ function dataChart({ beforeSalesData, recentSalesData }: IProps) {
             offsetY={50}
             style={{
               tickLabels: {
-                fontSize: '12px',
+                fontSize: '13px',
                 fill: '#aaa',
                 fontWeight: 'bold',
               },

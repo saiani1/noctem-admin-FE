@@ -3,20 +3,19 @@
 
 .wrap {
   background-color: variable.$BG-003;
-  padding: 20px 56px 20px 56px;
-  // padding: 20px 56px 56px;
+  padding: 10px 56px 20px 56px;
   height: 90vh;
   overflow: scroll;
 
   h1 {
-    margin-bottom: 25px;
-    font-size: 22px;
+    margin-bottom: 10px;
+    font-size: variable.$FS-22;
     font-weight: bold;
     color: variable.$TXT-002;
   }
 
   h2 {
-    font-size: variable.$FS-16;
+    font-size: variable.$FS-18;
     font-weight: bold;
     color: variable.$TXT-002;
   }
@@ -26,7 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
 
       .tab-wrap {
         position: relative;
@@ -41,27 +40,31 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 55px;
-            height: 20px;
-            font-size: variable.$FS-11;
+            width: 60px;
+            height: 30px;
+            font-size: variable.$FS-14;
             color: variable.$TXT-003;
           }
+
           &.active {
             button {
               font-weight: bold;
               color: variable.$TXT-002;
             }
-            &.day ~ .bar {
-              margin-left: 55px;
+
+            &.day~.bar {
+              margin-left: 60px;
             }
-            &.month ~ .bar {
-              margin-left: 110px;
+
+            &.month~.bar {
+              margin-left: 120px;
             }
           }
+
           &.bar {
             @include position.absolute(5px auto auto 5px);
-            width: 55px;
-            height: 20px;
+            width: 60px;
+            height: 30px;
             background-color: variable.$BG-003;
             border-radius: 2px;
             z-index: -1;
@@ -70,40 +73,48 @@
         }
       }
     }
+
     .sales-chart-wrap {
       padding: 25px;
       background-color: variable.$BG-001;
-      border-radius: 20px;
+      border-radius: 10px;
 
       .card-wrap {
         display: flex;
         padding: 0 45px;
         justify-content: space-between;
+
         li {
           width: 48.5%;
           padding: 13px 35px;
           border: 1px solid variable.$LINE-002;
           border-radius: 8px;
+
           h3 {
             margin-bottom: 5px;
-            font-size: variable.$FS-12;
+            font-size: variable.$FS-14;
             color: variable.$TXT-003;
           }
+
           .cnt {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+
             strong {
-              font-size: variable.$FS-16;
+              font-size: variable.$FS-18;
               font-weight: bold;
               color: variable.$TXT-001;
             }
+
             .change {
-              font-size: variable.$FS-12;
+              font-size: variable.$FS-13;
               color: variable.$TXT-003;
+
               .arrow {
-                font-size: variable.$FS-10;
+                font-size: variable.$FS-12;
                 color: greenyellow;
+
                 &.up {
                   color: red;
                 }
@@ -119,13 +130,15 @@
         flex-direction: column;
         align-items: center;
         margin-top: -10px;
+        padding-bottom: 20px;
         width: 100%;
         height: 400px;
 
         .unit {
           @include position.absolute(37px 50px auto auto);
-          font-size: 10px;
+          font-size: variable.$FS-13;
           color: variable.$TXT-003;
+
           strong {
             font-weight: bold;
           }
@@ -141,6 +154,7 @@
           li {
             display: flex;
             align-items: center;
+
             &::before {
               margin-right: 5px;
               display: block;
@@ -150,15 +164,18 @@
               border-radius: 50%;
               background-color: greenyellow;
             }
+
             &.now::before {
               background-color: skyblue;
             }
+
             font-size: variable.$FS-12;
           }
         }
       }
     }
   }
+
   .bottom-status-wrap {
     display: flex;
     justify-content: space-between;
@@ -167,21 +184,33 @@
     h2 {
       margin-bottom: 15px;
     }
+
     .popular-menu-wrap {
-      width: 63%;
+      width: 55%;
       height: 260px;
+
       .menu-wrap {
         position: relative;
         display: flex;
         justify-content: space-between;
         padding: 35px 25px;
         background-color: variable.$BG-001;
-        border-radius: 20px;
+        border-radius: 10px;
         z-index: 1;
+
+        .bar {
+          @include position.absolute(20px auto auto 20px);
+          width: 31.5%;
+          height: 84.5%;
+          border-radius: 8px;
+          background-color: variable.$BG-003;
+          z-index: -1;
+        }
       }
     }
+
     .customer-status-wrap {
-      width: 30%;
+      width: 20%;
 
       .rank-wrap {
         display: flex;
@@ -189,39 +218,91 @@
         justify-content: center;
         position: relative;
         padding: 25px;
-        height: 260px;
+        height: 243.5px;
         background-color: variable.$BG-001;
-        border-radius: 20px;
+        border-radius: 10px;
         z-index: 1;
+
         li {
           display: flex;
           align-items: center;
           margin-bottom: 10px;
           padding: 5px 10px;
+
           span {
             margin: -2px 0 0 10px;
             font-size: variable.$FS-15;
             font-weight: 300;
             color: variable.$TXT-002;
           }
+
           &.bar {
-            @include position.absolute(51px 0 auto 0);
+            @include position.absolute(44px 0 auto 0);
             margin: 0 20px;
             height: 50px;
             border-radius: 5px;
             background-color: variable.$BG-003;
             z-index: -1;
           }
+
           &.active {
             span {
               font-weight: bold;
               color: variable.$TXT-002;
             }
-            &.second ~ .bar {
+
+            &.second~.bar {
               margin-top: 16%;
             }
-            &.third ~ .bar {
+
+            &.third~.bar {
               margin-top: 31.5%;
+            }
+          }
+        }
+      }
+    }
+
+    .nickname-rank-wrap {
+      width: 20%;
+
+      .nickname-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        padding: 25px;
+        height: 243.5px;
+        background-color: variable.$BG-001;
+        border-radius: 10px;
+        z-index: 1;
+
+        li {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+          padding: 5px 10px;
+
+          span {
+            margin: -2px 0 0 10px;
+            font-size: variable.$FS-15;
+            font-weight: 300;
+            color: variable.$TXT-002;
+          }
+
+          &.bar {
+            @include position.absolute(44px 0 auto 0);
+            margin: 0 20px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: variable.$BG-003;
+            z-index: -1;
+          }
+
+          &.active {
+            span {
+              font-weight: bold;
+              color: variable.$TXT-002;
             }
           }
         }

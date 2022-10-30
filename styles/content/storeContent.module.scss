@@ -3,12 +3,12 @@
 
 .wrap {
   background-color: variable.$BG-003;
-  padding: 20px 56px 56px;
+  padding: 10px 56px 56px;
   height: 90vh;
 
   h1 {
-    margin-bottom: 13px;
-    font-size: 22px;
+    margin-bottom: 15px;
+    font-size: variable.$FS-22;
     font-weight: bold;
     color: variable.$TXT-002;
   }
@@ -19,7 +19,7 @@
     column-gap: 30px;
     padding: 25px;
     background-color: variable.$BG-001;
-    border-radius: 20px;
+    border-radius: 10px;
 
     .left {
       display: flex;
@@ -30,7 +30,7 @@
       .img-wrap {
         width: 180px;
         height: 180px;
-        border-radius: 10px;
+        border-radius: 5px;
         overflow: hidden;
 
         img {
@@ -41,7 +41,7 @@
       .img-change-wrap {
         width: 180px;
         padding: 3px 0;
-        font-size: 12px;
+        font-size: variable.$FS-12;
         color: variable.$TXT-001;
         border-radius: 3px;
         background-color: variable.$BG-003;
@@ -55,12 +55,12 @@
 
       .store-name {
         margin: -4px 0 15px 0;
-        font-size: 20px;
+        font-size: variable.$FS-20;
         font-weight: 600;
         color: variable.$TXT-001;
 
         span {
-          font-size: 16px;
+          font-size: variable.$FS-16;
           font-weight: 400;
         }
       }
@@ -68,9 +68,9 @@
       dl {
         display: flex;
         column-gap: 20px;
-        font-size: 14px;
+        font-size: variable.$FS-14;
 
-        & ~ dl {
+        &~dl {
           margin-top: 5px;
         }
 
@@ -90,7 +90,7 @@
   .sub-menu-wrap {
     display: flex;
     column-gap: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
 
     li {
       width: 25%;
@@ -103,7 +103,7 @@
         align-items: center;
         width: 100%;
         height: 100%;
-        border-radius: 20px;
+        border-radius: 10px;
         row-gap: 20px;
         background-color: variable.$BG-001;
 

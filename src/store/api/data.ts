@@ -1,5 +1,6 @@
 import { basicRequest } from './base';
 
+const U_SERVICE = '/user-service';
 const M_SERVICE = '/menu-service';
 const P_SERVICE = '/purchase-service';
 
@@ -48,5 +49,10 @@ export const getCustomerRank = async (token: string) => {
       Authorization: token,
     },
   });
+  return res;
+};
+
+export const getUserRank = async () => {
+  const res = await basicRequest.get(`${U_SERVICE}/ranking`, {});
   return res;
 };
