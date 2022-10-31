@@ -11,7 +11,7 @@
   .img-wrap {
     width: 110px;
     height: 110px;
-    border-radius: 50%;
+    border-radius: 10px;
     overflow: hidden;
 
     img {
@@ -21,10 +21,10 @@
   }
 
   .menu-name {
-    display: in;
+    display: inline-block;
     width: 100%;
     margin: 15px 0;
-    font-size: 15px;
+    font-size: variable.$FS-13;
     text-align: center;
     color: variable.$TXT-002;
     white-space: nowrap;
@@ -35,7 +35,7 @@
 
   button {
     padding: 5px 15px;
-    font-size: 14px;
+    font-size: variable.$FS-14;
     font-weight: 500;
     border-radius: 5px;
     background-color: variable.$BG-005;

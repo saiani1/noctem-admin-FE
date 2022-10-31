@@ -37,3 +37,11 @@ export interface ICustomerInfo {
   sex: string;
   totalVisitCount: string;
 }
+
+export interface IUserRankInfo {
+  index: number;
+  rank: number;
+  nickname: string;
+  grade: string;
+  gradeAccumulateExp: number;
+}

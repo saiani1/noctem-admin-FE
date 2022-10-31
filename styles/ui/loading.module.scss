@@ -1,0 +1,65 @@
+@use '/styles/base/variable';
+
+@keyframes rotateLoading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loadingTextOpacity {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 40px auto;
+
+  .spinner {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 2px solid transparent;
+    border-color: transparent variable.$RANK-001;
+    border-radius: 100%;
+    transform-origin: 50% 50%;
+    animation: rotateLoading 1.5s linear 0s infinite normal;
+  }
+
+  .text {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    margin-top: 45px;
+    font-size: variable.$FS-10;
+    font-weight: bold;
+    color: variable.$TXT-001;
+    text-align: center;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: loadingTextOpacity 2s linear 0s infinite normal;
+  }
+
+  &:hover .spinner {
+    border-color: transparent #e45635;
+  }
+}

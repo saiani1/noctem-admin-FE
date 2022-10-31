@@ -1,0 +1,126 @@
+@use '/styles/base/variable';
+@use '/styles/mixins/position';
+
+.wrap {
+  position: relative;
+  width: 33%;
+  height: 380px;
+  background-color: variable.$BG-001;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .title {
+    @include position.absolute(0 0 auto 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+    font-size: variable.$FS-15;
+    font-weight: bold;
+    color: variable.$TXT-002;
+    box-shadow: 0 4px 20px -4px variable.$BG-007;
+    z-index: 1;
+  }
+
+  .order-wrap {
+    @include position.absolute(0 0 auto 0);
+    margin-top: 80px;
+    padding-bottom: 80px;
+    height: 100%;
+    z-index: 1;
+    overflow: scroll;
+
+    .data-none {
+      text-align: center;
+      color: variable.$TXT-003;
+    }
+
+    .complete-card {
+      padding: 20px;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      & ~ .complete-card {
+        border-top: 1px solid #ddd;
+      }
+
+      .drink-title {
+        margin-bottom: 5px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        span {
+          color: variable.$TXT-003;
+
+          strong {
+            font-weight: bold;
+            color: variable.$TXT-002;
+          }
+        }
+      }
+
+      .drink-detail {
+        display: flex;
+
+        .option-title {
+          width: 50px;
+          font-size: variable.$FS-11;
+          color: rgba(variable.$TXT-003, 0.7);
+        }
+
+        .option-list {
+          display: flex;
+          margin-bottom: 2px;
+
+          li {
+            font-size: variable.$FS-11;
+            color: variable.$TXT-003;
+          }
+
+          li ~ li::before {
+            content: '|';
+            padding: 0 5px;
+            color: variable.$TXT-003;
+          }
+        }
+      }
+
+      .etc {
+        position: relative;
+
+        .option-wrap {
+          dl {
+            display: flex;
+            font-size: variable.$FS-11;
+
+            & ~ dl {
+              margin-top: 2px;
+            }
+
+            dt {
+              width: 50px;
+              color: rgba(variable.$TXT-003, 0.7);
+            }
+
+            dd {
+              color: variable.$TXT-003;
+            }
+          }
+        }
+
+        button {
+          @include position.absolute(auto 0 0 auto);
+          background-color: variable.$RANK-003;
+          color: variable.$TXT-005;
+          padding: 7px 20px;
+          border-radius: 4px;
+          font-size: variable.$FS-13;
+          font-weight: variable.$FW-003;
+        }
+      }
+    }
+  }
+}

@@ -21,15 +21,18 @@
       font-size: 27px;
       line-height: 27px;
       color: variable.$TXT-002;
+
       strong {
         font-weight: 600;
       }
     }
+
     .sub-tit {
       font-size: variable.$FS-12;
       color: variable.$TXT-003;
     }
   }
+
   .input-wrap {
     display: flex;
     flex-direction: column;
@@ -40,20 +43,24 @@
       height: 40px;
       padding: 5px 15px;
       border: none;
+
       &::placeholder {
-        font-size: 13px;
+        font-size: variable.$FS-13;
         color: variable.$TXT-004;
       }
     }
+
     input[type='text'] {
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
     }
+
     input[type='password'] {
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
     }
   }
+
   .submit-btn {
     display: flex;
     justify-content: center;

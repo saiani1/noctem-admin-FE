@@ -4,31 +4,34 @@
 .wrap {
   height: 90vh;
   background-color: variable.$BG-003;
-  padding: 20px 56px 56px;
+  padding: 10px 56px 56px;
   height: 90vh;
   background-color: variable.$BG-003;
   overflow: scroll;
 
   h1 {
     margin-bottom: 13px;
-    font-size: 22px;
+    font-size: variable.$FS-22;
     font-weight: bold;
     color: variable.$TXT-002;
   }
+
   .content-wrap {
     position: relative;
     padding: 30px 50px 60px;
     background-color: variable.$BG-001;
-    border-radius: 20px;
+    border-radius: 10px;
 
     table {
       width: 100%;
       border-bottom: 3px solid variable.$LINE-004;
+
       thead {
         border-bottom: 3px solid variable.$LINE-004;
+
         th {
           padding-bottom: 10px;
-          font-size: 15px;
+          font-size: variable.$FS-15;
           font-weight: 600;
           color: variable.$TXT-002;
 
@@ -37,9 +40,11 @@
           }
         }
       }
+
       tbody {
         tr {
           position: relative;
+
           input[type='checkbox'] {
             @include position.absolute(19px auto auto 20px);
             -webkit-appearance: none;
@@ -52,17 +57,20 @@
               background-color: variable.$LINE-004;
             }
           }
+
           height: 50px;
           border-bottom: 1px solid variable.$LINE-004;
         }
+
         td {
           padding: 15px 5px;
-          font-size: 15px;
+          font-size: variable.$FS-15;
           text-align: center;
           color: variable.$TXT-002;
 
           &.input-wrap {
             position: relative;
+
             img {
               @include position.absolute(21px auto auto 22px);
               width: 10px;
@@ -79,6 +87,7 @@
             display: flex;
             justify-content: center;
             column-gap: 7px;
+
             input[type='number'] {
               -webkit-appearance: none;
               margin-top: 1px;
@@ -88,6 +97,7 @@
               border: 1px solid variable.$LINE-004;
               border-radius: 2px;
             }
+
             .order-btn {
               width: 45px;
               height: 23px;
