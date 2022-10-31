@@ -4,7 +4,6 @@ import toast from 'react-hot-toast';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../styles/pages/order.module.scss';
 
-import OrderNotConfirm from '../order/orderNotConfirm';
 import {
   getRequest,
   getConfirm,
@@ -21,6 +20,7 @@ import {
 import OrderListContent from '../order/orderListContent';
 import { tokenState } from '../../store/store/auth';
 import OrderStatusBox from '../ui/orderStatusBox';
+import OrderInfoPopUp from '../ui/orderInfoPopUp';
 
 const cx = classNames.bind(styles);
 
@@ -210,116 +210,25 @@ function orderContent() {
         />
       </ul>
       {openRequestOrderList && (
-        <div className={cx('open-order-list')}>
-          <div
-            role='presentation'
-            className={cx('black-background')}
-            onClick={handleRequestOpenOrderList}
-            onKeyDown={handleRequestOpenOrderList}
-          />
-          <div className={cx('order-list-content')}>
-            <div className={cx('title')}>
-              <h2>주문 상세 정보</h2>
-              <span>총 {request[orderPurchaseId].orderTotalQty}잔</span>
-            </div>
-            <ul className={cx('item-list')}>
-              {request[orderPurchaseId].menuList.map(product => (
-                <OrderListContent product={product} key={product.index} />
-              ))}
-            </ul>
-            <div className={cx('order-info')}>
-              <dl>
-                <dt>고객명:</dt>
-                <dd>{request[orderPurchaseId].userNickname}</dd>
-              </dl>
-              <dl>
-                <dt> 주문시간:</dt>
-                <dd>{request[orderPurchaseId].orderRequestTime}</dd>
-              </dl>
-            </div>
-            <div className={cx('button-box')}>
-              <button type='button' onClick={handleRequestOpenOrderList}>
-                닫기
-              </button>
-            </div>
-          </div>
-        </div>
+        <OrderInfoPopUp
+          data={request}
+          orderPurchaseId={orderPurchaseId}
+          onClick={handleRequestOpenOrderList}
+        />
       )}
       {openConfirmOpenOrderList && (
-        <div className={cx('open-order-list')}>
-          <div
-            role='presentation'
-            className={cx('black-background')}
-            onClick={handleConfirmOpenOrderList}
-            onKeyDown={handleConfirmOpenOrderList}
-          />
-          <div className={cx('order-list-content')}>
-            <div className={cx('title-content')}>
-              <div className={cx('title')}>
-                <h2>주문 상세 정보</h2>
-                <span>총 {orderConfirm[orderPurchaseId].orderTotalQty}잔</span>
-              </div>
-            </div>
-            <div className={cx('item-list')}>
-              {orderConfirm[orderPurchaseId].menuList.map(product => (
-                <OrderListContent product={product} key={product.index} />
-              ))}
-            </div>
-            <div className={cx('order-info')}>
-              <dl>
-                <dt>고객명:</dt>
-                <dd>{request[orderPurchaseId].userNickname}</dd>
-              </dl>
-              <dl>
-                <dt> 주문시간:</dt>
-                <dd>{request[orderPurchaseId].orderRequestTime}</dd>
-              </dl>
-            </div>
-
-            <button type='button' onClick={handleConfirmOpenOrderList}>
-              닫기
-            </button>
-          </div>
-        </div>
+        <OrderInfoPopUp
+          data={orderConfirm}
+          orderPurchaseId={orderPurchaseId}
+          onClick={handleConfirmOpenOrderList}
+        />
       )}
       {openCompletionOrderList && (
-        <div className={cx('open-order-list')}>
-          <div
-            role='presentation'
-            className={cx('black-background')}
-            onClick={handleCompletionOpenOrderList}
-            onKeyDown={handleCompletionOpenOrderList}
-          />
-          <div className={cx('order-list-content')}>
-            <div className={cx('title-content')}>
-              <div className={cx('title')}>
-                <h2>주문 상세 정보</h2>
-                <span>총 {completion[orderPurchaseId].orderTotalQty}잔</span>
-              </div>
-            </div>
-            <div className={cx('item-list')}>
-              {completion[orderPurchaseId].menuList.map(product => (
-                <OrderListContent product={product} key={product.index} />
-              ))}
-            </div>
-            <div className={cx('order-info')}>
-              <dl>
-                <dt>고객명:</dt>
-                <dd>{request[orderPurchaseId].userNickname}</dd>
-              </dl>
-              <dl>
-                <dt> 주문시간:</dt>
-                <dd>{request[orderPurchaseId].orderRequestTime}</dd>
-              </dl>
-            </div>
-
-            <div className={cx('button-box')}>
-              <button type='button' onClick={handleCompletionOpenOrderList}>
-                닫기
-              </button>
-            </div>
-          </div>
-        </div>
+        <OrderInfoPopUp
+          data={completion}
+          orderPurchaseId={orderPurchaseId}
+          onClick={handleCompletionOpenOrderList}
+        />
       )}
     </>
   );

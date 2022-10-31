@@ -7,15 +7,6 @@ import OrderNotConfirm from '../order/orderNotConfirm';
 
 const cx = classNames.bind(styles);
 
-interface IProps {
-  title: string;
-  data: IList;
-  componentType: string;
-  handleOpenOrderList: (componentTypeArg: string, purchaseId: number) => void;
-  setOrderConfirm: React.Dispatch<React.SetStateAction<IList[]>>;
-  setCompletion: React.Dispatch<React.SetStateAction<IList[]>>;
-}
-
 function orderStatusBox({
   title,
   data,
