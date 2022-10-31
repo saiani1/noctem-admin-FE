@@ -18,12 +18,10 @@ import {
   requestState,
   confirmState,
   completionState,
-  testState,
 } from '../../store/store/orderState';
 import { tokenState } from '../../store/store/auth';
 import OrderStatusBox from '../ui/orderStatusBox';
 import OrderInfoPopUp from '../ui/orderInfoPopUp';
-import CustomAlert from '../ui/customAlert';
 import { categoryState } from '../../store/store/category';
 
 const cx = classNames.bind(styles);

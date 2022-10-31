@@ -158,10 +158,12 @@ function dataContent() {
             <span className={cx('unit')}>
               단위: <strong>천 원</strong>
             </span>
-            <DataChart
-              beforeSalesData={beforeSalesData}
-              recentSalesData={recentSalesData}
-            />
+            <div className={cx('chart-height')}>
+              <DataChart
+                beforeSalesData={beforeSalesData}
+                recentSalesData={recentSalesData}
+              />
+            </div>
             <ul className={cx('index')}>
               <li className={cx('before')}>
                 {chartTab === 'hour' && '전일'}

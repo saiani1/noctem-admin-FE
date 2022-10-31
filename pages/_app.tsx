@@ -88,7 +88,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Header />
           <Component {...pageProps} />
         </div>
-        <div className={cx('test')}>
+        <div className={cx('toaster-wrap')}>
           <Toaster
             containerStyle={{
               position: 'absolute',
