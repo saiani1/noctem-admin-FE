@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import swal from 'sweetalert';
 import { useRecoilValue } from 'recoil';
-import styles from '../../../styles/pages/order.module.scss';
+import styles from '../../../styles/ui/orderStatusBox.module.scss';
 import {
   patchOrderCompleted,
   getConfirm,
@@ -60,48 +60,55 @@ function orderNotConfirm({
   //   });
   // };
   return (
-    <div
+    <li
+      className={cx('complete-card')}
       role='presentation'
       onClick={() => handleOpenOrderList(componentType, item.index)}
       onKeyDown={() => handleOpenOrderList(componentType, item.index)}
     >
-      <div className={cx('complete-card')}>
-        <div className={cx('drink-title')}>
-          {item.orderTotalQty === 1 ? (
-            <> {item.menuList[0]?.menuName}</>
-          ) : (
-            <>
-              {' '}
+      <div className={cx('drink-title')}>
+        {item.orderTotalQty === 1 ? (
+          <span>
+            {' '}
+            ( {item.orderNumber} ) <strong>{item.menuList[0]?.menuName}</strong>
+          </span>
+        ) : (
+          <span>
+            {' '}
+            ( {item.orderNumber} ){' '}
+            <strong>
               {item.menuList[0]?.menuName} 외 {item.orderTotalQty - 1}개
-            </>
-          )}
-        </div>
-        <div className={cx('drink-detail')}>
-          <ul className={cx('option-list')}>
-            {item.menuList[0]?.optionList.map((option: any) => (
-              <li key={option.index}>{option.personalOptionNameAndAmount}</li>
-            ))}
-            <li>{item.menuList[0]?.cupType}</li>
-          </ul>
-        </div>
-        <div className={cx('etc')}>
-          <div>
-            <div className={(cx('nickname'), cx('gray'))}>
-              {item.userNickname}
-            </div>
-            <div className={(cx('order-time'), cx('gray'))}>
-              {item.orderRequestTime}
-            </div>
-          </div>
-          {componentType === 'confirm' && (
-            <button type='button' onClick={handleAcceptClick}>
-              완료
-            </button>
-          )}
-        </div>
+            </strong>
+          </span>
+        )}
       </div>
-      <hr />
-    </div>
+      <div className={cx('drink-detail')}>
+        <span className={cx('option-title')}>옵션</span>
+        <ul className={cx('option-list')}>
+          {item.menuList[0]?.optionList.map((option: any) => (
+            <li key={option.index}>{option.personalOptionNameAndAmount}</li>
+          ))}
+          <li>{item.menuList[0]?.cupType}</li>
+        </ul>
+      </div>
+      <div className={cx('etc')}>
+        <div className={cx('option-wrap')}>
+          <dl>
+            <dt>고객명</dt>
+            <dd>{item.userNickname}</dd>
+          </dl>
+          <dl>
+            <dt>주문시간</dt>
+            <dd>{item.orderRequestTime}</dd>
+          </dl>
+        </div>
+        {componentType === 'confirm' && (
+          <button type='button' onClick={handleAcceptClick}>
+            완료
+          </button>
+        )}
+      </div>
+    </li>
   );
 }
 

@@ -99,7 +99,7 @@ function menubarList() {
                 <span>{request.length}</span>
               </li>
               <li>
-                <div>주문확인</div>
+                <div>제조중</div>
                 <span>{confirm.length}</span>
               </li>
               <li>

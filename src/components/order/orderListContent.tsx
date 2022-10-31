@@ -7,12 +7,17 @@ const cx = classNames.bind(styles);
 
 function orderListContent({ product }: { product: IMenuList }) {
   return (
-    <div className={cx('item')}>
+    <li className={cx('item')}>
       {product.qty === 1 ? (
-        <div>{product.menuName}</div>
+        <div>
+          {product.index + 1}. <strong>{product.menuName}</strong>
+        </div>
       ) : (
         <div>
-          {product.menuName} {product.qty}잔
+          {product.index + 1}.{' '}
+          <strong>
+            {product.menuName + 1} {product.qty}잔
+          </strong>
         </div>
       )}
 
@@ -22,7 +27,7 @@ function orderListContent({ product }: { product: IMenuList }) {
         ))}
         <li>{product.cupType}</li>
       </ul>
-    </div>
+    </li>
   );
 }
 

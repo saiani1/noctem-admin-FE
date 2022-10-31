@@ -10,6 +10,7 @@ import {
   IDetailSalesData,
   IMenuList,
   ICustomerInfo,
+  IUserRankInfo,
 } from '../../types/data.d';
 import {
   getPopularMenuList,
@@ -17,6 +18,7 @@ import {
   getHourSalesData,
   getDaySalesData,
   getMonthSalesData,
+  getUserRank,
 } from '../../store/api/data';
 import DrinkRankItem from '../ui/drinkRankItem';
 import DataChart from '../ui/dataChart';
@@ -27,6 +29,7 @@ function dataContent() {
   const [chartTab, setChartTab] = useState('hour');
   const [menuList, setMenuList] = useState<IMenuList[]>([]);
   const [customerInfo, setCustomerInfo] = useState<ICustomerInfo[]>([]);
+  const [userRankInfo, setUserRankInfo] = useState<IUserRankInfo[]>([]);
   const [salesData, setSalesData] = useState<ISalesData>();
   const [beforeSalesData, setBeforeSalesData] = useState<IDetailSalesData[]>();
   const [recentSalesData, setRecentSalesData] = useState<IDetailSalesData[]>();
@@ -37,13 +40,15 @@ function dataContent() {
       getPopularMenuList(),
       getCustomerRank(token),
       getHourSalesData(token),
-    ]).then(res => {
+      getUserRank(),
+    ]).then((res: any) => {
       console.log('음료랭킹, 고객랭킹, 세일즈데이터:', res);
       setMenuList(res[0].data.data);
       setCustomerInfo(res[1].data.data);
       setSalesData(res[2].data.data);
       setBeforeSalesData(res[2].data.data.beforeStatistics);
       setRecentSalesData(res[2].data.data.recentStatistics);
+      setUserRankInfo(res[3].data.data.slice(0, 3));
     });
   }, []);
 
@@ -180,13 +185,17 @@ function dataContent() {
               menuList.map((menu: IMenuList) => (
                 <DrinkRankItem key={menu.index} menu={menu} />
               ))}
+            <li className={cx('bar')} />
           </ul>
         </div>
         <div className={cx('customer-status-wrap')}>
-          <h2>성별, 연령별 방문자 현황</h2>
+          <h2>성별/연령별 방문자 현황</h2>
           <ul className={cx('rank-wrap')}>
             {customerInfo.map((rank: ICustomerInfo) => (
-              <li key={rank.index}>
+              <li
+                key={rank.index}
+                className={cx(rank.rank === 1 ? 'active' : '')}
+              >
                 <Image
                   src={`/assets/svg/icon-${rank.rank}.svg`}
                   width={21}
@@ -197,6 +206,26 @@ function dataContent() {
                 </span>
               </li>
             ))}
+            <li className={cx('bar')} />
+          </ul>
+        </div>
+        <div className={cx('nickname-rank-wrap')}>
+          <h2>최다 방문자 현황</h2>
+          <ul className={cx('nickname-wrap')}>
+            {userRankInfo.map((user: IUserRankInfo) => (
+              <li
+                key={`nickname-${user.index}`}
+                className={cx(user.rank === 1 ? 'active' : '')}
+              >
+                <Image
+                  src={`/assets/svg/icon-${user.rank}.svg`}
+                  width={21}
+                  height={28}
+                />
+                <span>{user.nickname}</span>
+              </li>
+            ))}
+            <li className={cx('bar')} />
           </ul>
         </div>
       </div>
