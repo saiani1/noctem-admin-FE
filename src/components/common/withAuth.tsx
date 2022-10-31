@@ -1,7 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { loginState } from '../../store/store/auth';
+import { categoryState } from '../../store/store/category';
 
 const withAuth = (WrappedComponent: any) => {
   // eslint-disable-next-line react/function-component-definition
@@ -10,11 +11,12 @@ const withAuth = (WrappedComponent: any) => {
     if (typeof window !== 'undefined') {
       const router = useRouter();
       const isLogin = useRecoilValue(loginState);
+      const [, setClickMenu] = useRecoilState(categoryState);
 
       // If there is no access token we redirect to "/" page.
       if (!isLogin) {
         router.push('/');
-
+        setClickMenu('');
         return null;
       }
 
