@@ -106,9 +106,6 @@ function MyApp({ Component, pageProps }: AppProps) {
                 toast={t}
                 style={{
                   ...t.style,
-                  animation: t.visible
-                    ? 'custom-enter 1s ease'
-                    : 'custom-exit 1s ease',
                 }}
               />
             )}

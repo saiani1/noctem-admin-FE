@@ -24,7 +24,9 @@ function orderStatusBox({
 }) {
   return (
     <li className={cx('wrap')}>
-      <div className={cx('title')}>{title}</div>
+      <div className={cx('title')}>
+        {title} ( {data.length} )
+      </div>
       <ul className={cx('order-wrap')}>
         {data.length >= 1 ? (
           data.map(item => (
