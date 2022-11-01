@@ -33,19 +33,20 @@ const cx = classNames.bind(styles);
 function header() {
   const router = useRouter();
   const [, setClickMenu] = useRecoilState(categoryState);
-  const [isLogin, setIsLogin] = useRecoilState(loginState);
+  const [, setIsLogin] = useRecoilState(loginState);
   const [token, setToken] = useRecoilState(tokenState);
   const [storeInfo, setStoreInfo] = useState<IStore>();
+  const [isLoginTemp, setIsLoginTemp] = useState(false);
 
   dayjs.locale('ko');
-  const [date, setDate] = useState(dayjs(new Date()).format('YYYY년 M월 D일'));
-  const [time, setTime] = useState(dayjs(new Date()).format('A h시 m분 ss초'));
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
   const [updateTime, setUpdateTime] = useState(0);
 
   useEffect(() => {
     const setTimer = setTimeout(() => {
       setDate(dayjs(new Date()).format('YYYY년 M월 D일'));
-      setTime(dayjs(new Date()).format('A hh시 m분 ss초'));
+      setTime(dayjs(new Date()).format('A hh시 mm분 ss초'));
       setUpdateTime(updateTime + 1);
     }, 1000);
 
@@ -56,11 +57,14 @@ function header() {
 
   useEffect(() => {
     if (token !== '') {
+      setIsLoginTemp(true);
       getStoreInfo(token)
         .then(res => {
           setStoreInfo(res.data.data);
         })
         .catch(err => console.log(err));
+    } else {
+      setIsLoginTemp(false);
     }
   }, []);
 
@@ -72,12 +76,12 @@ function header() {
     router.push('/');
   };
 
-  if (!isLogin) {
+  if (!isLoginTemp) {
     return null;
   }
 
   return (
-    <header className={cx('wrap')}>
+    <header className={cx('header-wrap')}>
       <ul>
         <li>{date}</li>
         <li>{time}</li>

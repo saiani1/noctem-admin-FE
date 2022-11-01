@@ -9,8 +9,10 @@ import {
   completionState,
 } from '../../store/store/orderState';
 import styles from '../../../styles/common/menuBar.module.scss';
-import { tokenState, loginState } from '../../store/store/auth';
+import { loginState, tokenState } from '../../store/store/auth';
 import { categoryState } from '../../store/store/category';
+
+const cx = classNames.bind(styles);
 
 function menubarList() {
   const isLogin = useRecoilValue(loginState);
@@ -18,10 +20,14 @@ function menubarList() {
   const [request, setRequest] = useRecoilState(requestState);
   const [confirm, setConfirm] = useRecoilState(confirmState);
   const [completion, setCompletion] = useRecoilState(completionState);
-  const cx = classNames.bind(styles);
+  const [isLoginTemp, setIsLoginTemp] = useState(false);
+  const [requestLengthTemp, setRequestLengthTemp] = useState(0);
+  const [confirmLengthTemp, setConfirmLengthTemp] = useState(0);
+  const [completionLengthTemp, setCompletionLengthTemp] = useState(0);
   const router = useRouter();
 
   const [clickMenu, setClickMenu] = useRecoilState(categoryState);
+  const [clickMenuTemp, setClickMenuTemp] = useState('store');
 
   const handleClickMenu = (e: React.MouseEvent<HTMLElement>) => {
     const { name } = e.target as HTMLInputElement;
@@ -31,6 +37,11 @@ function menubarList() {
 
   useEffect(() => {
     getOrderData();
+    setClickMenuTemp(clickMenu);
+    setIsLoginTemp(isLogin);
+    setRequestLengthTemp(request.length);
+    setConfirmLengthTemp(confirm.length);
+    setCompletionLengthTemp(completion.length);
   }, []);
 
   const getOrderData = () => {
@@ -45,7 +56,7 @@ function menubarList() {
     });
   };
 
-  if (!isLogin) {
+  if (!isLoginTemp) {
     return null;
   }
 
@@ -53,58 +64,83 @@ function menubarList() {
     <div className={cx('menu-bar')}>
       <ul className={cx('menu-list')}>
         <li
-          className={cx('menu', 'main', clickMenu === 'store' ? 'active' : '')}
+          className={cx(
+            'menu',
+            'main',
+            clickMenuTemp === 'store' ? 'active' : '',
+          )}
         >
           <button type='button' name='store' onClick={handleClickMenu}>
             매장 관리
           </button>
         </li>
         <li
-          className={cx('menu', 'menus', clickMenu === 'menu' ? 'active' : '')}
+          className={cx(
+            'menu',
+            'menus',
+            clickMenuTemp === 'menu' ? 'active' : '',
+          )}
         >
           <button type='button' name='menu' onClick={handleClickMenu}>
             메뉴 관리
           </button>
         </li>
         <li
-          className={cx('menu', 'stock', clickMenu === 'stock' ? 'active' : '')}
+          className={cx(
+            'menu',
+            'stock',
+            clickMenuTemp === 'stock' ? 'active' : '',
+          )}
         >
           <button type='button' name='stock' onClick={handleClickMenu}>
             재고 관리
           </button>
         </li>
         <li
-          className={cx('menu', 'crew', clickMenu === 'crew' ? 'active' : '')}
+          className={cx(
+            'menu',
+            'crew',
+            clickMenuTemp === 'crew' ? 'active' : '',
+          )}
         >
           <button type='button' name='crew' onClick={handleClickMenu}>
             직원 관리
           </button>
         </li>
         <li
-          className={cx('menu', 'data', clickMenu === 'data' ? 'active' : '')}
+          className={cx(
+            'menu',
+            'data',
+            clickMenuTemp === 'data' ? 'active' : '',
+          )}
         >
           <button type='button' name='data' onClick={handleClickMenu}>
             데이터 관리
           </button>
         </li>
-        <li className={cx('order-list', clickMenu === 'order' ? 'active' : '')}>
+        <li
+          className={cx(
+            'order-list',
+            clickMenuTemp === 'order' ? 'active' : '',
+          )}
+        >
           <button type='button' name='order' onClick={handleClickMenu}>
             <div className={cx('order-request-title')}>
               <div>주문요청</div>
-              <span>{request.length}</span>
+              <span>{requestLengthTemp}</span>
             </div>
             <ul className={cx('order-request-list')}>
               <li>
                 <div>주문요청</div>
-                <span>{request.length}</span>
+                <span>{requestLengthTemp}</span>
               </li>
               <li>
                 <div>제조중</div>
-                <span>{confirm.length}</span>
+                <span>{confirmLengthTemp}</span>
               </li>
               <li>
                 <div>제조완료</div>
-                <span>{completion.length}</span>
+                <span>{completionLengthTemp}</span>
               </li>
             </ul>
           </button>
