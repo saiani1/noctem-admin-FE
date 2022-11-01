@@ -10,6 +10,7 @@ import { useRecoilState } from 'recoil';
 import styles from '../../../styles/common/header.module.scss';
 import { getStoreInfo } from '../../store/api/store';
 import { loginState, tokenState } from '../../store/store/auth';
+import { categoryState } from '../../store/store/category';
 
 interface IStore {
   managerId: number;
@@ -31,6 +32,7 @@ const cx = classNames.bind(styles);
 
 function header() {
   const router = useRouter();
+  const [, setClickMenu] = useRecoilState(categoryState);
   const [isLogin, setIsLogin] = useRecoilState(loginState);
   const [token, setToken] = useRecoilState(tokenState);
   const [storeInfo, setStoreInfo] = useState<IStore>();
@@ -53,18 +55,20 @@ function header() {
   }, [updateTime]);
 
   useEffect(() => {
-    getStoreInfo(token)
-      .then(res => {
-        console.log('storeInfo', res.data.data);
-        setStoreInfo(res.data.data);
-      })
-      .catch(err => console.log(err));
+    if (token !== '') {
+      getStoreInfo(token)
+        .then(res => {
+          setStoreInfo(res.data.data);
+        })
+        .catch(err => console.log(err));
+    }
   }, []);
 
   const handleLogout = () => {
     setIsLogin(false);
     setToken('');
     toast.success('로그아웃 되셨습니다.');
+    setClickMenu('');
     router.push('/');
   };
 

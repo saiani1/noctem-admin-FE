@@ -1,8 +1,8 @@
 /* eslint-disable react/function-component-definition */
-import React from 'react';
-import type { NextPage } from 'next';
+import { NextPage } from 'next';
 import Head from 'next/head';
-import Login from './login';
+import React from 'react';
+import LoginContent from '../src/components/content/loginContent';
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <meta name='description' content='Noctom Order' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Login />
+      <LoginContent />
     </>
   );
 };

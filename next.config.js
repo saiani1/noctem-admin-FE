@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withPlugins = require('next-compose-plugins');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withWorkbox = require('next-with-workbox');
+
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
 };
 
-module.exports = nextConfig;
+module.exports = withPlugins([withWorkbox, nextConfig]);

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import toast from 'react-hot-toast';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { confirmAlert } from 'react-confirm-alert';
+import swal from 'sweetalert';
 import styles from '../../../styles/pages/order.module.scss';
 
 import {
@@ -17,15 +19,16 @@ import {
   confirmState,
   completionState,
 } from '../../store/store/orderState';
-import OrderListContent from '../order/orderListContent';
 import { tokenState } from '../../store/store/auth';
 import OrderStatusBox from '../ui/orderStatusBox';
 import OrderInfoPopUp from '../ui/orderInfoPopUp';
+import { categoryState } from '../../store/store/category';
 
 const cx = classNames.bind(styles);
 
 function orderContent() {
   const token = useRecoilValue(tokenState);
+  const [, setClickMenu] = useRecoilState(categoryState);
   const [openRequestOrderList, setRequestOpenOrderList] = useState(false);
   const [openConfirmOpenOrderList, setConfirmOpenOrderList] = useState(false);
   const [openCompletionOrderList, setopenCompletionOrderList] = useState(false);
@@ -36,22 +39,33 @@ function orderContent() {
   // 제조 완료
   const [completion, setCompletion] = useRecoilState(completionState);
   const [orderPurchaseId, setOrderPurchaseId] = useState(0);
-  const [updateTime, setUpdateTime] = useState(0);
   const [mainImgUrl, setMainImgUrl] = useState('');
 
   useEffect(() => {
-    const setTimer = setTimeout(() => {
+    setClickMenu('order');
+    getOrderData();
+
+    const STREAM_URL = `https://sse.noctem.click:33333/sse/alert-server/store/1`;
+    const ssEvents = new EventSource(STREAM_URL);
+
+    ssEvents.addEventListener('open', event => {
+      console.log('sse OPEN', event);
       getOrderData();
-      setUpdateTime(updateTime + 1);
-    }, 3000);
+    });
+
+    ssEvents.addEventListener('message', event => {
+      const data = JSON.parse(event.data);
+      console.log('get message', event);
+      getOrderData();
+    });
+
+    ssEvents.addEventListener('error', err => {
+      console.log('ERR', err);
+    });
 
     return () => {
-      clearTimeout(setTimer);
+      ssEvents.close();
     };
-  }, [updateTime]);
-
-  useEffect(() => {
-    getOrderData();
   }, []);
 
   const getOrderData = () => {
@@ -93,11 +107,21 @@ function orderContent() {
     });
   };
   const handleOrderCancel = () => {
-    toast.success('주문을 반려했습니다.');
-    patchOrderCancel(request[0].purchaseId, token).then(res => {
-      getRequest(token).then(resRequest => {
-        setRequest(resRequest.data.data);
-      });
+    console.log('주문 반려');
+    swal({
+      text: '주문을 반려하시겠습니까?',
+      buttons: ['취소', '반려'],
+    }).then(willDelete => {
+      if (willDelete) {
+        toast.success('주문을 반려했습니다.');
+        patchOrderCancel(request[0].purchaseId, token).then(res => {
+          getRequest(token).then(resRequest => {
+            setRequest(resRequest.data.data);
+          });
+        });
+      } else {
+        console.log('취소');
+      }
     });
   };
 

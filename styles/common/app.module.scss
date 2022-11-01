@@ -1,0 +1,49 @@
+@use '/styles/base/variable';
+
+.toaster-wrap {
+  width: 100%;
+  position: fixed;
+  top: 90px;
+  right: 56px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.container {
+  flex: 0.8;
+}
+
+.toast-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: variable.$BG-001;
+
+  .icon {
+    padding-left: 10px;
+    display: inline-block;
+  }
+
+  .message-wrap {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+
+    .info {
+      font-size: variable.$FS-13;
+      margin-bottom: 2px;
+    }
+
+    .message {
+      font-weight: bold;
+    }
+  }
+
+  .btn-close {
+    height: 100%;
+    padding: 10px;
+    color: variable.$TXT-003;
+    border-left: 1px solid #eee;
+  }
+}

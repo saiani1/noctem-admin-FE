@@ -20,6 +20,8 @@
     "classnames": "^2.3.2",
     "dayjs": "^1.11.5",
     "next": "12.3.0",
+    "next-compose-plugins": "^2.2.1",
+    "next-with-workbox": "^3.0.5",
     "react": "18.2.0",
     "react-confirm-alert": "^3.0.6",
     "react-dom": "18.2.0",

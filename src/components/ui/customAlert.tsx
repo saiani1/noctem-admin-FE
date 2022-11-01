@@ -8,13 +8,13 @@ interface IProps {
   title: string;
   desc: string;
   btnTitle: string;
-  id: string;
+  id?: string;
   onAction: (id: string) => void;
   onClose: () => void;
 }
 
 function customAlert(props: IProps) {
-  const { title, desc, btnTitle, id, onAction, onClose } = props;
+  const { title, desc, btnTitle, id = '', onAction, onClose } = props;
   // 제목, 내용, 버튼 내용, 인자, confirm 함수, close 함수
   return (
     <div className={cx('popup-overlay')}>

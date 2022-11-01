@@ -64,14 +64,14 @@
   }
 
   .total-count {
-    @include position.absolute(auto 50% 8px auto);
+    @include position.absolute(auto 50% 2px auto);
     transform: translateX(50%);
     display: inline-block;
     margin-top: 5px;
     padding: 2px 5px;
-    background-color: variable.$RANK-003;
+    background-color: variable.$POINT2;
     border-radius: 4px;
-    font-size: variable.$FS-14;
+    font-size: variable.$FS-12;
     color: variable.$TXT-005;
   }
 }

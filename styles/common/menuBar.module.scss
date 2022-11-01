@@ -3,9 +3,9 @@
 
 .menu-bar {
   display: flex;
+  flex: 0.2;
   flex-shrink: 0;
   padding: 70px 24px;
-  width: 20vw;
   height: 100vh;
   text-align: center;
 
@@ -28,23 +28,29 @@
         z-index: -1;
         transition: all 0.2s ease-in-out;
       }
+
       &.active {
         button {
           font-weight: bold;
         }
-        &.menus ~ .slider {
+
+        &.menus~.slider {
           margin-top: 58px;
         }
-        &.stock ~ .slider {
+
+        &.stock~.slider {
           margin-top: 114px;
         }
-        &.crew ~ .slider {
+
+        &.crew~.slider {
           margin-top: 171px;
         }
-        &.data ~ .slider {
+
+        &.data~.slider {
           margin-top: 228px;
         }
       }
+
       button {
         display: inline-block;
         width: 100%;
@@ -52,17 +58,21 @@
         border-radius: 9px;
       }
     }
+
     .order-list {
       margin-top: 100px;
+
       &.active {
         .order-request-title {
           font-weight: bold;
         }
-        & ~ .slider {
+
+        &~.slider {
           margin-top: 383px;
           height: 182px;
         }
       }
+
       button {
         padding: 19px;
         border-radius: 9px;
