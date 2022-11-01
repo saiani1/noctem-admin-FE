@@ -13,9 +13,6 @@
 }
 
 .order-management {
-  padding: 10px 56px;
-  background-color: variable.$BG-003;
-
   .data-none {
     width: 100%;
     border-radius: 10px;
@@ -142,15 +139,15 @@
       }
     }
   }
-}
 
-.order-state {
-  background-color: variable.$BG-003;
-  display: flex;
-  justify-content: space-between;
-  column-gap: 25px;
-  padding: 20px 56px;
-  width: 100%;
+  .order-state {
+    background-color: variable.$BG-003;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 20px;
+    padding: 20px 0;
+    width: 100%;
+  }
 }
 
 .open-order-list {

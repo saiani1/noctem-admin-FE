@@ -77,7 +77,7 @@ function dataContent() {
   };
 
   return (
-    <div className={cx('wrap')}>
+    <div className={cx('wrap', 'dataContent-wrap')}>
       <h1>데이터 관리</h1>
       <div className={cx('sales-status-wrap')}>
         <div className={cx('tit-wrap')}>

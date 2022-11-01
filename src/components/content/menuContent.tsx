@@ -32,7 +32,7 @@ function menuContent() {
   }, []);
 
   return (
-    <div className={cx('wrap')}>
+    <div className={cx('wrap', 'menuContent-wrap')}>
       <h1>메뉴 관리</h1>
       <div className={cx('menu-wrap')}>
         <ul className={cx('tab-wrap')}>

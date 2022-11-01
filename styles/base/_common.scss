@@ -20,3 +20,10 @@ textarea {
 input[type='number'] {
   font-feature-settings: 'tnum';
 }
+
+.wrap {
+  background-color: variable.$BG-003;
+  padding: 20px;
+  height: calc(100vh - 50px);
+  overflow: scroll;
+}

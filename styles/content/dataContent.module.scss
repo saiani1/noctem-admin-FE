@@ -1,12 +1,7 @@
 @use '/styles/base/variable';
 @use '/styles/mixins/position';
 
-.wrap {
-  background-color: variable.$BG-003;
-  padding: 10px 56px 20px 56px;
-  height: 90vh;
-  overflow: scroll;
-
+.dataContent-wrap {
   h1 {
     margin-bottom: 10px;
     font-size: variable.$FS-22;
