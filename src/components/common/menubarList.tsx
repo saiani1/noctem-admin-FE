@@ -28,7 +28,7 @@ function menubarList() {
   const router = useRouter();
 
   const [clickMenu, setClickMenu] = useRecoilState(categoryState);
-  const [clickMenuTemp, setClickMenuTemp] = useState('store');
+  const [clickMenuTemp, setClickMenuTemp] = useRecoilState(categoryState);
   const [miniMode, setMiniMode] = useState(false);
 
   const handleClickMenu = (e: React.MouseEvent<HTMLElement>) => {
