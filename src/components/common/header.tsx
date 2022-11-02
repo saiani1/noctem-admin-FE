@@ -102,13 +102,6 @@ function header() {
             로그아웃
           </button>
         </li>
-        <li className={cx('alert-wrap')}>
-          <button type='button' className={cx('active')} aria-label='alery'>
-            <span>
-              <Image src='/assets/svg/icon-alert.svg' width={23} height={23} />
-            </span>
-          </button>
-        </li>
       </ul>
     </header>
   );
