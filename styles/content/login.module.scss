@@ -1,7 +1,7 @@
 @use '/styles/base/variable';
 @use '/styles/mixins/position';
 
-.wrap {
+.header-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;

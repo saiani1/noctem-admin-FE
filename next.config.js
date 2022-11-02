@@ -6,7 +6,7 @@ const withWorkbox = require('next-with-workbox');
 
 const nextConfig = {
   reactStrictMode: false,
-  swcMinify: true,
+  // swcMinify: true,
 };
 
 module.exports = withPlugins([withWorkbox, nextConfig]);

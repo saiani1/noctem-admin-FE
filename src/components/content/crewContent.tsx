@@ -16,7 +16,7 @@ function crewContent() {
   }, []);
 
   return (
-    <div className={cx('wrap')}>
+    <div className={cx('wrap', 'crewContent-wrap')}>
       <h1>직원관리</h1>
       <div className={cx('content-wrap')}>
         <table>

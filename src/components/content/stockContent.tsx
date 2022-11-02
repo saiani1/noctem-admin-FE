@@ -7,7 +7,7 @@ function stockContent() {
   const cx = classNames.bind(styles);
 
   return (
-    <div className={cx('wrap')}>
+    <div className={cx('wrap', 'stockContent-wrap')}>
       <h1>재고관리</h1>
       <div className={cx('content-wrap')}>
         <table>

@@ -54,7 +54,7 @@ function loginContent() {
   }
 
   return (
-    <form className={cx('wrap')} onSubmit={handleSubmit}>
+    <form className={cx('header-wrap')} onSubmit={handleSubmit}>
       <div className={cx('tit-wrap')}>
         <Image src='/assets/svg/icon-lock.svg' width={40} height={55} />
         <h1>

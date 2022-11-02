@@ -44,7 +44,6 @@ function orderContent() {
   useEffect(() => {
     setClickMenu('order');
     getOrderData();
-
     const STREAM_URL = `https://sse.noctem.click:33333/sse/alert-server/store/1`;
     const ssEvents = new EventSource(STREAM_URL);
 
@@ -142,7 +141,7 @@ function orderContent() {
   return (
     <>
       <div className={cx('back-ground')} />
-      <div className={cx('order-management')}>
+      <div className={cx('wrap', 'order-management')}>
         <div className={cx('category-title')}>주문관리</div>
         {request.length >= 1 ? (
           <div className={cx('order-detail')}>
@@ -206,33 +205,34 @@ function orderContent() {
         ) : (
           <div className={cx('data-none')}>현재 주문 요청이 없습니다</div>
         )}
+        <ul className={cx('order-state')}>
+          <OrderStatusBox
+            title='주문 요청'
+            data={request}
+            componentType='request'
+            handleOpenOrderList={handleOpenOrderList}
+            setOrderConfirm={setOrderConfirm}
+            setCompletion={setCompletion}
+          />
+          <OrderStatusBox
+            title='제조 중'
+            data={orderConfirm}
+            componentType='confirm'
+            handleOpenOrderList={handleOpenOrderList}
+            setOrderConfirm={setOrderConfirm}
+            setCompletion={setCompletion}
+          />
+          <OrderStatusBox
+            title='제조 완료'
+            data={completion}
+            componentType='completion'
+            handleOpenOrderList={handleOpenOrderList}
+            setOrderConfirm={setOrderConfirm}
+            setCompletion={setCompletion}
+          />
+        </ul>
       </div>
-      <ul className={cx('order-state')}>
-        <OrderStatusBox
-          title='주문 요청'
-          data={request}
-          componentType='request'
-          handleOpenOrderList={handleOpenOrderList}
-          setOrderConfirm={setOrderConfirm}
-          setCompletion={setCompletion}
-        />
-        <OrderStatusBox
-          title='제조 중'
-          data={orderConfirm}
-          componentType='confirm'
-          handleOpenOrderList={handleOpenOrderList}
-          setOrderConfirm={setOrderConfirm}
-          setCompletion={setCompletion}
-        />
-        <OrderStatusBox
-          title='제조 완료'
-          data={completion}
-          componentType='completion'
-          handleOpenOrderList={handleOpenOrderList}
-          setOrderConfirm={setOrderConfirm}
-          setCompletion={setCompletion}
-        />
-      </ul>
+
       {openRequestOrderList && (
         <OrderInfoPopUp
           data={request}
