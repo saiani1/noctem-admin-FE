@@ -44,7 +44,6 @@ function orderContent() {
   useEffect(() => {
     setClickMenu('order');
     getOrderData();
-
     const STREAM_URL = `https://sse.noctem.click:33333/sse/alert-server/store/1`;
     const ssEvents = new EventSource(STREAM_URL);
 
