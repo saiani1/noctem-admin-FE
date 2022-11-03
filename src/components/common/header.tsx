@@ -33,7 +33,7 @@ const cx = classNames.bind(styles);
 function header() {
   const router = useRouter();
   const [, setClickMenu] = useRecoilState(categoryState);
-  const [, setIsLogin] = useRecoilState(loginState);
+  const [isLogin, setIsLogin] = useRecoilState(loginState);
   const [token, setToken] = useRecoilState(tokenState);
   const [storeInfo, setStoreInfo] = useState<IStore>();
   const [isLoginTemp, setIsLoginTemp] = useState(false);
@@ -56,7 +56,7 @@ function header() {
   }, [updateTime]);
 
   useEffect(() => {
-    if (token !== '') {
+    if (isLogin) {
       setIsLoginTemp(true);
       getStoreInfo(token)
         .then(res => {
@@ -66,7 +66,7 @@ function header() {
     } else {
       setIsLoginTemp(false);
     }
-  }, []);
+  }, [isLogin]);
 
   const handleLogout = () => {
     setIsLogin(false);

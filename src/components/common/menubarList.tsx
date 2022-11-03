@@ -41,25 +41,31 @@ function menubarList() {
   };
 
   useEffect(() => {
-    getOrderData();
-    setClickMenuTemp(clickMenu);
-    setIsLoginTemp(isLogin);
+    if (isLogin) {
+      getOrderData();
+      setClickMenuTemp(clickMenu);
+      setIsLoginTemp(true);
+    } else {
+      setIsLoginTemp(false);
+    }
     // setRequestLengthTemp(request.length);
     // setConfirmLengthTemp(confirm.length);
     // setCompletionLengthTemp(completion.length);
-  }, []);
+  }, [isLogin]);
 
   const getOrderData = () => {
-    getRequest(token).then(res => {
-      setRequest(res.data.data);
-    });
-    getConfirm(token).then(res => {
-      setConfirm(res.data.data);
-    });
-    getCompletion(token).then(res => {
-      setCompletion(res.data.data);
-    });
-    console.log('데이터', request, confirm, completion);
+    if (isLogin) {
+      getRequest(token).then(res => {
+        setRequest(res.data.data);
+      });
+      getConfirm(token).then(res => {
+        setConfirm(res.data.data);
+      });
+      getCompletion(token).then(res => {
+        setCompletion(res.data.data);
+      });
+      console.log('데이터', request, confirm, completion);
+    }
   };
 
   if (!isLoginTemp) {
