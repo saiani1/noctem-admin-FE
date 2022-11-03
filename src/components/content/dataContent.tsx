@@ -112,6 +112,11 @@ function dataContent() {
           </ul>
         </div>
         <div className={cx('sales-chart-wrap')}>
+          <div className={cx('desc')}>
+            {chartTab === 'hour' && '전일'}
+            {chartTab === 'day' && '전주'}
+            {chartTab === 'month' && '전월'} 대비
+          </div>
           <ul className={cx('card-wrap')}>
             <li>
               <h3>매출</h3>

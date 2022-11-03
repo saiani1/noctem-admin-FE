@@ -7,7 +7,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 33%;
+  // width: 33%;
+  flex: 1;
 
   &.bar {
     @include position.absolute(0 auto 0 23px);
@@ -51,15 +52,15 @@
   .img-wrap {
     display: block;
     text-align: end;
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
     margin-top: 10px;
     border-radius: 10px;
     overflow: hidden;
 
     img {
-      width: 130px;
-      height: 130px;
+      width: 100px;
+      height: 100px;
     }
   }
 
