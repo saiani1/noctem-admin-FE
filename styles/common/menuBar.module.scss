@@ -60,6 +60,9 @@
         width: 100%;
         padding: 12px 0;
         border-radius: 9px;
+        span{
+          pointer-events: none;
+        }
       }
     }
 
