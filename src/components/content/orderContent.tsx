@@ -180,7 +180,6 @@ function orderContent() {
                   <dd>
                     <span>{request[0].orderRequestTime}</span>
                     &nbsp;
-                    <span>( 5분 전 )</span>
                   </dd>
                 </dl>
               </div>

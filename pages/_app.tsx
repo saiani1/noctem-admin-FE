@@ -94,11 +94,8 @@ function MyApp({ Component, pageProps }: AppProps) {
               position: 'absolute',
               right: 0,
               top: 0,
-              height: '70px',
+              height: '60px',
               overflow: 'hidden',
-            }}
-            toastOptions={{
-              duration: 1000,
             }}
           >
             {t => (

@@ -12,6 +12,7 @@ import {
 import styles from '../../../styles/common/menuBar.module.scss';
 import { loginState, tokenState } from '../../store/store/auth';
 import { categoryState } from '../../store/store/category';
+import { ArrowBtn } from '../../../public/assets/svg';
 
 const cx = classNames.bind(styles);
 
@@ -79,11 +80,7 @@ function menubarList() {
         className={cx('hanburger')}
         onClick={handleMenuSize}
       >
-        {miniMode === false ? (
-          <Image src='/assets/svg/icon-back-arrow.svg' width={20} height={20} />
-        ) : (
-          <Image src='/assets/svg/icon-more.svg' width={20} height={20} />
-        )}
+        <ArrowBtn className={cx('icon')} />
       </button>
       <ul className={cx('menu-list')}>
         <li
