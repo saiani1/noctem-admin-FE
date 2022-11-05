@@ -77,7 +77,7 @@ function orderNotConfirm({
             {' '}
             ( {item.orderNumber} ){' '}
             <strong>
-              {item.menuList[0]?.menuName} 외 {item.orderTotalQty - 1}개
+              {item.menuList[0]?.menuName} 외 {item.orderTotalQty}개
             </strong>
           </span>
         )}
