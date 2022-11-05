@@ -73,6 +73,15 @@
       padding: 25px;
       background-color: variable.$BG-001;
       border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+
+      .desc {
+        padding: 0 56px 10px 0;
+        align-self: flex-end;
+        font-size: variable.$FS-12;
+        color: variable.$TXT-003
+      }
 
       .card-wrap {
         display: flex;
@@ -108,10 +117,10 @@
 
               .arrow {
                 font-size: variable.$FS-12;
-                color: greenyellow;
+                color: rgb(255, 61, 61);
 
                 &.up {
-                  color: red;
+                  color: rgb(61, 106, 255);
                 }
               }
             }
@@ -132,10 +141,6 @@
           @include position.absolute(37px 50px auto auto);
           font-size: variable.$FS-13;
           color: variable.$TXT-003;
-
-          strong {
-            font-weight: bold;
-          }
         }
 
         .chart-height {

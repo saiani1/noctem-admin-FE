@@ -1,7 +1,8 @@
 @use '/styles/base/variable';
 @use '/styles/mixins/position';
-.menu-bar-mini{
-  transition: all 0.2s ease-in-out;
+
+.menu-bar-mini {
+  transition: all 0.2s;
   position: relative;
   display: flex;
   flex: 0.01;
@@ -9,10 +10,16 @@
   padding: 70px 10px;
   height: 100vh;
   text-align: center;
-  .hanburger{
+  .hanburger {
     position: absolute;
-    top: 10px;
-    left: 30px;
+    top: 30px;
+    left: 35px;
+
+    .icon {
+      transform: rotate(180deg);
+      transition: all 0.2s;
+      stroke: variable.$TXT-003;
+    }
   }
   .menu-list {
     position: relative;
@@ -38,19 +45,19 @@
           font-weight: bold;
         }
 
-        &.menus~.slider {
+        &.menus ~ .slider {
           margin-top: 58px;
         }
 
-        &.stock~.slider {
+        &.stock ~ .slider {
           margin-top: 114px;
         }
 
-        &.crew~.slider {
+        &.crew ~ .slider {
           margin-top: 171px;
         }
 
-        &.data~.slider {
+        &.data ~ .slider {
           margin-top: 228px;
         }
       }
@@ -60,7 +67,7 @@
         width: 100%;
         padding: 12px 0;
         border-radius: 9px;
-        span{
+        span {
           pointer-events: none;
         }
       }
@@ -74,7 +81,7 @@
           font-weight: bold;
         }
 
-        &~.slider {
+        & ~ .slider {
           margin-top: 383px;
           height: 182px;
         }
@@ -123,10 +130,10 @@
       }
     }
   }
-  
 }
+
 .menu-bar {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s;
   position: relative;
   display: flex;
   flex: 0.2;
@@ -134,11 +141,15 @@
   padding: 70px 24px;
   height: 100vh;
   text-align: center;
-  .hanburger{
+  .hanburger {
     position: absolute;
-    top: 10px;
-    right: 10px;
-  } 
+    top: 30px;
+    right: 25px;
+    .icon {
+      transition: all 0.2s;
+      stroke: variable.$TXT-003;
+    }
+  }
   .menu-list {
     position: relative;
     display: flex;
@@ -164,19 +175,19 @@
           font-weight: bold;
         }
 
-        &.menus~.slider {
+        &.menus ~ .slider {
           margin-top: 58px;
         }
 
-        &.stock~.slider {
+        &.stock ~ .slider {
           margin-top: 114px;
         }
 
-        &.crew~.slider {
+        &.crew ~ .slider {
           margin-top: 171px;
         }
 
-        &.data~.slider {
+        &.data ~ .slider {
           margin-top: 228px;
         }
       }
@@ -197,7 +208,7 @@
           font-weight: bold;
         }
 
-        &~.slider {
+        & ~ .slider {
           margin-top: 383px;
           height: 182px;
         }
