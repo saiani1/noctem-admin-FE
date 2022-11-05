@@ -17,10 +17,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    if ('Notification' in window) {
-      Notification.requestPermission(); // 알림 권한 요청
-    }
-
     const STREAM_URL = `https://sse.noctem.click:33333/sse/alert-server/store/1`;
     const ssEvents = new EventSource(STREAM_URL);
 
