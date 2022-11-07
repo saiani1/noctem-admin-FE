@@ -29,41 +29,44 @@ function MyApp({ Component, pageProps }: AppProps) {
       console.log('get message', event);
       console.log('data', data);
 
-      toast.custom(
-        t => (
-          <div className={cx('toast-wrap')}>
-            <div className={cx('message-wrap')}>
-              <span className={cx('info')}>
-                {data.alertCode === 1
-                  ? `새로운 주문(${data.data.orderNumber})이 들어왔습니다.`
-                  : '주문을 취소하였습니다.'}
-              </span>
-              <span className={cx('message')}>{data.message}</span>
+      if (data.alertCode === 1 || data.alertCode === 2) {
+        toast.custom(
+          t => (
+            <div className={cx('toast-wrap')}>
+              <div className={cx('message-wrap')}>
+                <span className={cx('info')}>
+                  {data.alertCode === 1 &&
+                    `새로운 주문(${data.data.orderNumber})이 들어왔습니다.`}
+                  {data.alertCode === 2 &&
+                    `(A-${data.data.orderNumber}) 주문을 취소하였습니다.`}
+                </span>
+                <span className={cx('message')}>{data.message}</span>
+              </div>
+              <button
+                type='button'
+                onClick={() => {
+                  toast.dismiss(t.id);
+                  router.push('/order');
+                }}
+                className={cx('btn-close')}
+              >
+                확인
+              </button>
             </div>
-            <button
-              type='button'
-              onClick={() => {
-                toast.dismiss(t.id);
-                router.push('/order');
-              }}
-              className={cx('btn-close')}
-            >
-              확인
-            </button>
-          </div>
-        ),
-        {
-          style: {
-            position: 'absolute',
-            right: 0,
-            top: 0,
-            height: '70px',
-            overflow: 'hidden',
+          ),
+          {
+            style: {
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              height: '70px',
+              overflow: 'hidden',
+            },
+            duration: Infinity,
+            position: 'top-right',
           },
-          duration: Infinity,
-          position: 'top-right',
-        },
-      );
+        );
+      }
     });
 
     ssEvents.addEventListener('error', err => {
