@@ -41,8 +41,7 @@ function dataContent() {
       getCustomerRank(token),
       getHourSalesData(token),
       getUserRank(),
-    ]).then((res: any) => {
-      console.log('음료랭킹, 고객랭킹, 세일즈데이터:', res);
+    ]).then(res => {
       setMenuList(res[0].data.data);
       setCustomerInfo(res[1].data.data);
       setSalesData(res[2].data.data);

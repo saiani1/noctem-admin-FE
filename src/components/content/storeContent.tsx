@@ -14,8 +14,7 @@ import { categoryState } from '../../store/store/category';
 function storeContent() {
   const token = useRecoilValue(tokenState);
   const [storeInfo, setStoreInfo] = useState<IStore>();
-  const [clickMenu, setClickMenu] = useRecoilState(categoryState);
-  // const [clickMenu, setClickMenu] = useState('');
+  const [, setClickMenu] = useRecoilState(categoryState);
   const cx = classNames.bind(styles);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ function storeContent() {
       .then(res => {
         setStoreInfo(res.data.data);
       })
-      .catch(err => console.log(err));
+      .catch(err => new Error(err));
   }, []);
 
   const handleClickMenu = (name: string) => {

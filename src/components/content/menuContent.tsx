@@ -30,7 +30,6 @@ function menuContent() {
   useEffect(() => {
     getSmallCategory().then(res => {
       const sliceCategory = res.data.data.slice(1);
-      console.log(sliceCategory);
       setCategory(sliceCategory);
     });
 

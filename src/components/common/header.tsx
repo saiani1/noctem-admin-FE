@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import toast from 'react-hot-toast';
 import classNames from 'classnames/bind';
 import dayjs from 'dayjs';
@@ -62,7 +61,9 @@ function header() {
         .then(res => {
           setStoreInfo(res.data.data);
         })
-        .catch(err => console.log(err));
+        .catch((err: any) => {
+          throw new Error(err);
+        });
     } else {
       setIsLoginTemp(false);
     }

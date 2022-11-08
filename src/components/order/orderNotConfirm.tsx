@@ -9,7 +9,7 @@ import {
   getCompletion,
 } from '../../store/api/order';
 import { tokenState } from '../../store/store/auth';
-import { IList } from '../../types/order.d';
+import { IList, IOptionList } from '../../types/order.d';
 
 const cx = classNames.bind(styles);
 
@@ -28,7 +28,7 @@ function orderNotConfirm({
 }) {
   const token = useRecoilValue(tokenState);
 
-  const handleAcceptClick = (e: any) => {
+  const handleAcceptClick = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     swal({
       text: '음료 제조가 완료되었습니까?',
@@ -43,22 +43,10 @@ function orderNotConfirm({
             setCompletion(resCompletion.data.data);
           });
         });
-      } else {
-        console.log('취소');
       }
     });
   };
 
-  // const handleAccept = () => {
-  //   patchOrderCompleted(item.purchaseId).then(res => {
-  //     getConfirm().then(resConfirm => {
-  //       setOrderConfirm(resConfirm.data.data);
-  //     });
-  //     getCompletion().then(resCompletion => {
-  //       setCompletion(resCompletion.data.data);
-  //     });
-  //   });
-  // };
   return (
     <li
       className={cx('complete-card')}
@@ -85,7 +73,7 @@ function orderNotConfirm({
       <div className={cx('drink-detail')}>
         <span className={cx('option-title')}>옵션</span>
         <ul className={cx('option-list')}>
-          {item.menuList[0]?.optionList.map((option: any) => (
+          {item.menuList[0]?.optionList.map((option: IOptionList) => (
             <li key={option.index}>{option.personalOptionNameAndAmount}</li>
           ))}
           <li>{item.menuList[0]?.cupType}</li>

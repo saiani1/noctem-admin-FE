@@ -17,19 +17,15 @@ import { ArrowBtn } from '../../../public/assets/svg';
 const cx = classNames.bind(styles);
 
 function menubarList() {
+  const router = useRouter();
   const isLogin = useRecoilValue(loginState);
   const token = useRecoilValue(tokenState);
+  const clickMenu = useRecoilValue(categoryState);
   const [request, setRequest] = useRecoilState(requestState);
   const [confirm, setConfirm] = useRecoilState(confirmState);
   const [completion, setCompletion] = useRecoilState(completionState);
-  const [isLoginTemp, setIsLoginTemp] = useState(false);
-  // const [requestLengthTemp, setRequestLengthTemp] = useState(0);
-  // const [confirmLengthTemp, setConfirmLengthTemp] = useState(0);
-  // const [completionLengthTemp, setCompletionLengthTemp] = useState(0);
-  const router = useRouter();
-
-  const [clickMenu, setClickMenu] = useRecoilState(categoryState);
   const [clickMenuTemp, setClickMenuTemp] = useRecoilState(categoryState);
+  const [isLoginTemp, setIsLoginTemp] = useState(false);
   const [miniMode, setMiniMode] = useState(false);
 
   const handleClickMenu = (e: React.MouseEvent<HTMLElement>) => {
@@ -49,9 +45,6 @@ function menubarList() {
     } else {
       setIsLoginTemp(false);
     }
-    // setRequestLengthTemp(request.length);
-    // setConfirmLengthTemp(confirm.length);
-    // setCompletionLengthTemp(completion.length);
   }, [isLogin]);
 
   const getOrderData = () => {
@@ -65,7 +58,6 @@ function menubarList() {
       getCompletion(token).then(res => {
         setCompletion(res.data.data);
       });
-      console.log('데이터', request, confirm, completion);
     }
   };
 

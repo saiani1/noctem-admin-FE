@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import toast from 'react-hot-toast';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { confirmAlert } from 'react-confirm-alert';
 import swal from 'sweetalert';
 import styles from '../../../styles/pages/order.module.scss';
 
@@ -47,19 +46,16 @@ function orderContent() {
     const STREAM_URL = `https://sse.noctem.click:33333/sse/alert-server/store/1`;
     const ssEvents = new EventSource(STREAM_URL);
 
-    ssEvents.addEventListener('open', event => {
-      console.log('sse OPEN', event);
+    ssEvents.addEventListener('open', () => {
       getOrderData();
     });
 
-    ssEvents.addEventListener('message', event => {
-      const data = JSON.parse(event.data);
-      console.log('get message', event);
+    ssEvents.addEventListener('message', () => {
       getOrderData();
     });
 
-    ssEvents.addEventListener('error', err => {
-      console.log('ERR', err);
+    ssEvents.addEventListener('error', (err: any) => {
+      throw new Error('ERR', err);
     });
 
     return () => {
@@ -106,7 +102,6 @@ function orderContent() {
     });
   };
   const handleOrderCancel = () => {
-    console.log('주문 반려');
     swal({
       text: '주문을 반려하시겠습니까?',
       buttons: ['취소', '반려'],
@@ -118,8 +113,6 @@ function orderContent() {
             setRequest(resRequest.data.data);
           });
         });
-      } else {
-        console.log('취소');
       }
     });
   };

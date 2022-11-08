@@ -22,14 +22,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     const STREAM_URL = `https://sse.noctem.click:33333/sse/alert-server/store/1`;
     const ssEvents = new EventSource(STREAM_URL);
 
-    ssEvents.addEventListener('open', event => {
-      console.log('sse OPEN', event);
-    });
-
     ssEvents.addEventListener('message', event => {
       const data = JSON.parse(event.data);
-      console.log('get message', event);
-      console.log('data', data);
 
       if (data.alertCode === 1 || data.alertCode === 2) {
         toast.custom(
@@ -72,8 +66,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       }
     });
 
-    ssEvents.addEventListener('error', err => {
-      console.log('ERR', err);
+    ssEvents.addEventListener('error', (err: any) => {
+      throw new Error(err);
     });
 
     return () => {
