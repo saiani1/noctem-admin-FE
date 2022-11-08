@@ -147,7 +147,7 @@ function orderContent() {
                   <span>( {request[0].orderNumber} )</span>{' '}
                   {request[0].menuList[0].menuName}{' '}
                   {request[0].menuList.length !== 1 &&
-                    `외 ${request[0].menuList.length}개`}
+                    `외 ${request[0].menuList.length - 1}개`}
                 </div>
                 <dl>
                   <dt>옵션</dt>
