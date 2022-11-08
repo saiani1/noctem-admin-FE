@@ -8,8 +8,8 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import styles from '../../../styles/content/storeContent.module.scss';
 import { getStoreInfo } from '../../store/api/store';
 import { IStore } from '../../types/store.d';
-import { tokenState } from '../../store/store/auth';
-import { categoryState } from '../../store/store/category';
+import { tokenState } from '../../store/atom/auth';
+import { categoryState } from '../../store/atom/category';
 
 function storeContent() {
   const token = useRecoilValue(tokenState);

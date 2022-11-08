@@ -22,7 +22,7 @@ import {
 } from '../../store/api/data';
 import DrinkRankItem from '../ui/drinkRankItem';
 import DataChart from '../ui/dataChart';
-import { tokenState } from '../../store/store/auth';
+import { tokenState } from '../../store/atom/auth';
 
 function dataContent() {
   const token = useRecoilValue(tokenState);

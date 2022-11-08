@@ -4,8 +4,8 @@ import React, { useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { toast } from 'react-hot-toast';
 import Image from 'next/image';
-import { loginState, tokenState } from '../../store/store/auth';
-import { categoryState } from '../../store/store/category';
+import { loginState, tokenState } from '../../store/atom/auth';
+import { categoryState } from '../../store/atom/category';
 import styles from '../../../styles/content/login.module.scss';
 import { storeLogin } from '../../store/api/login';
 

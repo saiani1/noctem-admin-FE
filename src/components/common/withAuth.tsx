@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { loginState } from '../../store/store/auth';
-import { categoryState } from '../../store/store/category';
+import { loginState } from '../../store/atom/auth';
+import { categoryState } from '../../store/atom/category';
 
 const withAuth = (WrappedComponent: any) => {
   // eslint-disable-next-line react/function-component-definition

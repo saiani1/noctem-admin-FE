@@ -8,10 +8,10 @@ import {
   requestState,
   confirmState,
   completionState,
-} from '../../store/store/orderState';
+} from '../../store/atom/orderState';
 import styles from '../../../styles/common/menuBar.module.scss';
-import { loginState, tokenState } from '../../store/store/auth';
-import { categoryState } from '../../store/store/category';
+import { loginState, tokenState } from '../../store/atom/auth';
+import { categoryState } from '../../store/atom/category';
 import { ArrowBtn } from '../../../public/assets/svg';
 
 const cx = classNames.bind(styles);

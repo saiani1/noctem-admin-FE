@@ -17,11 +17,11 @@ import {
   requestState,
   confirmState,
   completionState,
-} from '../../store/store/orderState';
-import { tokenState } from '../../store/store/auth';
+} from '../../store/atom/orderState';
+import { tokenState } from '../../store/atom/auth';
 import OrderStatusBox from '../ui/orderStatusBox';
 import OrderInfoPopUp from '../ui/orderInfoPopUp';
-import { categoryState } from '../../store/store/category';
+import { categoryState } from '../../store/atom/category';
 
 const cx = classNames.bind(styles);
 

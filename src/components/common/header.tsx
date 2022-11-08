@@ -8,8 +8,8 @@ import 'dayjs/locale/ko';
 import { useRecoilState } from 'recoil';
 import styles from '../../../styles/common/header.module.scss';
 import { getStoreInfo } from '../../store/api/store';
-import { loginState, tokenState } from '../../store/store/auth';
-import { categoryState } from '../../store/store/category';
+import { loginState, tokenState } from '../../store/atom/auth';
+import { categoryState } from '../../store/atom/category';
 
 interface IStore {
   managerId: number;

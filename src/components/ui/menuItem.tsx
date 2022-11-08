@@ -9,7 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { addSoldOutMenu } from '../../store/api/menu';
 import { IMenuList, ISoldOutList } from '../../types/menu.d';
 import CustomAlert from './customAlert';
-import { tokenState } from '../../store/store/auth';
+import { tokenState } from '../../store/atom/auth';
 
 interface IProps {
   menu: IMenuList;

@@ -8,7 +8,7 @@ import {
   getConfirm,
   getCompletion,
 } from '../../store/api/order';
-import { tokenState } from '../../store/store/auth';
+import { tokenState } from '../../store/atom/auth';
 import { IList, IOptionList } from '../../types/order.d';
 
 const cx = classNames.bind(styles);
