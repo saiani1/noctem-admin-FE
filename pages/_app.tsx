@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { toast, ToastBar, Toaster } from 'react-hot-toast';
 import { RecoilRoot } from 'recoil';
 import classNames from 'classnames/bind';
+import useSound from 'use-sound';
 
 import '../styles/index.scss';
 import { useRouter } from 'next/router';
@@ -15,6 +16,7 @@ const cx = classNames.bind(styles);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const [playOn] = useSound('/assets/mp3/sound.mp3');
 
   useEffect(() => {
     const STREAM_URL = `https://sse.noctem.click:33333/sse/alert-server/store/1`;
@@ -66,6 +68,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             position: 'top-right',
           },
         );
+        playOn();
       }
     });
 

@@ -15,7 +15,7 @@ function menuContent() {
   const [category, setCategory] = useState<ICategoryS[]>([]);
   const [menuList, setMenuList] = useState<IMenuList[]>([]);
   const [soldOutList, setSoldOutList] = useState<ISoldOutList[]>([]);
-  const [clickTab, setClickTab] = useState('new');
+  const [clickTab, setClickTab] = useState('리프레셔');
 
   const handleClickTab = (e: React.MouseEvent<HTMLElement>) => {
     const { value } = e.target as HTMLInputElement;
@@ -28,7 +28,16 @@ function menuContent() {
   };
 
   useEffect(() => {
-    getSmallCategory().then(res => setCategory(res.data.data));
+    getSmallCategory().then(res => {
+      const sliceCategory = res.data.data.slice(1);
+      console.log(sliceCategory);
+      setCategory(sliceCategory);
+    });
+
+    Promise.all([getMenuList('3'), getSoldOutMenuList()]).then(res => {
+      setMenuList(res[0].data.data);
+      setSoldOutList(res[1].data.data);
+    });
   }, []);
 
   return (
