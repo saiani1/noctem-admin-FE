@@ -5,7 +5,8 @@
 > 본 프로젝트는 스파로스 아카데미 1기에서 2차 프로젝트로 진행한 **카페 스마트 오더 서비스**입니다.
 
 - **Noctem조의 프론트엔드 관리자 웹 저장소**입니다.
-
+- [Demo: 스마트오더 앱](https://noctem-user1-fe.vercel.app/)
+- [Demo: 관리자 웹](https://noctem-admin-fe.vercel.app/)
 
 ### Project Repositories
 
@@ -21,8 +22,11 @@
 - [백엔드 menu service](https://github.com/arotein/noctem-menu-BE.git)
 - [백엔드 purchase service](https://github.com/arotein/noctem-purchase-BE.git)
 - [백엔드 admin service](https://github.com/arotein/noctem-admin-BE.git)
-- [Demo: 스마트오더 앱](https://noctem-user1-fe.vercel.app/)
-- [Demo: 관리자 웹](https://noctem-admin-fe.vercel.app/)
+
+&nbsp;
+
+## 📍 시스템 아키텍처
+![시스템 아키텍처](https://user-images.githubusercontent.com/77854486/203241651-6c98bce5-2d6f-4276-bff7-0d9621353829.png)
 
 &nbsp;
 
